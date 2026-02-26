@@ -34,6 +34,12 @@
             --whatsapp: #25D366;
             --discord: #5865f2;
             --vote: #ffaa00;
+            --darkness: #2c3e50;
+            --mythic: #8e44ad;
+            --victorium: #f39c12;
+            --knight: #7f8c8d;
+            --elite: #3498db;
+            --prime: #e74c3c;
         }
 
         /* Animations */
@@ -53,6 +59,11 @@
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(2deg); }
             100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== NAVBAR ===== */
@@ -291,10 +302,139 @@
             font-size: 1.5rem;
         }
 
+        /* ===== RANKS SECTION (6 RANK) ===== */
+        .ranks {
+            padding: 5rem 5%;
+            background: #080a0e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ranks::before {
+            content: "👑";
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 15rem;
+            opacity: 0.03;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+
+        .ranks-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .ranks-title span {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .ranks-sub {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .rank-card {
+            background: linear-gradient(145deg, #1a1d24, #111317);
+            border-radius: 40px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .rank-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .rank-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .rank-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 50px;
+            background: rgba(0,0,0,0.5);
+            color: #fbbf24;
+        }
+
+        .rank-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .rank-features li {
+            color: #9ca3af;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rank-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .rank-buy {
+            background: transparent;
+            color: white;
+            border: 2px solid;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .rank-buy:hover {
+            transform: scale(1.02);
+            background: white;
+            color: black;
+        }
+
         /* ===== FITUR SERVER SECTION ===== */
         .server-features {
             padding: 5rem 5%;
-            background: #080a0e;
+            background: var(--bg-deep);
         }
 
         .features-title {
@@ -388,7 +528,7 @@
         /* ===== LEGENDARY WEAPONS SECTION ===== */
         .legendary {
             padding: 5rem 5%;
-            background: var(--bg-deep);
+            background: #080a0e;
             position: relative;
             overflow: hidden;
         }
@@ -564,10 +704,135 @@
             font-size: 0.95rem;
         }
 
-        /* ===== SHOP SECTION - TOKO RESMI ===== */
+        /* ===== MODAL QRIS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1a1d24, #111317);
+            margin: 5% auto;
+            padding: 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: modalFadeIn 0.3s;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: #94a3b8;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fbbf24;
+            margin: 1rem 0;
+        }
+
+        .qris-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 1rem auto;
+            border-radius: 20px;
+            border: 2px solid #fbbf24;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .qris-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px #fbbf24;
+        }
+
+        .payment-instruction {
+            color: #94a3b8;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .copy-account {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .copy-account:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--secondary);
+        }
+
+        .account-number {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .confirm-payment {
+            background: var(--gradient-gold);
+            color: black;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .confirm-payment:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px #fbbf24;
+        }
+
+        /* ===== SHOP SECTION ===== */
         .shop {
             padding: 5rem 5%;
-            background: #080a0e;
+            background: var(--bg-deep);
             border-top: 1px solid rgba(139, 92, 246, 0.2);
             border-bottom: 1px solid rgba(139, 92, 246, 0.2);
         }
@@ -696,7 +961,6 @@
         .price-idr {
             color: #94a3b8;
             font-size: 1rem;
-            text-decoration: line-through;
         }
 
         .shop-features {
@@ -754,80 +1018,10 @@
             color: #f59e0b;
         }
 
-        .topup-section {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border-radius: 40px;
-            padding: 3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            border: 1px solid #fbbf24;
-        }
-
-        .topup-title {
-            font-size: 2rem;
-            color: #fbbf24;
-            margin-bottom: 1rem;
-        }
-
-        .topup-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .topup-option {
-            background: var(--bg-surface);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            border: 2px solid #fbbf24;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            color: white;
-        }
-
-        .topup-option:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px #fbbf24;
-        }
-
-        .topup-option .gems {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fbbf24;
-        }
-
-        .topup-option .price {
-            color: white;
-        }
-
-        .topup-btn {
-            background: #fbbf24;
-            color: black;
-            border: none;
-            padding: 1rem 4rem;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 1rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .topup-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px #fbbf24;
-        }
-
         /* ===== RANKING SECTION ===== */
         .ranking {
             padding: 5rem 5%;
-            background: var(--bg-deep);
+            background: #080a0e;
         }
 
         .ranking-grid {
@@ -838,7 +1032,7 @@
             margin: 3rem auto;
         }
 
-        .rank-card {
+        .rank-card-top {
             background: linear-gradient(145deg, #1a1d24, #111317);
             border-radius: 30px;
             padding: 2rem;
@@ -847,18 +1041,18 @@
             position: relative;
         }
 
-        .rank-card.gold {
+        .rank-card-top.gold {
             border: 2px solid #fbbf24;
             transform: scale(1.05);
             z-index: 1;
         }
 
-        .rank-icon {
+        .rank-icon-top {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .rank-name {
+        .rank-name-top {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -888,7 +1082,7 @@
             font-weight: 700;
         }
 
-        .rank-badge {
+        .rank-badge-top {
             position: absolute;
             top: -10px;
             left: 50%;
@@ -905,7 +1099,7 @@
         /* ===== NEWS SECTION ===== */
         .news {
             padding: 5rem 5%;
-            background: #080a0e;
+            background: var(--bg-deep);
         }
 
         .news-grid {
@@ -987,676 +1181,4 @@
             border: 2px solid rgba(255,255,255,0.2);
         }
 
-        .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 60px var(--primary);
-        }
-
-        .social-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .social-cta-btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.2s;
-        }
-
-        .social-cta-btn.discord {
-            background: var(--discord);
-        }
-
-        .social-cta-btn.whatsapp {
-            background: var(--whatsapp);
-        }
-
-        .social-cta-btn.vote {
-            background: var(--vote);
-            color: black;
-        }
-
-        .social-cta-btn:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            color: #6b7280;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-sub {
-                font-size: 1.5rem;
-            }
-            
-            .ip-text {
-                font-size: 1.8rem;
-            }
-            
-            .cta-ip {
-                font-size: 2rem;
-            }
-            
-            .section-title,
-            .legendary-title,
-            .features-title {
-                font-size: 2.5rem;
-            }
-
-            .rank-card.gold {
-                transform: scale(1);
-            }
-
-            .currency-info {
-                flex-direction: column;
-                border-radius: 30px;
-            }
-
-            .commands-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
-        <div class="logo">
-            VOXENSMP
-            <span class="logo-badge">SEASON 8</span>
-        </div>
-        <div class="nav-links">
-            <a href="#">Beranda</a>
-            <a href="#features">Fitur</a>
-            <a href="#shop">Toko</a>
-            <a href="#">Peta</a>
-            <a href="#">Wiki</a>
-            <div class="social-links">
-                <a href="https://dsc.gg/voxensmp" class="social-btn discord-btn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.23 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.03.02.03.08-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
-                    </svg>
-                    Discord
-                </a>
-                <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" class="social-btn wa-btn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2 6.798 2 2.548 6.193 2.54 11.393c-.003 1.747.456 3.457 1.328 4.985L2.25 21.75l5.422-1.56c1.473.861 3.14 1.317 4.85 1.32h.004c5.199 0 9.456-4.195 9.464-9.396.004-2.513-.973-4.876-2.86-6.763zM12.022 20.04h-.003c-1.497-.002-2.965-.404-4.246-1.16l-.305-.182-3.357.966.998-3.25-.186-.312a8.085 8.085 0 0 1-1.268-4.362c.007-4.463 3.637-8.09 8.114-8.09 2.165 0 4.201.845 5.733 2.378a8.057 8.057 0 0 1 2.372 5.74c-.007 4.465-3.637 8.09-8.112 8.09zm4.477-6.09c-.245-.123-1.455-.718-1.68-.8-.226-.082-.39-.123-.555.123-.165.245-.64.8-.785.964-.145.163-.29.184-.536.061-.981-.48-1.74-1.066-2.434-1.723-.184-.164-.36-.352-.527-.548-.164-.193-.175-.3-.026-.494.123-.164.226-.287.339-.43.113-.144.151-.245.226-.409.075-.164.038-.307-.019-.43-.057-.123-.517-1.245-.71-1.705-.186-.447-.376-.388-.517-.396-.133-.008-.286-.01-.438-.01-.153 0-.4.057-.61.286-.21.23-.8.782-.8 1.907 0 1.125.82 2.211.934 2.365.114.154 1.594 2.433 3.86 3.332.54.215.96.344 1.288.442.54.164 1.032.14 1.421.086.433-.06 1.332-.543 1.52-1.068.188-.525.188-.975.132-1.069-.057-.094-.21-.154-.455-.277z"/>
-                    </svg>
-                    WhatsApp
-                </a>
-                <a href="https://minecraft-mp.com/server-s353923" class="social-btn vote-btn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.07 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    Vote
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <div class="season-badge">⚡ SEASON 8 NOW LIVE ⚡</div>
-        <h1>VoxenSmp Season 8</h1>
-        <div class="hero-sub">
-            <span>New Beginnings</span> • Epic Adventures
-        </div>
-        <div class="legendary-quote">
-            "Setiap senjata punya cerita. Temukan legendarismu!"
-        </div>
-    </section>
-
-    <!-- ===== IP SECTION (LOWERCASE) ===== -->
-    <section class="ip-section">
-        <div class="ip-container">
-            <div class="ip-box" id="ipBox">
-                <span class="ip-text">voxensmp.xyz</span>
-                <button class="copy-btn" onclick="copyIP()">📋 COPY IP</button>
-            </div>
-            <div class="player-count">
-                <span>248</span> pemain online • <span>1.2K</span> pemain Season 8
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FITUR SERVER SECTION ===== -->
-    <section id="features" class="server-features">
-        <h2 class="features-title">🎮 <span>Fitur</span> Server 🎮</h2>
-        <p class="features-sub">Command lengkap untuk pengalaman bermain maksimal</p>
-        
-        <div class="features-container">
-            <!-- Kategori Teleportasi & Warp -->
-            <div class="feature-category">
-                <div class="category-title">
-                    <span>🌍</span> Teleportasi & Warp
-                </div>
-                <div class="commands-list">
-                    <div class="command-item">
-                        <span class="command-icon">📍</span>
-                        <span class="command-text">/warp</span>
-                        <span class="command-desc">Warp utama</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">📸</span>
-                        <span class="command-text">/warp foto</span>
-                        <span class="command-desc">Spot foto</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">💤</span>
-                        <span class="command-text">/warp afk</span>
-                        <span class="command-desc">Area AFK</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🏛️</span>
-                        <span class="command-text">/warp labirin</span>
-                        <span class="command-desc">Labirin</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🎲</span>
-                        <span class="command-text">/rtp</span>
-                        <span class="command-desc">Random teleport</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🎯</span>
-                        <span class="command-text">/rtpq</span>
-                        <span class="command-desc">RTP Quick</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">✅</span>
-                        <span class="command-text">/tpyes</span>
-                        <span class="command-desc">Terima teleport</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">❌</span>
-                        <span class="command-text">/tpa</span>
-                        <span class="command-desc">Minta teleport</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🔄</span>
-                        <span class="command-text">/tphere</span>
-                        <span class="command-desc">Teleport ke sini</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🏠</span>
-                        <span class="command-text">/sethome</span>
-                        <span class="command-desc">Set home</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kategori Player & Social -->
-            <div class="feature-category">
-                <div class="category-title">
-                    <span>👥</span> Player & Social
-                </div>
-                <div class="commands-list">
-                    <div class="command-item">
-                        <span class="command-icon">🎁</span>
-                        <span class="command-text">/kits</span>
-                        <span class="command-desc">Ambil kit</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🖼️</span>
-                        <span class="command-text">/skins</span>
-                        <span class="command-desc">Ganti skin</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">⚔️</span>
-                        <span class="command-text">/clan</span>
-                        <span class="command-desc">Manajemen clan</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">💎</span>
-                        <span class="command-text">/bounty</span>
-                        <span class="command-desc">Pasang bounty</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">💸</span>
-                        <span class="command-text">/pay</span>
-                        <span class="command-desc">Transfer uang</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">💰</span>
-                        <span class="command-text">/economy</span>
-                        <span class="command-desc">Cek ekonomi</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🛒</span>
-                        <span class="command-text">/shop</span>
-                        <span class="command-desc">Toko server</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🔐</span>
-                        <span class="command-text">/changepass</span>
-                        <span class="command-desc">Ganti password</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kategori Dungeon & Fitur Lain -->
-            <div class="feature-category">
-                <div class="category-title">
-                    <span>🏰</span> Dungeon & Lainnya
-                </div>
-                <div class="commands-list">
-                    <div class="command-item">
-                        <span class="command-icon">🏯</span>
-                        <span class="command-text">/dungeon</span>
-                        <span class="command-desc">Masuk dungeon</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">🔄</span>
-                        <span class="command-text">/cf</span>
-                        <span class="command-desc">Coin flip</span>
-                    </div>
-                    <div class="command-item">
-                        <span class="command-icon">⛏️</span>
-                        <span class="command-text">/rtpq</span>
-                        <span class="command-desc">RTP Quick</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== LEGENDARY WEAPONS SECTION ===== -->
-    <section class="legendary">
-        <h2 class="legendary-title">⚡ <span>Legends Weapon</span> ⚡</h2>
-        <p class="legendary-sub">Senjata legendaris dengan kemampuan unik dan efek visual memukau</p>
-        
-        <div class="weapons-grid">
-            <!-- Dragon Slayer -->
-            <div class="weapon-card">
-                <div class="weapon-rarity">LEGENDARY</div>
-                <div class="weapon-icon">🐉⚔️</div>
-                <div class="weapon-name">Dragon Slayer</div>
-                <div class="weapon-desc">Pedang naga yang konon bisa membelah langit</div>
-                <div class="weapon-stats">
-                    <div class="stat-row"><span>Damage</span> <span>85-120</span></div>
-                    <div class="stat-row"><span>Critical Chance</span> <span>35%</span></div>
-                    <div class="stat-row"><span>Attack Speed</span> <span>1.2x</span></div>
-                </div>
-                <div class="weapon-ability">
-                    <div class="ability-name">🔥 Dragon's Fury</div>
-                    <div class="ability-desc">Serangan beruntun 5x dengan efek ledakan naga</div>
-                </div>
-            </div>
-
-            <!-- Shadow Dagger -->
-            <div class="weapon-card">
-                <div class="weapon-rarity">EPIC</div>
-                <div class="weapon-icon">🗡️🌑</div>
-                <div class="weapon-name">Shadow Dagger</div>
-                <div class="weapon-desc">Belati kegelapan yang tak terlihat di malam hari</div>
-                <div class="weapon-stats">
-                    <div class="stat-row"><span>Damage</span> <span>60-90</span></div>
-                    <div class="stat-row"><span>Critical Chance</span> <span>50%</span></div>
-                    <div class="stat-row"><span>Attack Speed</span> <span>1.8x</span></div>
-                </div>
-                <div class="weapon-ability">
-                    <div class="ability-name">🌑 Shadow Strike</div>
-                    <div class="ability-desc">Menghilang dan menyerang dari bayangan</div>
-                </div>
-            </div>
-
-            <!-- Storm Breaker -->
-            <div class="weapon-card">
-                <div class="weapon-rarity">LEGENDARY</div>
-                <div class="weapon-icon">⚡🔨</div>
-                <div class="weapon-name">Storm Breaker</div>
-                <div class="weapon-desc">Palu petir yang memanggil badai</div>
-                <div class="weapon-stats">
-                    <div class="stat-row"><span>Damage</span> <span>95-140</span></div>
-                    <div class="stat-row"><span>Critical Chance</span> <span>30%</span></div>
-                    <div class="stat-row"><span>Attack Speed</span> <span>1.0x</span></div>
-                </div>
-                <div class="weapon-ability">
-                    <div class="ability-name">⚡ Thunder Call</div>
-                    <div class="ability-desc">Memanggil petir di area sekitar musuh</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SHOP SECTION - TOKO RESMI DENGAN LINK ===== -->
-    <section id="shop" class="shop">
-        <div class="shop-header">
-            <div class="shop-subtitle">VoxenSmp Official Store</div>
-            <h2 class="section-title">🛒 <span>Toko</span> Resmi 🛒</h2>
-            <div class="currency-info">
-                <span class="gem-icon">💎</span>
-                <span class="gem-text">Voxen Gems</span>
-                <span class="gem-rate">1 Gems = Rp 100</span>
-            </div>
-        </div>
-
-        <div class="shop-grid">
-            <!-- Rank Bundle - Link ke toko -->
-            <a href="https://store.voxensmp.xyz" target="_blank" class="shop-card premium">
-                <div class="popular-badge">POPULAR</div>
-                <div class="shop-header-card">
-                    <span class="shop-icon">👑</span>
-                    <span class="shop-title">Rank Bundle</span>
-                </div>
-                <div class="shop-price">
-                    <div class="price-gems">💎 500 Gems</div>
-                    <div class="price-idr">Rp 75.000</div>
-                </div>
-                <ul class="shop-features">
-                    <li>Rank Legend selamanya</li>
-                    <li>Akses ke /fly</li>
-                    <li>5 home slots</li>
-                    <li>Warna chat eksklusif</li>
-                </ul>
-                <span class="shop-btn premium">🔗 BELI SEKARANG</span>
-            </a>
-
-            <!-- Gems Pack 1 - Link ke toko -->
-            <a href="https://store.voxensmp.xyz" target="_blank" class="shop-card">
-                <div class="shop-header-card">
-                    <span class="shop-icon">💎</span>
-                    <span class="shop-title">100 Gems</span>
-                </div>
-                <div class="shop-price">
-                    <div class="price-gems">💎 100 Gems</div>
-                    <div class="price-idr">Rp 10.000</div>
-                </div>
-                <ul class="shop-features">
-                    <li>100 Voxen Gems</li>
-                    <li>Bonus 10 Gems</li>
-                    <li>Daily reward +20%</li>
-                </ul>
-                <span class="shop-btn">🔗 BELI GEMS</span>
-            </a>
-
-            <!-- Gems Pack 2 - Link ke toko -->
-            <a href="https://store.voxensmp.xyz" target="_blank" class="shop-card premium">
-                <div class="shop-header-card">
-                    <span class="shop-icon">💎💎</span>
-                    <span class="shop-title">500 Gems</span>
-                </div>
-                <div class="shop-price">
-                    <div class="price-gems">💎 500 Gems</div>
-                    <div class="price-idr">Rp 45.000</div>
-                </div>
-                <ul class="shop-features">
-                    <li>500 Voxen Gems</li>
-                    <li>Bonus 75 Gems</li>
-                    <li>Daily reward +50%</li>
-                    <li>1 Legendary Crate</li>
-                </ul>
-                <span class="shop-btn premium">🔗 BELI GEMS</span>
-            </a>
-
-            <!-- Gems Pack 3 - Link ke toko -->
-            <a href="https://store.voxensmp.xyz" target="_blank" class="shop-card">
-                <div class="shop-header-card">
-                    <span class="shop-icon">💎💎💎</span>
-                    <span class="shop-title">1000 Gems</span>
-                </div>
-                <div class="shop-price">
-                    <div class="price-gems">💎 1000 Gems</div>
-                    <div class="price-idr">Rp 85.000</div>
-                </div>
-                <ul class="shop-features">
-                    <li>1000 Voxen Gems</li>
-                    <li>Bonus 200 Gems</li>
-                    <li>Daily reward +100%</li>
-                    <li>3 Legendary Crates</li>
-                </ul>
-                <span class="shop-btn">🔗 BELI GEMS</span>
-            </a>
-        </div>
-
-        <!-- Topup Section dengan Link -->
-        <div class="topup-section">
-            <div class="topup-title">⚡ Top Up Cepat ⚡</div>
-            <div class="topup-options">
-                <a href="https://store.voxensmp.xyz" target="_blank" class="topup-option">
-                    <span class="gems">💎 50</span>
-                    <span class="price">Rp 5K</span>
-                </a>
-                <a href="https://store.voxensmp.xyz" target="_blank" class="topup-option">
-                    <span class="gems">💎 150</span>
-                    <span class="price">Rp 13K</span>
-                </a>
-                <a href="https://store.voxensmp.xyz" target="_blank" class="topup-option">
-                    <span class="gems">💎 300</span>
-                    <span class="price">Rp 27K</span>
-                </a>
-                <a href="https://store.voxensmp.xyz" target="_blank" class="topup-option">
-                    <span class="gems">💎 600</span>
-                    <span class="price">Rp 55K</span>
-                </a>
-                <a href="https://store.voxensmp.xyz" target="_blank" class="topup-option">
-                    <span class="gems">💎 1200</span>
-                    <span class="price">Rp 100K</span>
-                </a>
-            </div>
-            <a href="https://store.voxensmp.xyz" target="_blank" class="topup-btn">🔗 TOP UP VIA TOKO</a>
-        </div>
-    </section>
-
-    <!-- ===== RANKING SECTION ===== -->
-    <section class="ranking">
-        <h2 class="section-title">🏆 <span>Top</span> Players 🏆</h2>
-        <div class="ranking-grid">
-            <div class="rank-card gold">
-                <div class="rank-badge">#1</div>
-                <div class="rank-icon">👑</div>
-                <div class="rank-name rank-gold">ReiiAp</div>
-                <div class="rank-player">Legendary Rank</div>
-                <div class="rank-value">12.450 Gems</div>
-            </div>
-            <div class="rank-card">
-                <div class="rank-badge">#2</div>
-                <div class="rank-icon">⚔️</div>
-                <div class="rank-name rank-silver">DragonSlayer</div>
-                <div class="rank-player">Epic Rank</div>
-                <div class="rank-value">9.820 Gems</div>
-            </div>
-            <div class="rank-card">
-                <div class="rank-badge">#3</div>
-                <div class="rank-icon">🛡️</div>
-                <div class="rank-name rank-bronze">ShadowHunter</div>
-                <div class="rank-player">Elite Rank</div>
-                <div class="rank-value">8.150 Gems</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== NEWS SECTION ===== -->
-    <section class="news">
-        <h2 class="section-title">📢 <span>Season 8</span> Updates 📢</h2>
-        <div class="news-grid">
-            <a href="#" class="news-card">
-                <div class="news-meta">
-                    <span>🚀 SEASON 8</span>
-                    <span>26 Feb 2026</span>
-                </div>
-                <h4>Season 8 Resmi Dimulai!</h4>
-                <p>Semua fitur baru sudah bisa dinikmati. Reset map total dengan world baru yang epik!</p>
-                <span class="feature-link">Baca →</span>
-            </a>
-            
-            <a href="#" class="news-card">
-                <div class="news-meta">
-                    <span>⚔️ UPDATE</span>
-                    <span>25 Feb 2026</span>
-                </div>
-                <h4>Boss Baru: Naga Iblis</h4>
-                <p>Boss legendary hadir di dungeon terbaru. Hadiah eksklusif untuk penakluk pertama!</p>
-                <span class="feature-link">Baca →</span>
-            </a>
-            
-            <a href="#" class="news-card">
-                <div class="news-meta">
-                    <span>🎮 EVENT</span>
-                    <span>24 Feb 2026</span>
-                </div>
-                <h4>Launch Event Season 8</h4>
-                <p>Event grand opening dengan total hadiah jutaan rupiah! Join sekarang!</p>
-                <span class="feature-link">Baca →</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- ===== CTA BOTTOM ===== -->
-    <section class="cta">
-        <h2>Siap Memulai Petualangan Season 8?</h2>
-        <p style="font-size: 1.3rem; color: #9ca3af; margin-bottom: 1rem;">
-            Gabung ke 1.200+ pemain lainnya
-        </p>
-        <div class="cta-ip">voxensmp.xyz</div>
-        
-        <div class="social-cta">
-            <a href="https://dsc.gg/voxensmp" target="_blank" class="social-cta-btn discord">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.23 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.03.02.03.08-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
-                </svg>
-                Discord
-            </a>
-            <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank" class="social-cta-btn whatsapp">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2 6.798 2 2.548 6.193 2.54 11.393c-.003 1.747.456 3.457 1.328 4.985L2.25 21.75l5.422-1.56c1.473.861 3.14 1.317 4.85 1.32h.004c5.199 0 9.456-4.195 9.464-9.396.004-2.513-.973-4.876-2.86-6.763zM12.022 20.04h-.003c-1.497-.002-2.965-.404-4.246-1.16l-.305-.182-3.357.966.998-3.25-.186-.312a8.085 8.085 0 0 1-1.268-4.362c.007-4.463 3.637-8.09 8.114-8.09 2.165 0 4.201.845 5.733 2.378a8.057 8.057 0 0 1 2.372 5.74c-.007 4.465-3.637 8.09-8.112 8.09zm4.477-6.09c-.245-.123-1.455-.718-1.68-.8-.226-.082-.39-.123-.555.123-.165.245-.64.8-.785.964-.145.163-.29.184-.536.061-.981-.48-1.74-1.066-2.434-1.723-.184-.164-.36-.352-.527-.548-.164-.193-.175-.3-.026-.494.123-.164.226-.287.339-.43.113-.144.151-.245.226-.409.075-.164.038-.307-.019-.43-.057-.123-.517-1.245-.71-1.705-.186-.447-.376-.388-.517-.396-.133-.008-.286-.01-.438-.01-.153 0-.4.057-.61.286-.21.23-.8.782-.8 1.907 0 1.125.82 2.211.934 2.365.114.154 1.594 2.433 3.86 3.332.54.215.96.344 1.288.442.54.164 1.032.14 1.421.086.433-.06 1.332-.543 1.52-1.068.188-.525.188-.975.132-1.069-.057-.094-.21-.154-.455-.277z"/>
-                </svg>
-                WhatsApp Group
-            </a>
-            <a href="https://minecraft-mp.com/server-s353923" target="_blank" class="social-cta-btn vote">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.07 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                Vote Server
-            </a>
-        </div>
-
-        <button class="cta-btn" onclick="copyIP()">📋 COPY IP & JOIN</button>
-        <p style="margin-top: 2rem; color: #6b7280;">
-            Java & Bedrock 1.21+ • Semi-RPG • Zero Pay-to-Win
-        </p>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <p>© 2026 VoxenSmp Season 8. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-            <a href="https://dsc.gg/voxensmp" target="_blank">Discord</a>
-            <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">WhatsApp</a>
-            <a href="https://minecraft-mp.com/server-s353923" target="_blank">Vote</a>
-        </div>
-        <p style="margin-top: 0.5rem;">Server Minecraft Semi-RPG Indonesia • Java & Bedrock 1.21+</p>
-        <p style="margin-top: 0.5rem; color: #4b5563;">IP: voxensmp.xyz (lowercase)</p>
-    </footer>
-
-    <!-- JavaScript untuk fungsi copy IP yang diperbaiki -->
-    <script>
-        function copyIP() {
-            const ip = "voxensmp.xyz";
-            
-            // Metode 1: Menggunakan Clipboard API
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(ip).then(() => {
-                    showNotification('✅ IP voxensmp.xyz berhasil disalin!');
-                }).catch(err => {
-                    // Jika gagal, coba metode fallback
-                    fallbackCopy(ip);
-                });
-            } else {
-                // Fallback untuk browser lama
-                fallbackCopy(ip);
-            }
-        }
-
-        function fallbackCopy(ip) {
-            const textarea = document.createElement('textarea');
-            textarea.value = ip;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            textarea.setSelectionRange(0, 99999);
-            
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showNotification('✅ IP voxensmp.xyz berhasil disalin!');
-                } else {
-                    showNotification('❌ Gagal menyalin. Silakan copy manual: ' + ip, 'error');
-                }
-            } catch (err) {
-                showNotification('❌ Gagal menyalin. Silakan copy manual: ' + ip, 'error');
-            }
-            
-            document.body.removeChild(textarea);
-        }
-
-        function showNotification(message, type = 'success') {
-            const notif = document.createElement('div');
-            notif.innerText = message;
-            notif.style.position = 'fixed';
-            notif.style.bottom = '20px';
-            notif.style.left = '50%';
-            notif.style.transform = 'translateX(-50%)';
-            notif.style.backgroundColor = type === 'success' ? '#10b981' : '#ef4444';
-            notif.style.color = 'white';
-            notif.style.padding = '1rem 2rem';
-            notif.style.borderRadius = '50px';
-            notif.style.fontWeight = 'bold';
-            notif.style.boxShadow = type === 'success' ? '0 0 20px #10b981' : '0 0 20px #ef4444';
-            notif.style.zIndex = '9999';
-            notif.style.fontSize = '1.1rem';
-            notif.style.animation = 'slideIn 0.3s ease-out';
-            document.body.appendChild(notif);
-
-            setTimeout(() => {
-               
+        .ct
