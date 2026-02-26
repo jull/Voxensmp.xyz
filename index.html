@@ -34,6 +34,8 @@
             --whatsapp: #25D366;
             --discord: #5865f2;
             --vote: #ffaa00;
+            
+            /* Warna rank */
             --darkness: #2c3e50;
             --mythic: #8e44ad;
             --victorium: #f39c12;
@@ -42,7 +44,7 @@
             --prime: #e74c3c;
         }
 
-        /* Animations */
+        /* Animasi */
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 20px var(--primary); }
             50% { box-shadow: 0 0 40px var(--secondary); }
@@ -170,7 +172,7 @@
             transform: scale(1.02);
         }
 
-        /* ===== HERO SECTION SEASON 8 ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
             padding: 6rem 5%;
             background: radial-gradient(circle at 20% 40%, rgba(139, 92, 246, 0.15), transparent 40%),
@@ -233,7 +235,7 @@
             border: 1px solid #ffd700;
         }
 
-        /* ===== IP SECTION - LOWERCASE ===== */
+        /* ===== IP SECTION ===== */
         .ip-section {
             background: rgba(0,0,0,0.4);
             backdrop-filter: blur(5px);
@@ -423,12 +425,13 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 1rem;
+            border-color: var(--primary);
         }
 
         .rank-buy:hover {
             transform: scale(1.02);
-            background: white;
-            color: black;
+            background: var(--primary);
+            color: white;
         }
 
         /* ===== FITUR SERVER SECTION ===== */
@@ -1181,4 +1184,11 @@
             border: 2px solid rgba(255,255,255,0.2);
         }
 
-        .ct
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px var(--primary);
+        }
+
+        .social-cta {
+            display: flex;
+            gap: 1rem
