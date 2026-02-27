@@ -941,4 +941,175 @@
             <div id="commands" class="command-category">
                 <h3>🛡 Sistem Keamanan 🛡</h3>
                 <p style="font-size: 18px; background: #1e2126; display: inline-block; padding: 10px 20px; border-radius: 30px;">
-                    <
+                    <i class="fas fa-shield-alt" style="color: #ffd966;"></i> 
+                    /ᴄʜᴀɴɢᴇᴘᴀss [ᴘᴡʟᴀᴍᴀ] [ᴘᴡʙᴀʀᴜ]
+                </p>
+            </div>
+        </section>
+
+        <!-- Info Server & Links -->
+        <section id="info" class="info-server">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Tentang Voxen SMP</h3>
+                <p><i class="fas fa-tag"></i> <strong>Season:</strong> Delapan (VIII)</p>
+                <p><i class="fas fa-globe"></i> <strong>IP Java:</strong> voxensmp.xyz</p>
+                <p><i class="fas fa-mobile-alt"></i> <strong>IP Bedrock:</strong> voxensmp.xyz (Port 19132)</p>
+                <p><i class="fas fa-puzzle-piece"></i> <strong>Theme:</strong> Medieval RPG / Legends Weapon</p>
+                <p><i class="fas fa-scroll"></i> <strong>MOTD:</strong> ᴠᴏхᴇɴ sᴍᴘ SEASON VIII [1.20 - 1.21] ⚔ Adventure awaits, legends will rise! ⚔</p>
+                <p><i class="fas fa-check-circle"></i> <strong>Status:</strong> Online (17/2026 players)</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-link"></i> Link Penting</h3>
+                <p><i class="fab fa-discord"></i> <a href="https://dsc.gg/voxensmp" target="_blank">Discord Voxen Community</a> (773 members)</p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">Group WhatsApp</a></p>
+                <p><i class="fas fa-star"></i> <a href="https://minecraft-mp.com/server-s353923" target="_blank">Vote untuk Server</a> (913 votes)</p>
+                <p><i class="fas fa-globe"></i> <a href="http://web.voxensmp.xyz" target="_blank">Website Official</a></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Register:</strong> 1 Feb 2026</p>
+                <p><i class="fas fa-chart-bar"></i> <strong>Rank #334</strong> | Score 1438</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-crown"></i> Fitur Unggulan</h3>
+                <p>✓ Custom Legends Weapon (skill aktif/pasif)</p>
+                <p>✓ VFX特效 setiap senjata</p>
+                <p>✓ Dungeon & Boss AI canggih</p>
+                <p>✓ SmartSpawner & AFK System</p>
+                <p>✓ Economy anti pay to win</p>
+                <p>✓ Class: Assassin, Tank, Mage, Ranger</p>
+                <p>✓ Event mingguan & konten endgame</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div style="text-align: center; margin: 40px 0; padding: 40px; background: linear-gradient(145deg, #1e2126, #15181c); border-radius: 30px;">
+            <h2 style="color: #ffd966; font-size: 32px; margin-bottom: 20px;">⚡ MULAI PETUALANGANMU SEKARANG ⚡</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">IP Server: <strong style="background: #0a0c0f; padding: 8px 20px; border-radius: 30px;">voxensmp.xyz</strong></p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://dsc.gg/voxensmp" target="_blank" style="background: #5865F2; color: white; padding: 15px 30px; border-radius: 40px; text-decoration: none; font-weight: bold;"><i class="fab fa-discord"></i> Join Discord</a>
+                <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank" style="background: #25D366; color: white; padding: 15px 30px; border-radius: 40px; text-decoration: none; font-weight: bold;"><i class="fab fa-whatsapp"></i> Join WhatsApp</a>
+                <a href="https://minecraft-mp.com/server-s353923" target="_blank" style="background: #ffd966; color: #0a0c0f; padding: 15px 30px; border-radius: 40px; text-decoration: none; font-weight: bold;"><i class="fas fa-star"></i> Vote Server</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#ranks">Rank</a>
+                <a href="#features">Fitur</a>
+                <a href="#info">Info</a>
+                <a href="#commands">Commands</a>
+                <a href="https://dsc.gg/voxensmp" target="_blank">Discord</a>
+                <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">WhatsApp</a>
+            </div>
+            <p class="copyright">© 2026 Voxen SMP Season Delapan. All rights reserved. | Server Minecraft Semi-RPG Indonesia</p>
+            <p class="copyright" style="margin-top: 10px;">Pembayaran via QRIS - Scan untuk membeli rank permanen</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Copy IP function
+        function copyIP() {
+            const ip = "voxensmp.xyz";
+            navigator.clipboard.writeText(ip).then(() => {
+                const msg = document.getElementById('copyMessage');
+                msg.classList.add('show');
+                showToast('IP berhasil disalin!');
+                setTimeout(() => {
+                    msg.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        // Modal functions
+        function openModal(rankName, price, nominal) {
+            const modal = document.getElementById('qrisModal');
+            const selectedRankInfo = document.getElementById('selectedRankInfo');
+            const nominalBayar = document.getElementById('nominalBayar');
+            const nominalStep = document.getElementById('nominalStep');
+            
+            selectedRankInfo.innerHTML = `${rankName} - ${price}`;
+            nominalBayar.innerHTML = price;
+            if (nominalStep) nominalStep.innerHTML = price;
+            
+            // Update WhatsApp link with selected rank and price
+            const waLink = document.getElementById('waConfirmLink');
+            const message = `Halo admin Voxen SMP, saya ingin konfirmasi pembayaran rank ${rankName} sebesar ${price}. Berikut bukti transfernya:`;
+            waLink.href = `https://wa.me/6285728148809?text=${encodeURIComponent(message)}`;
+            
+            // Store selected rank in localStorage for tracking
+            localStorage.setItem('selectedRank', rankName);
+            localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('selectedNominal', nominal);
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Track event
+            console.log(`User selected rank: ${rankName} - ${price}`);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('qrisModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Download QRIS
+        function downloadQRIS() {
+            const link = document.createElement('a');
+            link.href = 'https://i.ibb.co.com/fGpB483J/Whats-App-Image-2026-02-24-at-19-32-37.jpg';
+            link.download = 'QRIS-VoxenSMP.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Download QRIS dimulai!');
+        }
+
+        // Copy QRIS link
+        function copyQRISLink() {
+            const qrisUrl = 'https://i.ibb.co.com/fGpB483J/Whats-App-Image-2026-02-24-at-19-32-37.jpg';
+            navigator.clipboard.writeText(qrisUrl).then(() => {
+                showToast('Link QRIS berhasil disalin!');
+            });
+        }
+
+        // Track confirmation click
+        function trackConfirmation() {
+            const rank = localStorage.getItem('selectedRank') || 'Unknown';
+            const price = localStorage.getItem('selectedPrice') || 'Unknown';
+            console.log(`User confirmed payment for: ${rank} - ${price}`);
+            showToast(`Terima kasih! Silakan kirim bukti transfer`);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('qrisModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
