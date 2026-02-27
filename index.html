@@ -3,715 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoxenSmp Season 8 - Server Minecraft Semi-RPG Indonesia</title>
+    <title>Voxen SMP Season 8 - Store & Informasi</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #030405;
-            color: #eaeef2;
+            background: #0a0c0f;
+            background-image: 
+                radial-gradient(circle at 25% 0%, rgba(44, 62, 80, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 100%, rgba(52, 73, 94, 0.2) 0%, transparent 50%);
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
-        :root {
-            --primary: #8b5cf6;
-            --primary-glow: rgba(139, 92, 246, 0.5);
-            --secondary: #ec4899;
-            --accent: #10b981;
-            --bg-deep: #030405;
-            --bg-card: #111317;
-            --bg-surface: #1a1d24;
-            --border-glow: 0 0 15px var(--primary-glow);
-            --gradient-gold: linear-gradient(135deg, #fbbf24, #f59e0b);
-            --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899);
-            --gradient-premium: linear-gradient(135deg, #f59e0b, #ef4444);
-            --gradient-legendary: linear-gradient(135deg, #ffd700, #ff8c00, #ff4500);
-            --whatsapp: #25D366;
-            --discord: #5865f2;
-            --vote: #ffaa00;
-            
-            /* Warna rank */
-            --darkness: #2c3e50;
-            --mythic: #8e44ad;
-            --victorium: #f39c12;
-            --knight: #7f8c8d;
-            --elite: #3498db;
-            --prime: #e74c3c;
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* Animasi */
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 20px var(--primary); }
-            50% { box-shadow: 0 0 40px var(--secondary); }
-            100% { box-shadow: 0 0 20px var(--primary); }
-        }
-
-        @keyframes legendary-glow {
-            0% { text-shadow: 0 0 10px gold; }
-            50% { text-shadow: 0 0 30px orange, 0 0 50px red; }
-            100% { text-shadow: 0 0 10px gold; }
-        }
-
-        @keyframes float-weapon {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== NAVBAR ===== */
+        /* Navbar */
         .navbar {
-            background: rgba(3, 4, 5, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            padding: 1rem 5%;
+            background: rgba(10, 12, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ffd966;
+            padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 28px;
             font-weight: 800;
-            background: var(--gradient-purple);
+            background: linear-gradient(135deg, #ffd966, #ffb347);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .logo-badge {
-            background: var(--gradient-gold);
-            color: black;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            margin-left: 0.5rem;
-            display: inline-block;
-            vertical-align: middle;
+        .logo span {
+            font-size: 14px;
+            display: block;
+            color: #aaa;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 25px;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: #b0b8c5;
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
-            transition: 0.2s;
+            transition: 0.3s;
+            font-size: 16px;
         }
 
         .nav-links a:hover {
-            color: white;
-            text-shadow: 0 0 10px var(--primary);
+            color: #ffd966;
         }
 
         .social-links {
             display: flex;
-            gap: 0.8rem;
-            align-items: center;
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .social-btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
+        .social-links a {
+            color: #fff;
+            background: #2a2f35;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            transition: 0.2s;
-            text-decoration: none;
-            color: white;
+            justify-content: center;
+            transition: 0.3s;
+            font-size: 20px;
         }
 
-        .discord-btn {
-            background: var(--discord);
+        .social-links a:hover {
+            background: #ffd966;
+            color: #0a0c0f;
+            transform: translateY(-3px);
         }
 
-        .discord-btn:hover {
-            background: #4752c4;
-            transform: scale(1.02);
-        }
-
-        .wa-btn {
-            background: var(--whatsapp);
-        }
-
-        .wa-btn:hover {
-            background: #20b858;
-            transform: scale(1.02);
-        }
-
-        .vote-btn {
-            background: var(--vote);
-            color: black;
-        }
-
-        .vote-btn:hover {
-            background: #e69500;
-            transform: scale(1.02);
-        }
-
-        /* ===== HERO SECTION ===== */
+        /* Hero Section */
         .hero {
-            padding: 6rem 5%;
-            background: radial-gradient(circle at 20% 40%, rgba(139, 92, 246, 0.15), transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15), transparent 40%),
-                        linear-gradient(165deg, #030405 0%, #0f1117 100%);
+            padding: 60px 0 40px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .season-badge {
-            display: inline-block;
-            background: linear-gradient(145deg, #8b5cf6, #ec4899);
-            color: white;
-            font-weight: 800;
-            font-size: 1.2rem;
-            padding: 0.6rem 2.5rem;
-            border-radius: 40px;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            animation: pulse-glow 2s infinite;
-            border: 2px solid rgba(255,255,255,0.3);
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(10,12,15,1) 100%);
+            border-bottom: 1px solid #333;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #ffffff, #d8b4fe, #fbcfe8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .hero-sub {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #cbd5e1;
+        .hero h1 span {
+            color: #ffd966;
+            font-weight: 300;
+            display: block;
+            font-size: 24px;
+            letter-spacing: 5px;
         }
 
-        .hero-sub span {
-            color: var(--primary);
-            border-bottom: 3px solid var(--secondary);
-        }
-
-        .legendary-quote {
-            font-size: 1.3rem;
-            color: #ffd700;
-            font-style: italic;
-            margin-top: 2rem;
-            animation: legendary-glow 3s infinite;
-            background: rgba(0,0,0,0.5);
+        .server-ip {
+            background: #1e2126;
             display: inline-block;
-            padding: 0.5rem 2rem;
+            padding: 15px 30px;
             border-radius: 50px;
-            backdrop-filter: blur(5px);
-            border: 1px solid #ffd700;
-        }
-
-        /* ===== IP SECTION ===== */
-        .ip-section {
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
-            border-top: 1px solid rgba(139, 92, 246, 0.3);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
-            padding: 3rem 5%;
-        }
-
-        .ip-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .ip-box {
-            background: linear-gradient(145deg, #1a1d24, #0f1117);
-            border: 2px solid var(--primary);
-            border-radius: 80px;
-            padding: 1.2rem 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            box-shadow: 0 0 40px var(--primary-glow);
-        }
-
-        .ip-text {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: white;
-            letter-spacing: 2px;
-            text-transform: lowercase;
-        }
-
-        .copy-btn {
-            background: var(--gradient-purple);
-            color: white;
-            border: none;
-            padding: 0.8rem 2.5rem;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 600;
+            border: 2px solid #ffd966;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 0 25px var(--primary);
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 217, 102, 0.3);
         }
 
-        .copy-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--primary);
+        .server-ip:hover {
+            background: #2a2f35;
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 217, 102, 0.5);
         }
 
-        .player-count {
-            margin-top: 1.5rem;
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
+        .server-ip i {
+            margin-right: 10px;
+            color: #ffd966;
         }
 
-        .player-count span {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-size: 1.5rem;
+        .copy-msg {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #ffd966;
+            opacity: 0;
+            transition: 0.3s;
         }
 
-        /* ===== RANKS SECTION (6 RANK) ===== */
-        .ranks {
-            padding: 5rem 5%;
-            background: #080a0e;
-            position: relative;
-            overflow: hidden;
+        .copy-msg.show {
+            opacity: 1;
         }
 
-        .ranks::before {
-            content: "👑";
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            font-size: 15rem;
-            opacity: 0.03;
-            transform: rotate(15deg);
-            pointer-events: none;
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+            flex-wrap: wrap;
         }
 
-        .ranks-title {
+        .hero-stats i {
+            color: #ffd966;
+            margin-right: 5px;
+        }
+
+        .badge {
+            background: #ffd966;
+            color: #0a0c0f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* Ranks Section */
+        .ranks-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
             text-align: center;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 40px;
         }
 
-        .ranks-title span {
-            background: var(--gradient-purple);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .section-title h2 {
+            font-size: 36px;
+            color: #ffd966;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .ranks-sub {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.2rem;
+        .section-title p {
+            color: #aaa;
             max-width: 700px;
-            margin: 0 auto 4rem auto;
+            margin: 10px auto 0;
         }
 
-        .ranks-grid {
+        .rank-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .rank-card {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border-radius: 40px;
-            padding: 2rem;
-            border: 2px solid transparent;
-            transition: 0.4s;
+            background: rgba(30, 33, 38, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid #3a3f47;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: 0.3s;
             position: relative;
             overflow: hidden;
-            text-align: center;
         }
 
         .rank-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-10px);
+            border-color: #ffd966;
+            box-shadow: 0 10px 30px rgba(255, 217, 102, 0.2);
         }
 
-        .rank-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .rank-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .rank-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 1rem 0;
-            padding: 0.5rem;
-            border-radius: 50px;
-            background: rgba(0,0,0,0.5);
-            color: #fbbf24;
-        }
-
-        .rank-features {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .rank-features li {
-            color: #9ca3af;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .rank-features li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .rank-buy {
-            background: transparent;
-            color: white;
-            border: 2px solid;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-            border-color: var(--primary);
-        }
-
-        .rank-buy:hover {
-            transform: scale(1.02);
-            background: var(--primary);
-            color: white;
-        }
-
-        /* ===== FITUR SERVER SECTION ===== */
-        .server-features {
-            padding: 5rem 5%;
-            background: var(--bg-deep);
-        }
-
-        .features-title {
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .features-title span {
-            background: var(--gradient-purple);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .features-sub {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-category {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border-radius: 30px;
-            padding: 2rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        .category-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .commands-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-
-        .command-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 50px;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.2s;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .command-item:hover {
-            border-color: var(--primary);
-            transform: translateX(5px);
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .command-icon {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .command-text {
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            color: #eaeef2;
-        }
-
-        .command-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-left: auto;
-        }
-
-        /* ===== LEGENDARY WEAPONS SECTION ===== */
-        .legendary {
-            padding: 5rem 5%;
-            background: #080a0e;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .legendary::before {
-            content: "⚔️";
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            font-size: 15rem;
-            opacity: 0.03;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        .legendary::after {
-            content: "🛡️";
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            font-size: 15rem;
-            opacity: 0.03;
-            transform: rotate(15deg);
-            pointer-events: none;
-        }
-
-        .legendary-title {
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .legendary-title span {
-            background: var(--gradient-legendary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: legendary-glow 3s infinite;
-        }
-
-        .legendary-sub {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 4rem auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .weapons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .weapon-card {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border-radius: 40px;
-            padding: 2rem;
-            border: 2px solid transparent;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .weapon-card:hover {
-            border-color: #ffd700;
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
-        }
-
-        .weapon-card::before {
+        .rank-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 5px;
-            background: var(--gradient-legendary);
-            transform: scaleX(0);
-            transition: transform 0.4s;
+            background: linear-gradient(90deg, #ffd966, #ffaa00);
         }
 
-        .weapon-card:hover::before {
-            transform: scaleX(1);
+        .rank-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .weapon-rarity {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient-legendary);
-            color: black;
-            font-weight: 700;
-            padding: 0.3rem 1rem;
+        .rank-price {
+            font-size: 24px;
+            color: #ffd966;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .rank-price span {
+            font-size: 14px;
+            color: #aaa;
+            font-weight: normal;
+        }
+
+        .rank-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        .rank-features li {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .rank-features i {
+            color: #ffd966;
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-buy {
+            background: #ffd966;
+            color: #0a0c0f;
+            border: none;
+            padding: 12px 30px;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 20px gold;
         }
 
-        .weapon-icon {
-            font-size: 4rem;
-            text-align: center;
-            margin: 1rem 0;
-            animation: float-weapon 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px gold);
+        .btn-buy:hover {
+            background: #ffaa00;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
         }
 
-        .weapon-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            text-align: center;
-            background: var(--gradient-legendary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .weapon-desc {
-            color: #d1d5db;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .weapon-stats {
-            background: rgba(0,0,0,0.5);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border: 1px solid #ffd70033;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .stat-row span:last-child {
-            color: #ffd700;
-            font-weight: 600;
-        }
-
-        .weapon-ability {
-            background: linear-gradient(145deg, #2d1b3a, #1a1d24);
-            border-radius: 15px;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-left: 4px solid #ff8c00;
-        }
-
-        .ability-name {
-            color: #ff8c00;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .ability-desc {
-            color: #9ca3af;
-            font-size: 0.95rem;
-        }
-
-        /* ===== MODAL QRIS ===== */
+        /* Modal QRIS */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -721,474 +329,495 @@
         }
 
         .modal-content {
-            background: linear-gradient(145deg, #1a1d24, #111317);
+            background: #1e2126;
             margin: 5% auto;
-            padding: 2rem;
-            border: 2px solid var(--primary);
-            border-radius: 40px;
+            padding: 30px;
+            border: 2px solid #ffd966;
+            border-radius: 30px;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
             text-align: center;
-            animation: modalFadeIn 0.3s;
             position: relative;
+            animation: modalopen 0.3s;
         }
 
-        .close-modal {
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close {
+            color: #aaa;
             position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            color: #94a3b8;
-            font-size: 2rem;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
-        .close-modal:hover {
-            color: white;
+        .close:hover {
+            color: #ffd966;
         }
 
-        .modal-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .modal-content h2 {
+            color: #ffd966;
+            margin-bottom: 20px;
+            font-size: 28px;
         }
 
-        .modal h3 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+        .modal-content h3 {
+            color: #fff;
+            margin: 15px 0 5px;
+            font-size: 22px;
         }
 
-        .modal-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fbbf24;
-            margin: 1rem 0;
+        .modal-content .rank-selected {
+            background: #2a2f35;
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #ffd966;
         }
 
         .qris-image {
             width: 100%;
             max-width: 300px;
             height: auto;
-            margin: 1rem auto;
             border-radius: 20px;
-            border: 2px solid #fbbf24;
+            border: 3px solid #ffd966;
+            margin: 15px 0;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
         .qris-image:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 30px #fbbf24;
+            box-shadow: 0 0 30px rgba(255, 217, 102, 0.5);
         }
 
         .payment-instruction {
-            color: #94a3b8;
-            margin: 1rem 0;
-            font-size: 1rem;
+            background: #2a2f35;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: left;
+            margin: 20px 0;
         }
 
-        .copy-account {
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            padding: 1rem;
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
+        .payment-instruction p {
+            margin: 8px 0;
         }
 
-        .copy-account:hover {
-            background: rgba(139, 92, 246, 0.2);
-            border-color: var(--secondary);
+        .payment-instruction i {
+            color: #ffd966;
+            width: 25px;
         }
 
-        .account-number {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .btn-confirm {
+            background: #25D366;
             color: white;
-        }
-
-        .confirm-payment {
-            background: var(--gradient-gold);
-            color: black;
             border: none;
-            padding: 1rem 2rem;
+            padding: 15px 30px;
             border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: bold;
+            font-size: 18px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 10px;
         }
 
-        .confirm-payment:hover {
+        .btn-confirm:hover {
+            background: #128C7E;
             transform: scale(1.02);
-            box-shadow: 0 0 30px #fbbf24;
         }
 
-        /* ===== SHOP SECTION ===== */
-        .shop {
-            padding: 5rem 5%;
-            background: var(--bg-deep);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        .btn-confirm i {
+            margin-right: 10px;
         }
 
-        .shop-header {
+        /* Features Grid */
+        .features-section {
+            padding: 40px 0 60px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 30px;
+            margin: 20px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .feature-item {
+            background: #1e2126;
+            border: 1px solid #3a3f47;
+            border-radius: 15px;
+            padding: 15px 10px;
             text-align: center;
-            margin-bottom: 4rem;
+            transition: 0.3s;
+            font-size: 18px;
+            font-weight: 500;
         }
 
-        .shop-subtitle {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
+        .feature-item:hover {
+            border-color: #ffd966;
+            transform: scale(1.02);
+            background: #2a2f35;
         }
 
-        .currency-info {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border: 2px solid #fbbf24;
-            border-radius: 100px;
-            padding: 1rem 2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2rem auto;
+        .feature-item i {
+            color: #ffd966;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .command-category {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .command-category h3 {
+            color: #ffd966;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Info Server */
+        .info-server {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: #1e2126;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #3a3f47;
+        }
+
+        .info-card h3 {
+            color: #ffd966;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 1px solid #3a3f47;
+            padding-bottom: 10px;
+        }
+
+        .info-card p {
+            margin: 10px 0;
+        }
+
+        .info-card i {
+            color: #ffd966;
+            width: 25px;
+        }
+
+        .info-card a {
+            color: #ffd966;
+            text-decoration: none;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding: 40px 0 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             flex-wrap: wrap;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+            margin-bottom: 30px;
         }
 
-        .gem-icon {
-            font-size: 2rem;
-            filter: drop-shadow(0 0 10px #fbbf24);
-        }
-
-        .gem-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fbbf24;
-        }
-
-        .gem-rate {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
-
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1300px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .shop-card {
-            background: var(--bg-card);
-            border-radius: 30px;
-            padding: 2rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
         }
 
-        .shop-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
-            transform: translateY(-10px);
+        .footer-links a:hover {
+            color: #ffd966;
         }
 
-        .popular-badge {
-            position: absolute;
-            top: 1rem;
-            right: -2rem;
-            background: var(--gradient-gold);
-            color: black;
-            padding: 0.3rem 3rem;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px #fbbf24;
+        .copyright {
+            color: #777;
+            font-size: 14px;
         }
 
-        .shop-card.premium {
-            border: 2px solid #f59e0b;
-            background: linear-gradient(145deg, #1a1d24, #15181f);
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .server-ip {
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+            .rank-grid {
+                grid-template-columns: 1fr;
+            }
         }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                VOXEN SMP
+                <span>SEASON DELAPAN</span>
+            </div>
+            <div class="nav-links">
+                <a href="#ranks">Rank</a>
+                <a href="#features">Fitur</a>
+                <a href="#info">Info</a>
+                <a href="#commands">Commands</a>
+                <div class="social-links">
+                    <a href="https://dsc.gg/voxensmp" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank" title="WhatsApp Group"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://minecraft-mp.com/server-s353923" target="_blank" title="Vote"><i class="fas fa-star"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        .shop-header-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+    <!-- Modal QRIS -->
+    <div id="qrisModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-qrcode"></i> Pembayaran QRIS</h2>
+            <div id="selectedRankInfo" class="rank-selected">ᴘʀɪᴍᴇ - Rp 20.000</div>
+            
+            <img src="https://i.ibb.co.com/fGpB483J/Whats-App-Image-2026-02-24-at-19-32-37.jpg" alt="QRIS Voxen SMP" class="qris-image" onclick="window.open('https://i.ibb.co.com/fGpB483J/Whats-App-Image-2026-02-24-at-19-32-37.jpg', '_blank')">
+            
+            <div class="payment-instruction">
+                <p><i class="fas fa-mobile-alt"></i> <strong>Cara Bayar:</strong></p>
+                <p>1. Screenshot QRIS di atas</p>
+                <p>2. Buka aplikasi mobile banking / e-wallet (GoPay, OVO, Dana, ShopeePay, dll)</p>
+                <p>3. Pilih menu QRIS / Scan QR</p>
+                <p>4. Upload bukti transfer ke WhatsApp</p>
+                <p>5. Rank akan diaktivasi maksimal 30 menit</p>
+            </div>
+            
+            <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">
+                <button class="btn-confirm"><i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP</button>
+            </a>
+            
+            <p style="margin-top: 15px; color: #aaa; font-size: 12px;">* Pastikan nominal sesuai dengan rank yang dipilih</p>
+        </div>
+    </div>
 
-        .shop-icon {
-            font-size: 2.5rem;
-        }
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">✨ JAVA & BEDROCK SUPPORT ✨</div>
+            <h1>
+                VOXEN SMP
+                <span>LEGENDS RPG SURVIVAL</span>
+            </h1>
+            <div class="server-ip" onclick="copyIP()">
+                <i class="fas fa-copy"></i> voxensmp.xyz
+            </div>
+            <div id="copyMessage" class="copy-msg">✅ IP berhasil disalin!</div>
+            <div class="hero-stats">
+                <span><i class="fas fa-users"></i> 17/2026 Online</span>
+                <span><i class="fas fa-check-circle"></i> Uptime 100%</span>
+                <span><i class="fas fa-tag"></i> Versi 1.20 - 1.21</span>
+                <span><i class="fas fa-map-marker-alt"></i> Indonesia</span>
+            </div>
+        </div>
+    </section>
 
-        .shop-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-        }
+    <div class="container">
+        <!-- Ranks Section -->
+        <section id="ranks" class="ranks-section">
+            <div class="section-title">
+                <h2>⛃ PILIH RANK ANDA ⛃</h2>
+                <p>Dapatkan keistimewaan dengan membeli rank, support server dan buka fitur eksklusif!</p>
+                <p style="margin-top: 10px; color: #ffd966;"><i class="fas fa-qrcode"></i> Pembayaran via QRIS (GoPay, OVO, Dana, Bank)</p>
+            </div>
+            <div class="rank-grid">
+                <!-- Prime - Termurah -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #c0392b;">ᴘʀɪᴍᴇ</div>
+                    <div class="rank-price">Rp 20.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Akses /kit prime</li>
+                        <li><i class="fas fa-check"></i> 5 Home</li>
+                        <li><i class="fas fa-check"></i> Warna nama khusus</li>
+                        <li><i class="fas fa-check"></i> Prefix [Prime]</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴘʀɪᴍᴇ', 'Rp 20.000')">BELI RANK</button>
+                </div>
+                
+                <!-- Elite -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #f1c40f;">ᴇʟɪᴛᴇ</div>
+                    <div class="rank-price">Rp 35.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Semua fitur Prime</li>
+                        <li><i class="fas fa-check"></i> Akses /kit elite</li>
+                        <li><i class="fas fa-check"></i> 7 Home</li>
+                        <li><i class="fas fa-check"></i> Ekonomi +10%</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴇʟɪᴛᴇ', 'Rp 35.000')">BELI RANK</button>
+                </div>
+                
+                <!-- Knight -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #7f8c8d;">ᴋɴɪɢʜᴛ</div>
+                    <div class="rank-price">Rp 50.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Semua fitur Elite</li>
+                        <li><i class="fas fa-check"></i> 10 Home</li>
+                        <li><i class="fas fa-check"></i> Ekonomi +20%</li>
+                        <li><i class="fas fa-check"></i> Akses warp khusus</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴋɴɪɢʜᴛ', 'Rp 50.000')">BELI RANK</button>
+                </div>
+                
+                <!-- Victorium -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #e67e22;">ᴠɪᴄᴛᴏʀɪᴜᴍ</div>
+                    <div class="rank-price">Rp 75.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Semua fitur Knight</li>
+                        <li><i class="fas fa-check"></i> 15 Home</li>
+                        <li><i class="fas fa-check"></i> Akses /fly (khusus area)</li>
+                        <li><i class="fas fa-check"></i> Senjata legendary</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴠɪᴄᴛᴏʀɪᴜᴍ', 'Rp 75.000')">BELI RANK</button>
+                </div>
+                
+                <!-- Mythic -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #8e44ad;">ᴍʏᴛʜɪᴄ</div>
+                    <div class="rank-price">Rp 100.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Semua fitur Victorium</li>
+                        <li><i class="fas fa-check"></i> 20 Home</li>
+                        <li><i class="fas fa-check"></i> Ekonomi +30%</li>
+                        <li><i class="fas fa-check"></i> Akses dungeon mythic</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴍʏᴛʜɪᴄ', 'Rp 100.000')">BELI RANK</button>
+                </div>
+                
+                <!-- Darkness - Termahal -->
+                <div class="rank-card">
+                    <div class="rank-name" style="color: #2c3e50;">ᴅᴀʀᴋɴᴇss</div>
+                    <div class="rank-price">Rp 150.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check"></i> Semua fitur Mythic</li>
+                        <li><i class="fas fa-check"></i> 30 Home</li>
+                        <li><i class="fas fa-check"></i> Akses /fly full</li>
+                        <li><i class="fas fa-check"></i> Item eksklusif darkness</li>
+                        <li><i class="fas fa-check"></i> Prioritas support</li>
+                    </ul>
+                    <button class="btn-buy" onclick="openModal('ᴅᴀʀᴋɴᴇss', 'Rp 150.000')">BELI RANK</button>
+                </div>
+            </div>
+        </section>
 
-        .shop-price {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 1rem 0;
-        }
+        <!-- Features & Commands -->
+        <section id="features" class="features-section">
+            <div class="section-title">
+                <h2>⚔ ғɪᴛᴜʀ sᴇʀᴠᴇʀ ⚔</h2>
+                <p>Lebih dari 30 fitur siap menemani petualanganmu!</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-gem"></i> /ᴋɪᴛs</div>
+                <div class="feature-item"><i class="fas fa-paint-brush"></i> /sᴋɪɴs</div>
+                <div class="feature-item"><i class="fas fa-camera"></i> /ᴡᴀʀᴘ ғᴏᴛᴏ</div>
+                <div class="feature-item"><i class="fas fa-fighter-jet"></i> /ᴄғ</div>
+                <div class="feature-item"><i class="fas fa-dollar-sign"></i> /ʙᴏᴜɴᴛʏ</div>
+                <div class="feature-item"><i class="fas fa-random"></i> /ʀᴛᴘϙ</div>
+                <div class="feature-item"><i class="fas fa-map-marked"></i> /ᴡᴀʀᴘ</div>
+                <div class="feature-item"><i class="fas fa-store"></i> /sʜᴏᴘ</div>
+                <div class="feature-item"><i class="fas fa-bed"></i> /ᴡᴀʀᴘ ᴀғᴋ</div>
+                <div class="feature-item"><i class="fas fa-dungeon"></i> /ᴡᴀʀᴘ ʟᴀʙɪʀɪɴ</div>
+                <div class="feature-item"><i class="fas fa-dice-d20"></i> /ʀᴛᴘ</div>
+                <div class="feature-item"><i class="fas fa-check-circle"></i> /ᴛᴘʏᴇs</div>
+                <div class="feature-item"><i class="fas fa-times-circle"></i> /ᴛᴘᴀ</div>
+                <div class="feature-item"><i class="fas fa-user-friends"></i> /ᴛᴘʜᴇʀᴇ</div>
+                <div class="feature-item"><i class="fas fa-home"></i> /sᴇᴛʜᴏᴍᴇ</div>
+                <div class="feature-item"><i class="fas fa-users"></i> /ᴄʟᴀɴ</div>
+                <div class="feature-item"><i class="fas fa-coins"></i> /ᴘᴀʏ</div>
+                <div class="feature-item"><i class="fas fa-chart-line"></i> /ᴇᴄᴏɴᴏᴍʏ</div>
+                <div class="feature-item"><i class="fas fa-dragon"></i> /ᴅᴏɴɢᴇᴏɴ</div>
+                <div class="feature-item"><i class="fas fa-key"></i> ᴄᴀʀᴀ ᴜʙᴀʜ ᴘᴀssᴡᴏʀᴅ</div>
+                <div class="feature-item"><i class="fas fa-lock"></i> /ᴄʜᴀɴɢᴇᴘᴀss</div>
+            </div>
 
-        .price-gems {
-            color: #fbbf24;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+            <div id="commands" class="command-category">
+                <h3>🛡 Sistem Keamanan 🛡</h3>
+                <p style="font-size: 18px; background: #1e2126; display: inline-block; padding: 10px 20px; border-radius: 30px;">
+                    <i class="fas fa-shield-alt" style="color: #ffd966;"></i> 
+                    /ᴄʜᴀɴɢᴇᴘᴀss [ᴘᴡʟᴀᴍᴀ] [ᴘᴡʙᴀʀᴜ]
+                </p>
+            </div>
+        </section>
 
-        .price-idr {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
+        <!-- Info Server & Links -->
+        <section id="info" class="info-server">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Tentang Voxen SMP</h3>
+                <p><i class="fas fa-tag"></i> <strong>Season:</strong> Delapan (VIII)</p>
+                <p><i class="fas fa-globe"></i> <strong>IP Java:</strong> voxensmp.xyz</p>
+                <p><i class="fas fa-mobile-alt"></i> <strong>IP Bedrock:</strong> voxensmp.xyz (Port 19132)</p>
+                <p><i class="fas fa-puzzle-piece"></i> <strong>Theme:</strong> Medieval RPG / Legends Weapon</p>
+                <p><i class="fas fa-scroll"></i> <strong>MOTD:</strong> ᴠᴏхᴇɴ sᴍᴘ SEASON VIII [1.20 - 1.21] ⚔ Adventure awaits, legends will rise! ⚔</p>
+                <p><i class="fas fa-check-circle"></i> <strong>Status:</strong> Online (17/2026 players)</p>
+            </div>
 
-        .shop-features {
-            list-style: none;
-            margin: 1.5rem 0;
-            flex-grow: 1;
-        }
+            <div class="info-card">
+                <h3><i class="fas fa-link"></i> Link Penting</h3>
+                <p><i class="fab fa-discord"></i> <a href="https://dsc.gg/voxensmp" target="_blank">Discord Voxen Community</a> (773 members)</p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">Group WhatsApp</a></p>
+                <p><i class="fas fa-star"></i> <a href="https://minecraft-mp.com/server-s353923" target="_blank">Vote untuk Server</a> (913 votes)</p>
+                <p><i class="fas fa-globe"></i> <a href="http://web.voxensmp.xyz" target="_blank">Website Official</a></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Register:</strong> 1 Feb 2026</p>
+                <p><i class="fas fa-chart-bar"></i> <strong>Rank #334</strong> | Score 1438</p>
+            </div>
 
-        .shop-features li {
-            color: #9ca3af;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+            <div class="info-card">
+                <h3><i class="fas fa-crown"></i> Fitur Unggulan</h3>
+                <p>✓ Custom Legends Weapon (skill aktif/pasif)</p>
+                <p>✓ VFX特效 setiap senjata</p>
+                <p>✓ Dungeon & Boss AI canggih</p>
+                <p>✓ SmartSpawner & AFK System</p>
+                <p>✓ Economy anti pay to win</p>
+                <p>✓ Class: Assassin, Tank, Mage, Ranger</p>
+                <p>✓ Event mingguan & konten endgame</p>
+            </div>
+        </section>
 
-        .shop-features li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .shop-btn {
-            background: var(--gradient-purple);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            border: 2px solid transparent;
-        }
-
-        .shop-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px var(--primary);
-            background: transparent;
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .shop-btn.premium {
-            background: var(--gradient-premium);
-        }
-
-        .shop-btn.premium:hover {
-            background: transparent;
-            border-color: #f59e0b;
-            color: #f59e0b;
-        }
-
-        /* ===== RANKING SECTION ===== */
-        .ranking {
-            padding: 5rem 5%;
-            background: #080a0e;
-        }
-
-        .ranking-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1300px;
-            margin: 3rem auto;
-        }
-
-        .rank-card-top {
-            background: linear-gradient(145deg, #1a1d24, #111317);
-            border-radius: 30px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            position: relative;
-        }
-
-        .rank-card-top.gold {
-            border: 2px solid #fbbf24;
-            transform: scale(1.05);
-            z-index: 1;
-        }
-
-        .rank-icon-top {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .rank-name-top {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .rank-gold {
-            color: #fbbf24;
-        }
-
-        .rank-silver {
-            color: #94a3b8;
-        }
-
-        .rank-bronze {
-            color: #cd7f32;
-        }
-
-        .rank-player {
-            color: white;
-            font-size: 1.3rem;
-            margin: 1rem 0;
-        }
-
-        .rank-value {
-            color: var(--primary);
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .rank-badge-top {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-gold);
-            color: black;
-            padding: 0.3rem 2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        /* ===== NEWS SECTION ===== */
-        .news {
-            padding: 5rem 5%;
-            background: var(--bg-deep);
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1300px;
-            margin: 3rem auto;
-        }
-
-        .news-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 2rem;
-            border-left: 5px solid var(--primary);
-            transition: 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .news-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-        }
-
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .news-card h4 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-
-        .news-card p {
-            color: #9ca3af;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta {
-            padding: 5rem 5%;
-            text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%);
-        }
-
-        .cta h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-ip {
-            font-size: 3rem;
-            font-weight: 800;
-            color: white;
-            margin: 2rem 0;
-            text-transform: lowercase;
-            text-shadow: 0 0 30px var(--primary);
-        }
-
-        .cta-btn {
-            background: var(--gradient-purple);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            font-weight: 700;
-            padding: 1rem 4rem;
-            border-radius: 60px;
-            cursor: pointer;
-            box-shadow: 0 0 40px var(--primary);
-            margin: 1rem auto;
-            transition: 0.2s;
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-
-        .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 60px var(--primary);
-        }
-
-        .social-cta {
-            display: flex;
-            gap: 1rem
+        <!-- CTA Section -->
+        <div style="text-align: center; margin: 40px 0; padding: 40px; background: linear-gradient(145deg, #1e2126, #15181c); border-radius: 30px;">
+            <h2 style="color: #ffd966; font-size: 32px; margin-bottom: 20px;">⚡ MULAI PETUALANGANMU SEKARANG ⚡</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">IP Server: <strong style="background: #0a0c0f; padding: 8px 20px; border-radius: 30px;">voxensmp.xyz</strong></p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://dsc.gg/voxensmp" target="_blank" style="background: #5865F2; color: white; padding: 15px 30px; border-radius: 40px; text-decoration: none; font-weight: bold;"><i class="fab fa-discord"></i> Join Discord</a>
+                <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank" style="background: #25D366; color: white; padding: 15px 30px; border-radius: 40px; text-decoration: none; font-weight: bold;"><i class="fab fa-whatsapp"></i> Join WhatsApp</a>
+                <a href="https://minecraft-mp.com/server-s353923" target="_blank" style="background: #ffd966; color: #0a0c0f; padding: 15px 30px; border-radius: 40px; text-decoration
