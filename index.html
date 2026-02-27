@@ -324,7 +324,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.95);
             backdrop-filter: blur(5px);
             overflow-y: auto;
         }
@@ -369,12 +369,6 @@
             font-size: 28px;
         }
 
-        .modal-content h3 {
-            color: #fff;
-            margin: 15px 0 5px;
-            font-size: 22px;
-        }
-
         .modal-content .rank-selected {
             background: #2a2f35;
             padding: 12px 25px;
@@ -389,15 +383,16 @@
 
         .qris-container {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 20px;
             margin: 15px 0;
             display: inline-block;
+            border: 3px solid #ffd966;
         }
 
         .qris-image {
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             height: auto;
             border-radius: 10px;
             cursor: pointer;
@@ -477,10 +472,39 @@
         .nominal-info {
             background: #ffd96620;
             border: 1px dashed #ffd966;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 15px 0;
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .payment-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1e2126;
             padding: 10px;
             border-radius: 10px;
-            margin: 10px 0;
-            color: #ffd966;
+        }
+
+        .step-number {
+            background: #ffd966;
+            color: #0a0c0f;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
 
@@ -574,6 +598,34 @@
             text-decoration: underline;
         }
 
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e2126;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border-left: 4px solid #ffd966;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 3000;
+            opacity: 0;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            color: #ffd966;
+            margin-right: 10px;
+        }
+
         /* Footer */
         .footer {
             margin-top: 60px;
@@ -659,7 +711,7 @@
             <div id="selectedRankInfo" class="rank-selected">ᴘʀɪᴍᴇ - Rp 20.000</div>
             
             <div class="nominal-info" id="nominalInfo">
-                <i class="fas fa-info-circle"></i> Scan QRIS ini untuk membayar
+                <i class="fas fa-info-circle"></i> Scan QRIS ini untuk membayar <strong id="nominalBayar">Rp 20.000</strong>
             </div>
             
             <div class="qris-container">
@@ -670,29 +722,53 @@
                      onclick="window.open(this.src, '_blank')">
             </div>
             
-            <button class="btn-download" onclick="downloadQRIS()">
-                <i class="fas fa-download"></i> Download QRIS
-            </button>
+            <div class="payment-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <span>Klik gambar QRIS untuk memperbesar</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <span>Screenshot atau download QRIS</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span>Scan dengan m-banking / e-wallet</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <span>Masukkan nominal <span id="nominalStep">Rp 20.000</span></span>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <span>Konfirmasi via WhatsApp</span>
+                </div>
+            </div>
             
-            <div class="payment-instruction">
-                <p><i class="fas fa-mobile-alt"></i> <strong>Cara Bayar:</strong></p>
-                <p>1️⃣ Klik gambar QRIS untuk memperbesar</p>
-                <p>2️⃣ Screenshot atau download QRIS di atas</p>
-                <p>3️⃣ Buka aplikasi mobile banking / e-wallet (GoPay, OVO, Dana, ShopeePay, LinkAja, M-Banking)</p>
-                <p>4️⃣ Pilih menu QRIS / Scan QR</p>
-                <p>5️⃣ Masukkan nominal <strong id="nominalBayar">Rp 20.000</strong></p>
-                <p>6️⃣ Upload bukti transfer ke WhatsApp Group</p>
-                <p>7️⃣ Admin akan aktivasi rank maksimal 30 menit</p>
+            <div class="btn-group" style="display: flex; gap: 10px; margin: 15px 0;">
+                <button class="btn-download" onclick="downloadQRIS()" style="flex: 1;">
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn-download" onclick="copyQRISLink()" style="flex: 1;">
+                    <i class="fas fa-link"></i> Copy Link
+                </button>
             </div>
             
             <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank" id="waConfirmLink">
-                <button class="btn-confirm"><i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP</button>
+                <button class="btn-confirm" onclick="trackConfirmation()">
+                    <i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP
+                </button>
             </a>
             
             <p style="margin-top: 15px; color: #aaa; font-size: 12px;">
                 <i class="fas fa-exclamation-triangle"></i> Pastikan nominal sesuai dengan rank yang dipilih
             </p>
         </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i> <span id="toastMessage">Berhasil disalin!</span>
     </div>
 
     <!-- Hero Section -->
@@ -858,23 +934,4 @@
         <section id="info" class="info-server">
             <div class="info-card">
                 <h3><i class="fas fa-info-circle"></i> Tentang Voxen SMP</h3>
-                <p><i class="fas fa-tag"></i> <strong>Season:</strong> Delapan (VIII)</p>
-                <p><i class="fas fa-globe"></i> <strong>IP Java:</strong> voxensmp.xyz</p>
-                <p><i class="fas fa-mobile-alt"></i> <strong>IP Bedrock:</strong> voxensmp.xyz (Port 19132)</p>
-                <p><i class="fas fa-puzzle-piece"></i> <strong>Theme:</strong> Medieval RPG / Legends Weapon</p>
-                <p><i class="fas fa-scroll"></i> <strong>MOTD:</strong> ᴠᴏхᴇɴ sᴍᴘ SEASON VIII [1.20 - 1.21] ⚔ Adventure awaits, legends will rise! ⚔</p>
-                <p><i class="fas fa-check-circle"></i> <strong>Status:</strong> Online (17/2026 players)</p>
-            </div>
-
-            <div class="info-card">
-                <h3><i class="fas fa-link"></i> Link Penting</h3>
-                <p><i class="fab fa-discord"></i> <a href="https://dsc.gg/voxensmp" target="_blank">Discord Voxen Community</a> (773 members)</p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://chat.whatsapp.com/IrHqzyvSeSb8kkzmJz4y7B" target="_blank">Group WhatsApp</a></p>
-                <p><i class="fas fa-star"></i> <a href="https://minecraft-mp.com/server-s353923" target="_blank">Vote untuk Server</a> (913 votes)</p>
-                <p><i class="fas fa-globe"></i> <a href="http://web.voxensmp.xyz" target="_blank">Website Official</a></p>
-                <p><i class="fas fa-calendar-alt"></i> <strong>Register:</strong> 1 Feb 2026</p>
-                <p><i class="fas fa-chart-bar"></i> <strong>Rank #334</strong> | Score 1438</p>
-            </div>
-
-            <div class="info-card">
-                <h3><i class="
+                <p><i class="fas fa-tag"></i> <strong>Season:</strong
