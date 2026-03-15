@@ -13,171 +13,348 @@
         }
 
         body {
-            background-color: #0c0c0c;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #d1d5db;
-            line-height: 1.5;
-            padding: 2rem 1.5rem;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        /* BACKGROUND MINECRAFT ANIMATED */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.imgur.com/v4m6vMp.jpg'); /* Minecraft landscape with night */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: slowZoom 25s infinite alternate ease-in-out;
+            z-index: -2;
+        }
+        
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+            backdrop-filter: blur(3px);
+            z-index: -1;
         }
 
+        /* MAIN CONTAINER */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            background-color: #0a0a0a;
-            border-radius: 28px;
+            margin: 1.5rem auto;
+            background: rgba(8, 8, 12, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 32px;
             padding: 2.5rem;
-            border: 1px solid #1f1f1f;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(124, 58, 237, 0.2);
+            transition: all 0.3s ease;
         }
 
-        /* HEADER SECTION - PERSIS REFERENSI */
+        .container:hover {
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(124, 58, 237, 0.3);
+        }
+
+        /* HEADER SECTION */
         .header {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
+            position: relative;
         }
 
         .header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #c084fc 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.75rem;
             letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
         }
 
         .header p {
-            font-size: 1rem;
-            color: #9ca3af;
-            max-width: 800px;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 850px;
             margin-bottom: 1.5rem;
+            line-height: 1.7;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
 
-        /* SERVICE TAGS - PERSIS REFERENSI */
+        /* SERVICE TAGS - CLICKABLE */
         .service-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 1rem;
             margin-top: 1rem;
-            border-top: 1px solid #1f1f1f;
-            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
         }
 
         .tag {
-            background-color: #1a1a1a;
-            color: #d1d5db;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
             font-weight: 500;
-            border: 1px solid #2a2a2a;
-            transition: all 0.2s;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.3px;
         }
 
         .tag:hover {
-            border-color: #6b21a5;
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #a78bfa;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px -8px #7c3aed;
             color: white;
         }
 
-        /* SECTION TITLE - PERSIS REFERENSI */
+        .tag:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* SECTION TITLE */
         .section-title {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             margin-top: 2.5rem;
+            position: relative;
+            display: inline-block;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed, #3b82f6);
+            border-radius: 4px;
+            box-shadow: 0 0 15px #7c3aed;
         }
 
-        /* POPULAR PACKAGES - GRID 5 KOLOM */
+        .sub-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* POPULAR PACKAGES - CLICKABLE CARDS */
         .popular-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .popular-card {
-            background: #111111;
-            border: 1px solid #222222;
-            border-radius: 16px;
-            padding: 1.25rem 1rem;
-            transition: all 0.2s;
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 1.5rem 1.25rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popular-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .popular-card:hover::before {
+            left: 100%;
         }
 
         .popular-card:hover {
             border-color: #7c3aed;
-            background: #151515;
+            background: rgba(30, 20, 45, 0.8);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 30px -10px #7c3aed;
         }
 
         .popular-title {
             font-size: 1rem;
             font-weight: 600;
-            color: #e5e7eb;
-            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.2px;
         }
 
         .popular-price {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: #c084fc;
             line-height: 1.2;
             margin-bottom: 0.25rem;
+            text-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
         }
 
         .popular-price span {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 400;
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        /* SERVICES LIST - PERSIS REFERENSI */
+        /* SERVICES LIST - CLICKABLE */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
 
         .service-item {
-            background: #111111;
-            border: 1px solid #222222;
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .service-item:hover {
             border-color: #3b82f6;
+            background: rgba(25, 30, 50, 0.8);
+            transform: translateX(5px) scale(1.02);
+            box-shadow: 0 10px 25px -8px #3b82f6;
         }
 
         .service-name {
-            font-weight: 500;
-            color: #e5e7eb;
+            font-weight: 600;
+            color: white;
+            font-size: 1.05rem;
+            letter-spacing: 0.2px;
         }
 
         .service-time {
-            color: #9ca3af;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
-            background: #1f1f1f;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            border: 1px solid #2e2e2e;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 40px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            backdrop-filter: blur(4px);
+            font-weight: 500;
         }
 
-        /* FOOTER - PERSIS REFERENSI */
-        .footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #1f1f1f;
-            font-size: 0.9rem;
-            color: #6b7280;
+        /* CONTACT BUTTONS */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem;
+            justify-content: center;
         }
 
-        .footer a {
-            color: #9ca3af;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
+        .contact-btn {
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(124, 58, 237, 0.4);
             color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .contact-btn:hover {
+            background: #7c3aed;
+            border-color: #a78bfa;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 30px -8px #7c3aed;
+        }
+        
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        /* FLOATING MINECRAFT BLOCK DECORATION */
+        .minecraft-decoration {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%237c3aed" opacity="0.2" rx="10"/><rect x="20" y="20" width="60" height="60" fill="%23916cf8" opacity="0.3" rx="5"/></svg>');
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         /* RESPONSIVE */
@@ -185,17 +362,23 @@
             .popular-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 1.5rem;
             }
+            .header h1 {
+                font-size: 2rem;
+            }
             .popular-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .section-title {
+                font-size: 1.75rem;
             }
         }
 
@@ -206,98 +389,126 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+            .contact-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .contact-btn {
+                text-align: center;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Decorative Minecraft Block -->
+    <div class="minecraft-decoration"></div>
+
     <div class="container">
         <!-- HEADER SECTION -->
         <div class="header">
-            <h1>Jull Store — Layanan Developer Server Minecraft</h1>
-            <p>Fokus saya mencakup setup dan pengembangan server Minecraft, instalasi panel (Pterodactyl), optimasi TPS, plugin, serta konfigurasi permission. Saya juga membantu pembelian dan pemasangan hosting untuk server Anda.</p>
+            <h1>⛏️ Jull Store — Layanan Developer Server Minecraft</h1>
+            <p>Fokus saya mencakup setup dan pengembangan server Minecraft, instalasi panel (Pterodactyl), optimasi TPS, plugin, serta konfigurasi permission. Saya juga membantu pembelian dan pemasangan hosting untuk server Anda. Dengan pengalaman bertahun-tahun, server Anda akan stabil, cepat, dan aman.</p>
             
-            <!-- SERVICE TAGS (3 TAG PERTAMA) -->
+            <!-- SERVICE TAGS (CLICKABLE) -->
             <div class="service-tags">
-                <span class="tag">Setup & Deploy</span>
-                <span class="tag">Optimasi & Keamanan</span>
-                <span class="tag">Hosting & Panel</span>
+                <a href="#" class="tag" onclick="alert('📦 Setup & Deploy: Siap bantu setup server dari awal!')">⚡ Setup & Deploy</a>
+                <a href="#" class="tag" onclick="alert('🔧 Optimasi & Keamanan: Bikin server Anda anti lag dan aman!')">🔧 Optimasi & Keamanan</a>
+                <a href="#" class="tag" onclick="alert('☁️ Hosting & Panel: Install Pterodactyl, Wings, dan konfigurasi hosting')">☁️ Hosting & Panel</a>
             </div>
         </div>
 
         <!-- SECTION: PAKET POPULER DI TOKO -->
-        <h2 class="section-title">Paket Populer di Toko</h2>
-        <p style="color: #9ca3af; margin-bottom: 1.5rem;">Berikut contoh paket yang paling sering diminta.</p>
+        <h2 class="section-title">📦 Paket Populer di Toko</h2>
+        <div class="sub-text">Berikut contoh paket yang paling sering diminta.</div>
         
         <div class="popular-grid">
-            <!-- VPS Basic -->
-            <div class="popular-card">
+            <a href="#" class="popular-card" onclick="alert('✅ VPS Basic (SMP kecil) - Rp 45k/bulan\n• RAM 2GB\n• CPU 2 Core\n• SSD 20GB\n• Cocok untuk 5-10 player')">
                 <div class="popular-title">VPS Basic (SMP kecil)</div>
                 <div class="popular-price">Rp 45k <span>/bln</span></div>
-            </div>
-            <!-- VPS Pro -->
-            <div class="popular-card">
+                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">✨ 2GB RAM, 20GB SSD</div>
+            </a>
+            <a href="#" class="popular-card" onclick="alert('✅ VPS Pro (SMP ramai) - Rp 90k/bulan\n• RAM 4GB\n• CPU 4 Core\n• SSD 40GB\n• Cocok untuk 15-25 player')">
                 <div class="popular-title">VPS Pro (SMP ramai)</div>
                 <div class="popular-price">Rp 90k <span>/bln</span></div>
-            </div>
-            <!-- Install Panel -->
-            <div class="popular-card">
+                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🔥 4GB RAM, 40GB SSD</div>
+            </a>
+            <a href="#" class="popular-card" onclick="alert('✅ Install Panel Pterodactyl - Rp 75k\n• Install Panel + Wings\n• Konfigurasi SSL\n• Backup otomatis\n• Gratis konsultasi 1x24 jam')">
                 <div class="popular-title">Install Panel Pterodactyl</div>
                 <div class="popular-price">Rp 75k</div>
-            </div>
-            <!-- Setup Server -->
-            <div class="popular-card">
+                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🖥️ Panel + Wings + SSL</div>
+            </a>
+            <a href="#" class="popular-card" onclick="alert('✅ Setup Server (Paper/Purpur) - Rp 80k\n• Install Paper/Purpur\n• Optimasi server.conf\n• Plugin dasar\n• World protection')">
                 <div class="popular-title">Setup Server (Paper/Purpur)</div>
                 <div class="popular-price">Rp 80k</div>
-            </div>
-            <!-- Optimasi TPS -->
-            <div class="popular-card">
+                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">⚙️ Paper/Purpur + Plugin</div>
+            </a>
+            <a href="#" class="popular-card" onclick="alert('✅ Optimasi TPS & Keamanan - Rp 60k\n• Analisis TPS\n• Optimasi server.properties\n• Firewall setup\n• Anti DDoS ringan')">
                 <div class="popular-title">Optimasi TPS & Keamanan</div>
                 <div class="popular-price">Rp 60k</div>
-            </div>
+                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🛡️ Anti-lag + Keamanan</div>
+            </a>
         </div>
 
         <!-- SECTION: LAYANAN JASA SETUP -->
-        <h2 class="section-title">Layanan Jasa Setup</h2>
-        <p style="color: #9ca3af; margin-bottom: 1.5rem;">Berikut contoh layanan yang sering dipesan.</p>
+        <h2 class="section-title">🛠️ Layanan Jasa Setup</h2>
+        <div class="sub-text">Berikut contoh layanan yang sering dipesan.</div>
         
         <div class="services-grid">
-            <!-- Setup SMP + Spawn -->
-            <div class="service-item">
-                <span class="service-name">Setup SMP + Spawn</span>
+            <a href="#" class="service-item" onclick="alert('🏗️ Setup SMP + Spawn\nEstimasi: 1-2 hari\nTermasuk:\n• World spawn custom\n• Wilayah protection\n• NPC guide\n• Welcome message')">
+                <span class="service-name">🏗️ Setup SMP + Spawn</span>
                 <span class="service-time">1–2 hari</span>
-            </div>
-            <!-- Permission & Group -->
-            <div class="service-item">
-                <span class="service-name">Permission & Group Rapi</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('👥 Permission & Group Rapi\nEstimasi: 1 hari\n• LuckPerms setup\n• Group owner/admin/member\n• Permission plugin')">
+                <span class="service-name">👥 Permission & Group Rapi</span>
                 <span class="service-time">1 hari</span>
-            </div>
-            <!-- Konfigurasi Economy/Shop -->
-            <div class="service-item">
-                <span class="service-name">Konfigurasi Economy/Shop</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('💰 Konfigurasi Economy/Shop\nEstimasi: 1-2 hari\n• Vault setup\n• Shop GUI\n• Balance top\n• Money transfer')">
+                <span class="service-name">💰 Konfigurasi Economy/Shop</span>
                 <span class="service-time">1–2 hari</span>
-            </div>
-            <!-- Anti-Cheat + Hardening -->
-            <div class="service-item">
-                <span class="service-name">Anti-Cheat + Hardening</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('🛡️ Anti-Cheat + Hardening\nEstimasi: 1-2 hari\n• Anti-cheat plugin (Matrix/Grim)\n• Config ketat\n• Exploit fix\n• Logging system')">
+                <span class="service-name">🛡️ Anti-Cheat + Hardening</span>
                 <span class="service-time">1–2 hari</span>
-            </div>
-            <!-- Network Proxy -->
-            <div class="service-item">
-                <span class="service-name">Network Proxy (Velocity)</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('🌐 Network Proxy (Velocity)\nEstimasi: 1-2 hari\n• Install Velocity\n• Hub server setup\n• Load balancing\n• DDoS protection layer')">
+                <span class="service-name">🌐 Network Proxy (Velocity)</span>
                 <span class="service-time">1–2 hari</span>
-            </div>
-            <!-- Extra: Database -->
-            <div class="service-item">
-                <span class="service-name">Database & Backup Setup</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('🗄️ Database & Backup Setup\nEstimasi: 1 hari\n• MySQL setup\n• Auto backup harian\n• Restore point\n• Data aman')">
+                <span class="service-name">🗄️ Database & Backup Setup</span>
                 <span class="service-time">1 hari</span>
-            </div>
+            </a>
+        </div>
+
+        <!-- CONTACT BUTTONS -->
+        <div class="contact-section">
+            <a href="#" class="contact-btn" onclick="window.open('https://wa.me/6281234567890', '_blank')">
+                <span style="font-size:1.3rem;">📱</span> WhatsApp: 0813-4994-8855
+            </a>
+            <a href="#" class="contact-btn" onclick="window.open('https://discord.gg/jullstore', '_blank')">
+                <span style="font-size:1.3rem;">💬</span> Discord: jull_store
+            </a>
+            <a href="#" class="contact-btn" onclick="window.open('https://t.me/jullstore', '_blank')">
+                <span style="font-size:1.3rem;">📨</span> Telegram: @jullstore
+            </a>
         </div>
 
         <!-- FOOTER -->
         <div class="footer">
             © 2025 Jull Store — Layanan Developer Server Minecraft Indonesia<br>
-            <span style="color: #4b5563;">Kontak: WhatsApp 0812-3456-7890 | Discord: jull_shop</span>
+            <span style="color: rgba(255,255,255,0.4); font-size:0.85rem;">⛏️ Server Stabil | Cepat | Aman • Garansi 7 Hari • Support 24/7</span>
         </div>
     </div>
+
+    <script>
+        // Optional: membuat semua link terbuka di tab baru jika ingin
+        document.querySelectorAll('a[onclick]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // onclik sudah dihandle inline
+            });
+        });
+    </script>
 </body>
 </html>
