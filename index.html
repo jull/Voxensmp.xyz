@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jull Store — Layanan Developer Server Minecraft</title>
     <style>
+        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
@@ -12,282 +13,290 @@
         }
 
         body {
-            background-color: #0a0a0a;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #e2e8f0;
-            line-height: 1.6;
-            padding: 2rem 1rem;
+            background-color: #0c0c0c;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #d1d5db;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: #111111;
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid #222222;
+            background-color: #0a0a0a;
+            border-radius: 28px;
+            padding: 2.5rem;
+            border: 1px solid #1f1f1f;
         }
 
-        /* Header Section */
+        /* HEADER SECTION - PERSIS REFERENSI */
         .header {
-            text-align: center;
             margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #222222;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #a78bfa, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
             margin-bottom: 0.75rem;
             letter-spacing: -0.02em;
         }
 
         .header p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Layanan Utama Cards */
-        .layanan-utama {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .layanan-card {
-            background: #1a1a1a;
-            padding: 1.25rem 0.75rem;
-            border-radius: 16px;
-            text-align: center;
-            font-weight: 600;
             font-size: 1rem;
-            color: #cbd5e1;
+            color: #9ca3af;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* SERVICE TAGS - PERSIS REFERENSI */
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            border-top: 1px solid #1f1f1f;
+            padding-top: 1.5rem;
+        }
+
+        .tag {
+            background-color: #1a1a1a;
+            color: #d1d5db;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
             border: 1px solid #2a2a2a;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
         }
 
-        .layanan-card:hover {
-            border-color: #7c3aed;
+        .tag:hover {
+            border-color: #6b21a5;
             color: white;
-            transform: translateY(-2px);
-            background: #1f1f1f;
         }
 
-        /* Section Title */
+        /* SECTION TITLE - PERSIS REFERENSI */
         .section-title {
             font-size: 1.75rem;
             font-weight: 700;
-            margin-bottom: 2rem;
-            color: #f1f5f9;
-            letter-spacing: -0.01em;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #7c3aed, #3b82f6);
-            border-radius: 2px;
+            color: white;
+            margin-bottom: 1.5rem;
+            margin-top: 2.5rem;
         }
 
-        /* Paket Populer Grid */
-        .paket-grid {
+        /* POPULAR PACKAGES - GRID 5 KOLOM */
+        .popular-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3rem;
-        }
-
-        .paket-item {
-            background: #1a1a1a;
-            border-radius: 20px;
-            padding: 1.5rem 1.25rem;
-            border: 1px solid #262626;
-            transition: all 0.25s ease;
-        }
-        .paket-item:hover {
-            border-color: #7c3aed;
-            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.2);
-            background: #1e1e1e;
-        }
-
-        .paket-nama {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            color: #f0f0f0;
-        }
-        .paket-harga {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #a78bfa;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-        .paket-harga small {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #64748b;
-        }
-
-        /* Layanan Jasa */
-        .jasa-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .jasa-item {
-            background: #1a1a1a;
+        .popular-card {
+            background: #111111;
+            border: 1px solid #222222;
             border-radius: 16px;
-            padding: 1.25rem;
+            padding: 1.25rem 1rem;
+            transition: all 0.2s;
+        }
+
+        .popular-card:hover {
+            border-color: #7c3aed;
+            background: #151515;
+        }
+
+        .popular-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .popular-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #c084fc;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .popular-price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #6b7280;
+        }
+
+        /* SERVICES LIST - PERSIS REFERENSI */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-item {
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #262626;
-            transition: all 0.2s ease;
         }
-        .jasa-item:hover {
+
+        .service-item:hover {
             border-color: #3b82f6;
-            background: #202020;
         }
 
-        .jasa-nama {
-            font-weight: 600;
-            color: #e2e8f0;
-        }
-        .jasa-waktu {
-            background: #2d2d2d;
-            padding: 0.25rem 0.75rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
+        .service-name {
             font-weight: 500;
-            color: #94a3b8;
-            border: 1px solid #3a3a3a;
+            color: #e5e7eb;
         }
 
-        /* Footer */
+        .service-time {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            background: #1f1f1f;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #2e2e2e;
+        }
+
+        /* FOOTER - PERSIS REFERENSI */
         .footer {
             margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #222222;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.95rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1f1f1f;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
 
-        /* Responsive */
-        @media (max-width: 640px) {
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .popular-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 1.5rem 1rem;
+                padding: 1.5rem;
             }
-            .header h1 {
-                font-size: 2rem;
+            .popular-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .paket-harga {
-                font-size: 1.3rem;
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .jasa-item {
-                flex-direction: column;
-                align-items: start;
-                gap: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .popular-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- HEADER SECTION -->
         <div class="header">
-            <h1>JULL STORE</h1>
-            <p>Layanan Developer Server Minecraft — Setup, Optimasi, Panel, dan Hosting. Cepat, rapi, dan terpercaya.</p>
-        </div>
-
-        <!-- Layanan Utama (seperti card di referensi) -->
-        <div class="layanan-utama">
-            <div class="layanan-card">⚡ Setup & Deploy</div>
-            <div class="layanan-card">🔧 Optimasi & Keamanan</div>
-            <div class="layanan-card">☁️ Hosting & Panel</div>
-            <div class="layanan-card">🎮 Plugin & Permission</div>
-            <div class="layanan-card">🛡️ Anti-Cheat</div>
-        </div>
-
-        <!-- Paket Populer -->
-        <h2 class="section-title">📦 Paket Populer</h2>
-        <div class="paket-grid">
-            <div class="paket-item">
-                <div class="paket-nama">VPS Basic (SMP kecil)</div>
-                <div class="paket-harga">Rp 45k <small>/bln</small></div>
-                <div style="color:#94a3b8; font-size:0.9rem;">Cocok untuk pemula</div>
-            </div>
-            <div class="paket-item">
-                <div class="paket-nama">VPS Pro (SMP ramai)</div>
-                <div class="paket-harga">Rp 90k <small>/bln</small></div>
-                <div style="color:#94a3b8; font-size:0.9rem;">Performa tinggi</div>
-            </div>
-            <div class="paket-item">
-                <div class="paket-nama">Install Panel Pterodactyl</div>
-                <div class="paket-harga">Rp 75k</div>
-                <div style="color:#94a3b8; font-size:0.9rem;">+ Wings & SSL</div>
-            </div>
-            <div class="paket-item">
-                <div class="paket-nama">Setup Server (Paper/Purpur)</div>
-                <div class="paket-harga">Rp 80k</div>
-                <div style="color:#94a3b8; font-size:0.9rem;">Konfigurasi lengkap</div>
-            </div>
-            <div class="paket-item">
-                <div class="paket-nama">Optimasi TPS & Keamanan</div>
-                <div class="paket-harga">Rp 60k</div>
-                <div style="color:#94a3b8; font-size:0.9rem;">Bebas lag, aman</div>
+            <h1>Jull Store — Layanan Developer Server Minecraft</h1>
+            <p>Fokus saya mencakup setup dan pengembangan server Minecraft, instalasi panel (Pterodactyl), optimasi TPS, plugin, serta konfigurasi permission. Saya juga membantu pembelian dan pemasangan hosting untuk server Anda.</p>
+            
+            <!-- SERVICE TAGS (3 TAG PERTAMA) -->
+            <div class="service-tags">
+                <span class="tag">Setup & Deploy</span>
+                <span class="tag">Optimasi & Keamanan</span>
+                <span class="tag">Hosting & Panel</span>
             </div>
         </div>
 
-        <!-- Layanan Jasa Setup -->
-        <h2 class="section-title">🛠️ Layanan Jasa Setup</h2>
-        <div class="jasa-grid">
-            <div class="jasa-item">
-                <span class="jasa-nama">Setup SMP + Spawn</span>
-                <span class="jasa-waktu">1–2 hari</span>
+        <!-- SECTION: PAKET POPULER DI TOKO -->
+        <h2 class="section-title">Paket Populer di Toko</h2>
+        <p style="color: #9ca3af; margin-bottom: 1.5rem;">Berikut contoh paket yang paling sering diminta.</p>
+        
+        <div class="popular-grid">
+            <!-- VPS Basic -->
+            <div class="popular-card">
+                <div class="popular-title">VPS Basic (SMP kecil)</div>
+                <div class="popular-price">Rp 45k <span>/bln</span></div>
             </div>
-            <div class="jasa-item">
-                <span class="jasa-nama">Permission & Group Rapi</span>
-                <span class="jasa-waktu">1 hari</span>
+            <!-- VPS Pro -->
+            <div class="popular-card">
+                <div class="popular-title">VPS Pro (SMP ramai)</div>
+                <div class="popular-price">Rp 90k <span>/bln</span></div>
             </div>
-            <div class="jasa-item">
-                <span class="jasa-nama">Konfigurasi Economy/Shop</span>
-                <span class="jasa-waktu">1–2 hari</span>
+            <!-- Install Panel -->
+            <div class="popular-card">
+                <div class="popular-title">Install Panel Pterodactyl</div>
+                <div class="popular-price">Rp 75k</div>
             </div>
-            <div class="jasa-item">
-                <span class="jasa-nama">Anti-Cheat + Hardening</span>
-                <span class="jasa-waktu">1–2 hari</span>
+            <!-- Setup Server -->
+            <div class="popular-card">
+                <div class="popular-title">Setup Server (Paper/Purpur)</div>
+                <div class="popular-price">Rp 80k</div>
             </div>
-            <div class="jasa-item">
-                <span class="jasa-nama">Network Proxy (Velocity)</span>
-                <span class="jasa-waktu">1–2 hari</span>
-            </div>
-            <div class="jasa-item">
-                <span class="jasa-nama">Install Database & Backup</span>
-                <span class="jasa-waktu">1 hari</span>
+            <!-- Optimasi TPS -->
+            <div class="popular-card">
+                <div class="popular-title">Optimasi TPS & Keamanan</div>
+                <div class="popular-price">Rp 60k</div>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- SECTION: LAYANAN JASA SETUP -->
+        <h2 class="section-title">Layanan Jasa Setup</h2>
+        <p style="color: #9ca3af; margin-bottom: 1.5rem;">Berikut contoh layanan yang sering dipesan.</p>
+        
+        <div class="services-grid">
+            <!-- Setup SMP + Spawn -->
+            <div class="service-item">
+                <span class="service-name">Setup SMP + Spawn</span>
+                <span class="service-time">1–2 hari</span>
+            </div>
+            <!-- Permission & Group -->
+            <div class="service-item">
+                <span class="service-name">Permission & Group Rapi</span>
+                <span class="service-time">1 hari</span>
+            </div>
+            <!-- Konfigurasi Economy/Shop -->
+            <div class="service-item">
+                <span class="service-name">Konfigurasi Economy/Shop</span>
+                <span class="service-time">1–2 hari</span>
+            </div>
+            <!-- Anti-Cheat + Hardening -->
+            <div class="service-item">
+                <span class="service-name">Anti-Cheat + Hardening</span>
+                <span class="service-time">1–2 hari</span>
+            </div>
+            <!-- Network Proxy -->
+            <div class="service-item">
+                <span class="service-name">Network Proxy (Velocity)</span>
+                <span class="service-time">1–2 hari</span>
+            </div>
+            <!-- Extra: Database -->
+            <div class="service-item">
+                <span class="service-name">Database & Backup Setup</span>
+                <span class="service-time">1 hari</span>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
         <div class="footer">
-            © 2025 Jull Store — Layanan Developer Server Minecraft Indonesia. <br> 
-            Hubungi: DM Instagram / Discord @jullstore
+            © 2025 Jull Store — Layanan Developer Server Minecraft Indonesia<br>
+            <span style="color: #4b5563;">Kontak: WhatsApp 0812-3456-7890 | Discord: jull_shop</span>
         </div>
     </div>
 </body>
