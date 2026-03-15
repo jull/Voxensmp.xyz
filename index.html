@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jull Store — Layanan Developer Server Minecraft</title>
     <style>
-        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.imgur.com/v4m6vMp.jpg'); /* Minecraft landscape with night */
+            background-image: url('https://i.imgur.com/v4m6vMp.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -65,7 +64,6 @@
             padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(124, 58, 237, 0.2);
-            transition: all 0.3s ease;
         }
 
         .container:hover {
@@ -73,10 +71,43 @@
             box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(124, 58, 237, 0.3);
         }
 
-        /* HEADER SECTION */
+        /* NAVIGASI PER BAGIAN */
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 60px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .nav-item {
+            background: rgba(20, 20, 30, 0.6);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: #7c3aed;
+            border-color: #a78bfa;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #7c3aed;
+        }
+
+        /* HEADER */
         .header {
             margin-bottom: 2.5rem;
-            position: relative;
+            text-align: center;
         }
 
         .header h1 {
@@ -86,7 +117,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.75rem;
-            letter-spacing: -0.02em;
             text-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
         }
 
@@ -94,16 +124,15 @@
             font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.8);
             max-width: 850px;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+            margin: 0 auto 1.5rem;
         }
 
-        /* SERVICE TAGS - CLICKABLE */
+        /* SERVICE TAGS */
         .service-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            justify-content: center;
             margin-top: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
@@ -116,14 +145,12 @@
             padding: 0.7rem 1.5rem;
             border-radius: 40px;
             font-size: 0.95rem;
-            font-weight: 500;
             border: 1px solid rgba(124, 58, 237, 0.3);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.3px;
         }
 
         .tag:hover {
@@ -131,23 +158,16 @@
             border-color: #a78bfa;
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 15px 25px -8px #7c3aed;
-            color: white;
-        }
-
-        .tag:active {
-            transform: translateY(-2px) scale(1.02);
         }
 
         /* SECTION TITLE */
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            margin-top: 2.5rem;
+            margin: 2.5rem 0 1rem;
             position: relative;
             display: inline-block;
             color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         
         .section-title::after {
@@ -165,11 +185,9 @@
         .sub-text {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2rem;
-            font-size: 1rem;
-            letter-spacing: 0.3px;
         }
 
-        /* POPULAR PACKAGES - CLICKABLE CARDS */
+        /* POPULAR PACKAGES */
         .popular-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -220,7 +238,6 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.95);
             margin-bottom: 0.75rem;
-            letter-spacing: 0.2px;
         }
 
         .popular-price {
@@ -228,7 +245,6 @@
             font-weight: 800;
             color: #c084fc;
             line-height: 1.2;
-            margin-bottom: 0.25rem;
             text-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
         }
 
@@ -238,7 +254,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* SERVICES LIST - CLICKABLE */
+        /* SERVICES GRID */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -273,7 +289,6 @@
             font-weight: 600;
             color: white;
             font-size: 1.05rem;
-            letter-spacing: 0.2px;
         }
 
         .service-time {
@@ -283,8 +298,47 @@
             padding: 0.35rem 1rem;
             border-radius: 40px;
             border: 1px solid rgba(124, 58, 237, 0.3);
-            backdrop-filter: blur(4px);
-            font-weight: 500;
+        }
+
+        /* TPS SERVER SECTION */
+        .tps-section {
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .tps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tps-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tps-card:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #a78bfa;
+            transform: scale(1.05);
+        }
+
+        .tps-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4ade80;
+            margin: 0.5rem 0;
+            text-shadow: 0 0 20px #4ade80;
         }
 
         /* CONTACT BUTTONS */
@@ -304,7 +358,6 @@
             padding: 0.9rem 2rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
@@ -312,7 +365,6 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.5px;
         }
 
         .contact-btn:hover {
@@ -321,9 +373,37 @@
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 20px 30px -8px #7c3aed;
         }
-        
-        .contact-btn i {
-            font-size: 1.2rem;
+
+        /* FLOATING WHATSAPP */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        .float-wa:hover {
+            transform: scale(1.2) rotate(5deg);
+            background: #20b859;
         }
 
         /* FOOTER */
@@ -331,30 +411,8 @@
             margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            letter-spacing: 0.3px;
-        }
-
-        /* FLOATING MINECRAFT BLOCK DECORATION */
-        .minecraft-decoration {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%237c3aed" opacity="0.2" rx="10"/><rect x="20" y="20" width="60" height="60" fill="%23916cf8" opacity="0.3" rx="5"/></svg>');
-            opacity: 0.3;
-            animation: float 6s infinite ease-in-out;
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* RESPONSIVE */
@@ -362,7 +420,7 @@
             .popular-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .services-grid {
+            .services-grid, .tps-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -377,119 +435,165 @@
             .popular-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .section-title {
-                font-size: 1.75rem;
+            .nav-menu {
+                border-radius: 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .popular-grid {
-                grid-template-columns: 1fr;
-            }
-            .services-grid {
+            .popular-grid, .services-grid, .tps-grid {
                 grid-template-columns: 1fr;
             }
             .contact-section {
                 flex-direction: column;
-                align-items: stretch;
-            }
-            .contact-btn {
-                text-align: center;
-                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Decorative Minecraft Block -->
-    <div class="minecraft-decoration"></div>
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/62811349948855" class="float-wa" target="_blank" title="Chat WhatsApp">
+        💬
+    </a>
 
     <div class="container">
-        <!-- HEADER SECTION -->
+        <!-- NAVIGASI PER BAGIAN -->
+        <div class="nav-menu">
+            <a href="#paket" class="nav-item">📦 Paket Populer</a>
+            <a href="#setup" class="nav-item">🛠️ Setup Server</a>
+            <a href="#tps" class="nav-item">📊 TPS Server</a>
+            <a href="#jasa" class="nav-item">🔧 Jasa Lainnya</a>
+            <a href="#kontak" class="nav-item">📞 Kontak</a>
+        </div>
+
+        <!-- HEADER -->
         <div class="header">
             <h1>⛏️ Jull Store — Layanan Developer Server Minecraft</h1>
-            <p>Fokus saya mencakup setup dan pengembangan server Minecraft, instalasi panel (Pterodactyl), optimasi TPS, plugin, serta konfigurasi permission. Saya juga membantu pembelian dan pemasangan hosting untuk server Anda. Dengan pengalaman bertahun-tahun, server Anda akan stabil, cepat, dan aman.</p>
+            <p>Fokus saya mencakup setup dan pengembangan server Minecraft, instalasi panel (Pterodactyl), optimasi TPS, plugin, serta konfigurasi permission. Saya juga membantu pembelian dan pemasangan hosting untuk server Anda.</p>
             
-            <!-- SERVICE TAGS (CLICKABLE) -->
             <div class="service-tags">
-                <a href="#" class="tag" onclick="alert('📦 Setup & Deploy: Siap bantu setup server dari awal!')">⚡ Setup & Deploy</a>
-                <a href="#" class="tag" onclick="alert('🔧 Optimasi & Keamanan: Bikin server Anda anti lag dan aman!')">🔧 Optimasi & Keamanan</a>
+                <a href="#setup" class="tag">⚡ Setup & Deploy</a>
+                <a href="#tps" class="tag">🔧 Optimasi TPS & Keamanan</a>
                 <a href="#" class="tag" onclick="alert('☁️ Hosting & Panel: Install Pterodactyl, Wings, dan konfigurasi hosting')">☁️ Hosting & Panel</a>
+                <a href="#" class="tag" onclick="alert('🎮 Plugin & Permission: LuckPerms, Essentials, dll')">🎮 Plugin & Permission</a>
             </div>
         </div>
 
-        <!-- SECTION: PAKET POPULER DI TOKO -->
-        <h2 class="section-title">📦 Paket Populer di Toko</h2>
+        <!-- SECTION: PAKET POPULER -->
+        <h2 id="paket" class="section-title">📦 Paket Populer di Toko</h2>
         <div class="sub-text">Berikut contoh paket yang paling sering diminta.</div>
         
         <div class="popular-grid">
-            <a href="#" class="popular-card" onclick="alert('✅ VPS Basic (SMP kecil) - Rp 45k/bulan\n• RAM 2GB\n• CPU 2 Core\n• SSD 20GB\n• Cocok untuk 5-10 player')">
+            <a href="#" class="popular-card" onclick="alert('✅ VPS Basic (SMP kecil) - Rp 45k/bulan\n• RAM 2GB\n• CPU 2 Core\n• SSD 20GB\n• Untuk 5-10 player')">
                 <div class="popular-title">VPS Basic (SMP kecil)</div>
                 <div class="popular-price">Rp 45k <span>/bln</span></div>
-                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">✨ 2GB RAM, 20GB SSD</div>
             </a>
-            <a href="#" class="popular-card" onclick="alert('✅ VPS Pro (SMP ramai) - Rp 90k/bulan\n• RAM 4GB\n• CPU 4 Core\n• SSD 40GB\n• Cocok untuk 15-25 player')">
+            <a href="#" class="popular-card" onclick="alert('✅ VPS Pro (SMP ramai) - Rp 90k/bulan\n• RAM 4GB\n• CPU 4 Core\n• SSD 40GB\n• Untuk 15-25 player')">
                 <div class="popular-title">VPS Pro (SMP ramai)</div>
                 <div class="popular-price">Rp 90k <span>/bln</span></div>
-                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🔥 4GB RAM, 40GB SSD</div>
             </a>
-            <a href="#" class="popular-card" onclick="alert('✅ Install Panel Pterodactyl - Rp 75k\n• Install Panel + Wings\n• Konfigurasi SSL\n• Backup otomatis\n• Gratis konsultasi 1x24 jam')">
+            <a href="#" class="popular-card" onclick="alert('✅ Install Panel Pterodactyl - Rp 75k\n• Panel + Wings\n• SSL\n• Backup otomatis')">
                 <div class="popular-title">Install Panel Pterodactyl</div>
                 <div class="popular-price">Rp 75k</div>
-                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🖥️ Panel + Wings + SSL</div>
             </a>
-            <a href="#" class="popular-card" onclick="alert('✅ Setup Server (Paper/Purpur) - Rp 80k\n• Install Paper/Purpur\n• Optimasi server.conf\n• Plugin dasar\n• World protection')">
+            <a href="#" class="popular-card" onclick="alert('✅ Setup Server (Paper/Purpur) - Rp 80k\n• Install Paper/Purpur\n• Optimasi\n• Plugin dasar')">
                 <div class="popular-title">Setup Server (Paper/Purpur)</div>
                 <div class="popular-price">Rp 80k</div>
-                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">⚙️ Paper/Purpur + Plugin</div>
             </a>
-            <a href="#" class="popular-card" onclick="alert('✅ Optimasi TPS & Keamanan - Rp 60k\n• Analisis TPS\n• Optimasi server.properties\n• Firewall setup\n• Anti DDoS ringan')">
+            <a href="#" class="popular-card" onclick="alert('✅ Optimasi TPS & Keamanan - Rp 60k\n• Analisis TPS\n• Firewall\n• Anti lag')">
                 <div class="popular-title">Optimasi TPS & Keamanan</div>
                 <div class="popular-price">Rp 60k</div>
-                <div style="color: rgba(255,255,255,0.5); font-size:0.85rem; margin-top:5px;">🛡️ Anti-lag + Keamanan</div>
             </a>
         </div>
 
-        <!-- SECTION: LAYANAN JASA SETUP -->
-        <h2 class="section-title">🛠️ Layanan Jasa Setup</h2>
-        <div class="sub-text">Berikut contoh layanan yang sering dipesan.</div>
+        <!-- SECTION: SETUP SERVER -->
+        <h2 id="setup" class="section-title">🛠️ Setup Server</h2>
+        <div class="sub-text">Layanan setup server lengkap.</div>
         
         <div class="services-grid">
-            <a href="#" class="service-item" onclick="alert('🏗️ Setup SMP + Spawn\nEstimasi: 1-2 hari\nTermasuk:\n• World spawn custom\n• Wilayah protection\n• NPC guide\n• Welcome message')">
+            <a href="#" class="service-item" onclick="alert('🏗️ Setup SMP + Spawn\n• World spawn custom\n• Protection\n• NPC guide\nEstimasi: 1-2 hari')">
                 <span class="service-name">🏗️ Setup SMP + Spawn</span>
                 <span class="service-time">1–2 hari</span>
             </a>
-            <a href="#" class="service-item" onclick="alert('👥 Permission & Group Rapi\nEstimasi: 1 hari\n• LuckPerms setup\n• Group owner/admin/member\n• Permission plugin')">
-                <span class="service-name">👥 Permission & Group Rapi</span>
+            <a href="#" class="service-item" onclick="alert('👥 Permission & Group\n• LuckPerms\n• Group owner/admin/member\nEstimasi: 1 hari')">
+                <span class="service-name">👥 Permission & Group</span>
                 <span class="service-time">1 hari</span>
             </a>
-            <a href="#" class="service-item" onclick="alert('💰 Konfigurasi Economy/Shop\nEstimasi: 1-2 hari\n• Vault setup\n• Shop GUI\n• Balance top\n• Money transfer')">
-                <span class="service-name">💰 Konfigurasi Economy/Shop</span>
+            <a href="#" class="service-item" onclick="alert('💰 Economy/Shop\n• Vault\n• Shop GUI\n• Balance top\nEstimasi: 1-2 hari')">
+                <span class="service-name">💰 Economy & Shop</span>
                 <span class="service-time">1–2 hari</span>
             </a>
-            <a href="#" class="service-item" onclick="alert('🛡️ Anti-Cheat + Hardening\nEstimasi: 1-2 hari\n• Anti-cheat plugin (Matrix/Grim)\n• Config ketat\n• Exploit fix\n• Logging system')">
+        </div>
+
+        <!-- SECTION: TPS SERVER -->
+        <h2 id="tps" class="section-title">📊 Layanan TPS Server</h2>
+        <div class="tps-section">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h3 style="color: #c084fc; font-size: 1.5rem;">Optimasi TPS & Performa</h3>
+                <p style="color: rgba(255,255,255,0.7);">Pastikan server Anda selalu stabil dengan TPS 20</p>
+            </div>
+            
+            <div class="tps-grid">
+                <a href="#" class="tps-card" onclick="alert('📊 Cek TPS Server\n• Monitor real-time\n• Deteksi lag\n• Analisis penyebab\n• Laporan detail\nHarga: Rp 35k')">
+                    <div>📈 Cek & Analisis TPS</div>
+                    <div class="tps-value">20</div>
+                    <div style="color: #4ade80;">Optimal</div>
+                    <div style="font-size:0.9rem; margin-top:0.5rem;">Rp 35k</div>
+                </a>
+                <a href="#" class="tps-card" onclick="alert('🔧 Optimasi TPS\n• Optimasi server.properties\n• Config plugin\n• Redstone fix\n• Entity limit\nHarga: Rp 60k')">
+                    <div>⚡ Optimasi TPS</div>
+                    <div class="tps-value">+15-20</div>
+                    <div style="color: #fbbf24;">Peningkatan</div>
+                    <div style="font-size:0.9rem; margin-top:0.5rem;">Rp 60k</div>
+                </a>
+                <a href="#" class="tps-card" onclick="alert('🛡️ Keamanan Server\n• Firewall\n• Anti DDoS\n• Anti cheat\n• Exploit fix\nHarga: Rp 50k')">
+                    <div>🛡️ Keamanan Server</div>
+                    <div class="tps-value">100%</div>
+                    <div style="color: #60a5fa;">Terlindungi</div>
+                    <div style="font-size:0.9rem; margin-top:0.5rem;">Rp 50k</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECTION: JASA LAINNYA -->
+        <h2 id="jasa" class="section-title">🔧 Jasa Lainnya</h2>
+        <div class="services-grid">
+            <a href="#" class="service-item" onclick="alert('🛡️ Anti-Cheat + Hardening\n• Matrix/Grim\n• Config ketat\n• Exploit fix\nEstimasi: 1-2 hari')">
                 <span class="service-name">🛡️ Anti-Cheat + Hardening</span>
                 <span class="service-time">1–2 hari</span>
             </a>
-            <a href="#" class="service-item" onclick="alert('🌐 Network Proxy (Velocity)\nEstimasi: 1-2 hari\n• Install Velocity\n• Hub server setup\n• Load balancing\n• DDoS protection layer')">
+            <a href="#" class="service-item" onclick="alert('🌐 Network Proxy (Velocity)\n• Install Velocity\n• Hub server\n• Load balancing\nEstimasi: 1-2 hari')">
                 <span class="service-name">🌐 Network Proxy (Velocity)</span>
                 <span class="service-time">1–2 hari</span>
             </a>
-            <a href="#" class="service-item" onclick="alert('🗄️ Database & Backup Setup\nEstimasi: 1 hari\n• MySQL setup\n• Auto backup harian\n• Restore point\n• Data aman')">
-                <span class="service-name">🗄️ Database & Backup Setup</span>
+            <a href="#" class="service-item" onclick="alert('🗄️ Database & Backup\n• MySQL\n• Auto backup\n• Restore point\nEstimasi: 1 hari')">
+                <span class="service-name">🗄️ Database & Backup</span>
+                <span class="service-time">1 hari</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('🎨 Custom Plugin\n• Plugin sesuai request\n• Bug fix\n• Update\nEstimasi: 2-3 hari')">
+                <span class="service-name">🎨 Custom Plugin</span>
+                <span class="service-time">2–3 hari</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('🌍 World Management\n• World generator\n• Multiverse\n• World protection\nEstimasi: 1-2 hari')">
+                <span class="service-name">🌍 World Management</span>
+                <span class="service-time">1–2 hari</span>
+            </a>
+            <a href="#" class="service-item" onclick="alert('📦 Migration Server\n• Pindah server\n• Transfer world\n• Backup & restore\nEstimasi: 1 hari')">
+                <span class="service-name">📦 Migration Server</span>
                 <span class="service-time">1 hari</span>
             </a>
         </div>
 
-        <!-- CONTACT BUTTONS -->
+        <!-- CONTACT SECTION -->
+        <h2 id="kontak" class="section-title">📞 Kontak Saya</h2>
         <div class="contact-section">
-            <a href="#" class="contact-btn" onclick="window.open('https://wa.me/6281234567890', '_blank')">
-                <span style="font-size:1.3rem;">📱</span> WhatsApp: 0813-4994-8855
+            <a href="https://wa.me/62811349948855" class="contact-btn" target="_blank">
+                <span style="font-size:1.3rem;">📱</span> WhatsApp: 0811-3499-48855
             </a>
-            <a href="#" class="contact-btn" onclick="window.open('https://discord.gg/jullstore', '_blank')">
+            <a href="#" class="contact-btn" onclick="alert('Discord: jull_store')">
                 <span style="font-size:1.3rem;">💬</span> Discord: jull_store
             </a>
-            <a href="#" class="contact-btn" onclick="window.open('https://t.me/jullstore', '_blank')">
+            <a href="#" class="contact-btn" onclick="alert('Telegram: @jullstore')">
                 <span style="font-size:1.3rem;">📨</span> Telegram: @jullstore
             </a>
         </div>
@@ -497,16 +601,25 @@
         <!-- FOOTER -->
         <div class="footer">
             © 2025 Jull Store — Layanan Developer Server Minecraft Indonesia<br>
-            <span style="color: rgba(255,255,255,0.4); font-size:0.85rem;">⛏️ Server Stabil | Cepat | Aman • Garansi 7 Hari • Support 24/7</span>
+            <span style="color: rgba(255,255,255,0.4);">⛏️ Server Stabil | Cepat | Aman • WA: 0811-3499-48855</span>
         </div>
     </div>
 
     <script>
-        // Optional: membuat semua link terbuka di tab baru jika ingin
-        document.querySelectorAll('a[onclick]').forEach(link => {
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                // onclik sudah dihandle inline
+                const targetId = this.getAttribute('href');
+                if(targetId && targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
         });
     </script>
