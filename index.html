@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jull Store — Layanan Developer Minecraft</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -15,497 +15,793 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #fff;
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* NAVBAR */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        /* HEADER 3D */
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-        }
-
-        .header h1 {
-            font-size: 4rem;
+        .logo {
+            font-size: 1.8rem;
             font-weight: 800;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 1px 0 #ccc,
-                        0 2px 0 #c9c9c9,
-                        0 3px 0 #bbb,
-                        0 4px 0 #b9b9b9,
-                        0 5px 0 #aaa,
-                        0 6px 1px rgba(0,0,0,.1),
-                        0 0 5px rgba(0,0,0,.1),
-                        0 1px 3px rgba(0,0,0,.3),
-                        0 3px 5px rgba(0,0,0,.2),
-                        0 5px 10px rgba(0,0,0,.25),
-                        0 10px 10px rgba(0,0,0,.2),
-                        0 20px 20px rgba(0,0,0,.15);
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .wa-mini {
+            background: #25D366;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wa-mini:hover {
+            background: #128C7E;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #f5f7ff 0%, #f0f3ff 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
         }
 
-        .header p {
+        .hero p {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #666;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
         }
 
-        /* SERVICE TAGS 3D */
-        .service-tags {
+        .hero-stats {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
             justify-content: center;
-            margin: 2rem 0;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
-        .tag {
-            background: linear-gradient(145deg, #ff6b6b, #ff4757);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: white;
-            box-shadow: 0 10px 20px rgba(255,71,87,0.4),
-                        0 6px 6px rgba(0,0,0,0.2),
-                        inset 0 -2px 5px rgba(0,0,0,0.1);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            transform: translateY(0);
-            transition: all 0.3s ease;
+        .stat-item {
+            text-align: center;
         }
 
-        .tag:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(255,71,87,0.5),
-                        0 8px 8px rgba(0,0,0,0.2),
-                        inset 0 -2px 5px rgba(0,0,0,0.1);
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #667eea;
         }
 
-        /* SECTION TITLE 3D */
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* SECTION TITLE */
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin: 3rem 0 1.5rem;
-            color: #fff;
-            text-shadow: 0 1px 0 #ccc,
-                        0 2px 0 #c9c9c9,
-                        0 3px 0 #bbb,
-                        0 4px 0 #b9b9b9,
-                        0 5px 0 #aaa,
-                        0 6px 1px rgba(0,0,0,.1);
+            margin: 3rem 2rem 2rem;
+            color: #333;
             position: relative;
             display: inline-block;
         }
 
-        /* POPULAR PACKAGES */
-        .popular-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
 
-        .package-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+        /* CATEGORY CARDS (untuk memilih ke bagian) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem;
+        }
+
+        .category-card {
+            background: white;
             border-radius: 20px;
-            padding: 2rem 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3),
-                        inset 0 -3px 0 rgba(0,0,0,0.2);
-            transform: translateY(0);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             text-align: center;
         }
 
-        .package-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 40px -10px rgba(0,0,0,0.4),
-                        inset 0 -3px 0 rgba(0,0,0,0.2);
-            border-color: rgba(255,255,255,0.4);
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
         }
 
-        .package-title {
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .category-desc {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+
+        .product-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
             font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+            color: #333;
         }
 
-        .package-price {
-            font-size: 2rem;
+        .product-price {
+            font-size: 1.8rem;
             font-weight: 800;
-            color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3),
-                        0 0 20px rgba(255,215,0,0.5);
-            margin: 0.5rem 0;
+            color: #667eea;
+            margin: 1rem 0;
         }
 
-        .package-price small {
+        .product-price small {
             font-size: 1rem;
-            color: rgba(255,255,255,0.7);
+            font-weight: 400;
+            color: #999;
         }
 
-        .package-desc {
-            color: rgba(255,255,255,0.8);
+        .product-desc {
+            color: #777;
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* SERVICES GRID */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .service-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1.5rem;
+        .buy-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* SERVICES LIST */
+        .services-list {
+            margin: 2rem;
+        }
+
+        .service-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.2rem 1.5rem;
+            background: #fafafa;
+            border-radius: 15px;
+            margin-bottom: 0.8rem;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
         }
 
-        .service-card:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateX(10px) scale(1.02);
-            border-color: #ffd700;
+        .service-row:hover {
+            background: #f5f7ff;
+            border-color: #667eea;
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .service-name {
             font-weight: 600;
-            font-size: 1.1rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            color: #333;
         }
 
         .service-time {
-            background: rgba(255,215,0,0.3);
-            padding: 0.3rem 1rem;
+            color: #888;
+            font-size: 0.9rem;
+            background: #f0f0f0;
+            padding: 0.2rem 1rem;
             border-radius: 30px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255,215,0,0.5);
         }
 
-        /* PAYMENT METHODS */
+        .service-price {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .service-buy {
+            background: none;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-buy:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* PAYMENT SECTION */
         .payment-section {
-            background: rgba(0,0,0,0.3);
+            background: #fafafa;
             border-radius: 30px;
             padding: 2rem;
-            margin: 3rem 0;
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-
-        .payment-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 2rem;
+            border: 1px solid #f0f0f0;
         }
 
         .payment-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .payment-method {
-            background: rgba(255,255,255,0.1);
+        .payment-item {
+            background: white;
             border-radius: 15px;
             padding: 1rem;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
         }
 
-        .payment-method:hover {
-            background: rgba(255,215,0,0.2);
-            transform: scale(1.05);
-            border-color: #ffd700;
-        }
-
-        .payment-method img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 0.5rem;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
-        }
-
-        /* CONTACT SECTION */
-        .contact-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .wa-button {
-            background: linear-gradient(145deg, #25D366, #128C7E);
-            padding: 1.5rem 3rem;
-            border-radius: 60px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 20px 30px -10px rgba(37,211,102,0.5),
-                        0 6px 6px rgba(0,0,0,0.2),
-                        inset 0 -3px 0 rgba(0,0,0,0.1);
-            transform: translateY(0);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .wa-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 35px -10px rgba(37,211,102,0.6),
-                        0 8px 8px rgba(0,0,0,0.2);
-        }
-
-        .wa-button i {
+        .payment-icon {
             font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .payment-number {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* FOOTER */
         .footer {
+            background: #fafafa;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-wa {
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .footer-bottom {
             text-align: center;
             margin-top: 3rem;
-            padding: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            color: #888;
+        }
+
+        /* HIDDEN SECTIONS (awalnya disembunyikan) */
+        .product-section {
+            display: none;
+        }
+
+        .product-section.active {
+            display: block;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            color: #764ba2;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .section-title {
+            .hero h1 {
                 font-size: 2rem;
             }
             
-            .wa-button {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .service-row {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .service-info {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <h1>JULL STORE</h1>
-            <p>Layanan Developer Server Minecraft Profesional • Setup • Optimasi • Panel • Hosting</p>
-        </div>
-
-        <!-- SERVICE TAGS -->
-        <div class="service-tags">
-            <span class="tag">⚡ Setup Server</span>
-            <span class="tag">🔧 Optimasi TPS</span>
-            <span class="tag">🛡️ Keamanan</span>
-            <span class="tag">📦 Panel Pterodactyl</span>
-            <span class="tag">🎮 Plugin</span>
-        </div>
-
-        <!-- POPULAR PACKAGES -->
-        <h2 class="section-title">📦 PAKET POPULER</h2>
-        <div class="popular-grid">
-            <!-- VPS Basic -->
-            <div class="package-card" onclick="beli('VPS Basic (SMP kecil)', 45000, '2GB RAM, 2 Core, 20GB SSD, 5-10 player')">
-                <div class="package-title">VPS Basic</div>
-                <div class="package-price">Rp45k <small>/bln</small></div>
-                <div class="package-desc">SMP kecil • 2GB RAM</div>
-            </div>
-
-            <!-- VPS Pro -->
-            <div class="package-card" onclick="beli('VPS Pro (SMP ramai)', 90000, '4GB RAM, 4 Core, 40GB SSD, 15-25 player')">
-                <div class="package-title">VPS Pro</div>
-                <div class="package-price">Rp90k <small>/bln</small></div>
-                <div class="package-desc">SMP ramai • 4GB RAM</div>
-            </div>
-
-            <!-- Panel Pterodactyl -->
-            <div class="package-card" onclick="beli('Install Panel Pterodactyl', 75000, 'Panel + Wings + SSL + Backup otomatis')">
-                <div class="package-title">Panel Pterodactyl</div>
-                <div class="package-price">Rp75k</div>
-                <div class="package-desc">Include Wings & SSL</div>
-            </div>
-
-            <!-- Setup Server -->
-            <div class="package-card" onclick="beli('Setup Server Paper/Purpur', 80000, 'Install Paper/Purpur + Optimasi + Plugin dasar')">
-                <div class="package-title">Setup Server</div>
-                <div class="package-price">Rp80k</div>
-                <div class="package-desc">Paper/Purpur + Plugin</div>
-            </div>
-
-            <!-- Optimasi TPS -->
-            <div class="package-card" onclick="beli('Optimasi TPS & Keamanan', 60000, 'Analisis TPS + Firewall + Anti lag + Optimasi config')">
-                <div class="package-title">Optimasi TPS</div>
-                <div class="package-price">Rp60k</div>
-                <div class="package-desc">Anti lag + Keamanan</div>
-            </div>
-        </div>
-
-        <!-- JASA SETUP SERVER -->
-        <h2 class="section-title">🛠️ JASA SETUP SERVER</h2>
-        <div class="services-grid">
-            <div class="service-card" onclick="beli('Setup SMP + Spawn', 120000, 'World spawn custom, protection, NPC guide, welcome message')">
-                <span class="service-name">🏗️ Setup SMP + Spawn</span>
-                <span class="service-time">1-2 hari</span>
-            </div>
-            <div class="service-card" onclick="beli('Permission & Group', 80000, 'LuckPerms, group owner/admin/member, permission plugin')">
-                <span class="service-name">👥 Permission & Group</span>
-                <span class="service-time">1 hari</span>
-            </div>
-            <div class="service-card" onclick="beli('Economy & Shop', 90000, 'Vault, Shop GUI, Balance top, Money transfer')">
-                <span class="service-name">💰 Economy & Shop</span>
-                <span class="service-time">1-2 hari</span>
-            </div>
-            <div class="service-card" onclick="beli('Anti-Cheat + Hardening', 100000, 'Matrix/Grim, config ketat, exploit fix, logging system')">
-                <span class="service-name">🛡️ Anti-Cheat + Hardening</span>
-                <span class="service-time">1-2 hari</span>
-            </div>
-            <div class="service-card" onclick="beli('Network Proxy (Velocity)', 110000, 'Install Velocity, Hub server, Load balancing')">
-                <span class="service-name">🌐 Network Proxy</span>
-                <span class="service-time">1-2 hari</span>
-            </div>
-            <div class="service-card" onclick="beli('Database & Backup', 70000, 'MySQL, auto backup harian, restore point')">
-                <span class="service-name">🗄️ Database & Backup</span>
-                <span class="service-time">1 hari</span>
-            </div>
-        </div>
-
-        <!-- LAYANAN TPS -->
-        <h2 class="section-title">📊 LAYANAN TPS SERVER</h2>
-        <div class="services-grid">
-            <div class="service-card" onclick="beli('Cek & Analisis TPS', 35000, 'Monitor real-time, deteksi lag, analisis penyebab, laporan detail')">
-                <span class="service-name">📈 Cek & Analisis TPS</span>
-                <span class="service-time">Rp35k</span>
-            </div>
-            <div class="service-card" onclick="beli('Optimasi TPS', 60000, 'Optimasi server.properties, config plugin, redstone fix, entity limit')">
-                <span class="service-name">⚡ Optimasi TPS</span>
-                <span class="service-time">Rp60k</span>
-            </div>
-            <div class="service-card" onclick="beli('Keamanan Server', 50000, 'Firewall, Anti DDoS, anti cheat, exploit fix')">
-                <span class="service-name">🛡️ Keamanan Server</span>
-                <span class="service-time">Rp50k</span>
-            </div>
-        </div>
-
-        <!-- PAYMENT METHODS -->
-        <div class="payment-section">
-            <h2 class="payment-title">💳 METODE PEMBAYARAN</h2>
-            <div class="payment-grid">
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏦</div>
-                    <div style="font-weight: 600;">BCA</div>
-                    <div style="font-size: 0.8rem;">1234567890</div>
-                    <div>a.n Jull Store</div>
-                </div>
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💳</div>
-                    <div style="font-weight: 600;">Mandiri</div>
-                    <div style="font-size: 0.8rem;">1234567890</div>
-                    <div>a.n Jull Store</div>
-                </div>
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
-                    <div style="font-weight: 600;">DANA</div>
-                    <div style="font-size: 0.8rem;">0811-3499-48855</div>
-                    <div>a.n Jull Store</div>
-                </div>
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
-                    <div style="font-weight: 600;">OVO</div>
-                    <div style="font-size: 0.8rem;">0811-3499-48855</div>
-                    <div>a.n Jull Store</div>
-                </div>
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐝</div>
-                    <div style="font-weight: 600;">LinkAja</div>
-                    <div style="font-size: 0.8rem;">0811-3499-48855</div>
-                    <div>a.n Jull Store</div>
-                </div>
-                <div class="payment-method">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
-                    <div style="font-weight: 600;">Gopay</div>
-                    <div style="font-size: 0.8rem;">0811-3499-48855</div>
-                    <div>a.n Jull Store</div>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; color: rgba(255,255,255,0.8);">
-                * Konfirmasi pembayaran setelah transfer dengan klik tombol WhatsApp di bawah
-            </p>
-        </div>
-
-        <!-- CONTACT BUTTON -->
-        <div class="contact-section">
-            <a href="https://wa.me/62811349948855?text=Halo%20Jull%20Store%2C%20saya%20mau%20order%20..." class="wa-button" target="_blank">
-                <span>📱</span>
-                <span>ORDER VIA WHATSAPP</span>
-                <span style="font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.2rem 1rem; border-radius: 30px;">0811-3499-48855</span>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">⛏️ JULL STORE</div>
+        <div class="nav-menu">
+            <a href="#" class="nav-link" onclick="showHome()">Beranda</a>
+            <a href="#" class="nav-link" onclick="showCategory('vps')">VPS</a>
+            <a href="#" class="nav-link" onclick="showCategory('setup')">Setup Server</a>
+            <a href="#" class="nav-link" onclick="showCategory('tps')">Optimasi TPS</a>
+            <a href="#" class="nav-link" onclick="showCategory('panel')">Panel</a>
+            <a href="https://wa.me/62811349948855" class="nav-link wa-mini" target="_blank">
+                <span>📱</span> 0811-3499-48855
             </a>
         </div>
+    </nav>
 
-        <!-- FOOTER -->
-        <div class="footer">
-            <p>© 2025 Jull Store — Layanan Developer Server Minecraft Profesional</p>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem;">⛏️ Server Stabil | Cepat | Aman • WA: 0811-3499-48855</p>
+    <!-- HOME SECTION (default tampil) -->
+    <div id="home-section">
+        <!-- HERO -->
+        <div class="hero">
+            <h1>Layanan Developer Server Minecraft</h1>
+            <p>Setup server profesional, optimasi TPS, instalasi panel Pterodactyl, dan berbagai layanan premium untuk server Minecraft Anda</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Server Terpasang</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Client Puas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY CARDS (PILIHAN UNTUK MASUK KE BAGIAN) -->
+        <h2 class="section-title">📋 Pilih Layanan</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="showCategory('vps')">
+                <div class="category-icon">🖥️</div>
+                <div class="category-title">VPS Hosting</div>
+                <div class="category-desc">Paket VPS untuk server Minecraft mulai Rp45k/bln</div>
+            </div>
+            <div class="category-card" onclick="showCategory('setup')">
+                <div class="category-icon">⚙️</div>
+                <div class="category-title">Setup Server</div>
+                <div class="category-desc">Install Paper/Purpur, plugin, permission</div>
+            </div>
+            <div class="category-card" onclick="showCategory('tps')">
+                <div class="category-icon">📊</div>
+                <div class="category-title">Optimasi TPS</div>
+                <div class="category-desc">Atasi lag, optimasi performa, keamanan</div>
+            </div>
+            <div class="category-card" onclick="showCategory('panel')">
+                <div class="category-icon">🎮</div>
+                <div class="category-title">Panel & Proxy</div>
+                <div class="category-desc">Pterodactyl, Velocity, dll</div>
+            </div>
+        </div>
+
+        <!-- PREVIEW PAKET POPULER -->
+        <h2 class="section-title">🔥 Paket Populer</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="product-badge">BEST SELLER</span>
+                <div class="product-title">VPS Basic</div>
+                <div class="product-price">Rp45k <small>/bln</small></div>
+                <div class="product-desc">2GB RAM, 2 Core, 20GB SSD, 5-10 player</div>
+                <button class="buy-btn" onclick="beli('VPS Basic', 45000, '2GB RAM, 2 Core, 20GB SSD, 5-10 player')">Pilih Paket</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">Setup Server Paper</div>
+                <div class="product-price">Rp80k</div>
+                <div class="product-desc">Install Paper + plugin dasar + optimasi</div>
+                <button class="buy-btn" onclick="beli('Setup Server Paper', 80000, 'Install Paper + plugin dasar + optimasi')">Pilih Paket</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">Optimasi TPS</div>
+                <div class="product-price">Rp60k</div>
+                <div class="product-desc">Analisis TPS, optimasi config, anti lag</div>
+                <button class="buy-btn" onclick="beli('Optimasi TPS', 60000, 'Analisis TPS, optimasi config, anti lag')">Pilih Paket</button>
+            </div>
         </div>
     </div>
 
+    <!-- VPS SECTION -->
+    <div id="vps-section" class="product-section">
+        <button class="back-btn" onclick="showHome()">← Kembali ke Beranda</button>
+        <h2 class="section-title">🖥️ Paket VPS Hosting</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="product-badge">POPULER</span>
+                <div class="product-title">VPS Basic</div>
+                <div class="product-price">Rp45k <small>/bln</small></div>
+                <div class="product-desc">• 2GB RAM<br>• 2 Core CPU<br>• 20GB SSD<br>• 5-10 player<br>• Full akses root</div>
+                <button class="buy-btn" onclick="beli('VPS Basic', 45000, '2GB RAM, 2 Core, 20GB SSD, 5-10 player, full akses root')">Beli Sekarang</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">VPS Pro</div>
+                <div class="product-price">Rp90k <small>/bln</small></div>
+                <div class="product-desc">• 4GB RAM<br>• 4 Core CPU<br>• 40GB SSD<br>• 15-25 player<br>• Full akses root</div>
+                <button class="buy-btn" onclick="beli('VPS Pro', 90000, '4GB RAM, 4 Core, 40GB SSD, 15-25 player, full akses root')">Beli Sekarang</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">VPS Premium</div>
+                <div class="product-price">Rp150k <small>/bln</small></div>
+                <div class="product-desc">• 8GB RAM<br>• 6 Core CPU<br>• 80GB SSD<br>• 30-50 player<br>• Full akses root</div>
+                <button class="buy-btn" onclick="beli('VPS Premium', 150000, '8GB RAM, 6 Core, 80GB SSD, 30-50 player, full akses root')">Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETUP SERVER SECTION -->
+    <div id="setup-section" class="product-section">
+        <button class="back-btn" onclick="showHome()">← Kembali ke Beranda</button>
+        <h2 class="section-title">⚙️ Layanan Setup Server</h2>
+        <div class="services-list">
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Setup SMP + Spawn</span>
+                    <span class="service-time">1-2 hari</span>
+                </div>
+                <div class="service-price">Rp120k</div>
+                <button class="service-buy" onclick="beli('Setup SMP + Spawn', 120000, 'World spawn custom, protection, NPC guide, welcome message')">Pilih</button>
+            </div>
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Permission & Group</span>
+                    <span class="service-time">1 hari</span>
+                </div>
+                <div class="service-price">Rp80k</div>
+                <button class="service-buy" onclick="beli('Permission & Group', 80000, 'LuckPerms, group owner/admin/member, permission plugin')">Pilih</button>
+            </div>
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Economy & Shop</span>
+                    <span class="service-time">1-2 hari</span>
+                </div>
+                <div class="service-price">Rp90k</div>
+                <button class="service-buy" onclick="beli('Economy & Shop', 90000, 'Vault, Shop GUI, Balance top, Money transfer')">Pilih</button>
+            </div>
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Database & Backup</span>
+                    <span class="service-time">1 hari</span>
+                </div>
+                <div class="service-price">Rp70k</div>
+                <button class="service-buy" onclick="beli('Database & Backup', 70000, 'MySQL, auto backup harian, restore point')">Pilih</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TPS SECTION -->
+    <div id="tps-section" class="product-section">
+        <button class="back-btn" onclick="showHome()">← Kembali ke Beranda</button>
+        <h2 class="section-title">📊 Layanan Optimasi TPS</h2>
+        <div class="services-list">
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Cek & Analisis TPS</span>
+                    <span class="service-time">2-3 jam</span>
+                </div>
+                <div class="service-price">Rp35k</div>
+                <button class="service-buy" onclick="beli('Cek & Analisis TPS', 35000, 'Monitor real-time, deteksi lag, analisis penyebab, laporan detail')">Pilih</button>
+            </div>
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Optimasi TPS</span>
+                    <span class="service-time">1 hari</span>
+                </div>
+                <div class="service-price">Rp60k</div>
+                <button class="service-buy" onclick="beli('Optimasi TPS', 60000, 'Optimasi server.properties, config plugin, redstone fix, entity limit')">Pilih</button>
+            </div>
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-name">Keamanan Server</span>
+                    <span class="service-time">1 hari</span>
+                </div>
+                <div class="service-price">Rp50k</div>
+                <button class="service-buy" onclick="beli('Keamanan Server', 50000, 'Firewall, Anti DDoS, anti cheat, exploit fix')">Pilih</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL SECTION -->
+    <div id="panel-section" class="product-section">
+        <button class="back-btn" onclick="showHome()">← Kembali ke Beranda</button>
+        <h2 class="section-title">🎮 Panel & Proxy</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-title">Install Panel Pterodactyl</div>
+                <div class="product-price">Rp75k</div>
+                <div class="product-desc">• Panel + Wings<br>• SSL Certificate<br>• Backup otomatis<br>• Gratis konsultasi</div>
+                <button class="buy-btn" onclick="beli('Install Panel Pterodactyl', 75000, 'Panel + Wings + SSL + Backup otomatis + konsultasi')">Pilih</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">Network Proxy (Velocity)</div>
+                <div class="product-price">Rp110k</div>
+                <div class="product-desc">• Install Velocity<br>• Hub server<br>• Load balancing<br>• DDoS protection</div>
+                <button class="buy-btn" onclick="beli('Network Proxy Velocity', 110000, 'Install Velocity, Hub server, Load balancing, DDoS protection')">Pilih</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">Anti-Cheat + Hardening</div>
+                <div class="product-price">Rp100k</div>
+                <div class="product-desc">• Matrix/Grim<br>• Config ketat<br>• Exploit fix<br>• Logging system</div>
+                <button class="buy-btn" onclick="beli('Anti-Cheat + Hardening', 100000, 'Matrix/Grim, config ketat, exploit fix, logging system')">Pilih</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT SECTION (tampil di semua halaman) -->
+    <div class="payment-section">
+        <h2 class="section-title" style="margin:0 0 1.5rem 0">💳 Metode Pembayaran</h2>
+        <div class="payment-grid">
+            <div class="payment-item">
+                <div class="payment-icon">🏦</div>
+                <div class="payment-name">BCA</div>
+                <div class="payment-number">1234567890</div>
+                <div style="font-size:0.8rem; color:#888;">a.n Jull Store</div>
+            </div>
+            <div class="payment-item">
+                <div class="payment-icon">💳</div>
+                <div class="payment-name">Mandiri</div>
+                <div class="payment-number">1234567890</div>
+                <div style="font-size:0.8rem; color:#888;">a.n Jull Store</div>
+            </div>
+            <div class="payment-item">
+                <div class="payment-icon">📱</div>
+                <div class="payment-name">DANA</div>
+                <div class="payment-number">0811-3499-48855</div>
+            </div>
+            <div class="payment-item">
+                <div class="payment-icon">⚡</div>
+                <div class="payment-name">OVO</div>
+                <div class="payment-number">0811-3499-48855</div>
+            </div>
+            <div class="payment-item">
+                <div class="payment-icon">🐝</div>
+                <div class="payment-name">LinkAja</div>
+                <div class="payment-number">0811-3499-48855</div>
+            </div>
+            <div class="payment-item">
+                <div class="payment-icon">💰</div>
+                <div class="payment-name">Gopay</div>
+                <div class="payment-number">0811-3499-48855</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #888;">
+            * Klik "Pilih" pada layanan, lalu konfirmasi pembayaran via WhatsApp
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">JULL STORE</div>
+                <p style="color:#888; margin:1rem 0;">Layanan Developer Server Minecraft Profesional</p>
+                <a href="https://wa.me/62811349948855" class="footer-wa" target="_blank">
+                    <span>📱</span> 0811-3499-48855
+                </a>
+            </div>
+            <div>
+                <h4 style="margin-bottom:1rem;">Layanan</h4>
+                <p style="color:#888; margin-bottom:0.5rem;">✓ VPS Hosting</p>
+                <p style="color:#888; margin-bottom:0.5rem;">✓ Setup Server</p>
+                <p style="color:#888; margin-bottom:0.5rem;">✓ Optimasi TPS</p>
+                <p style="color:#888; margin-bottom:0.5rem;">✓ Panel Pterodactyl</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom:1rem;">Kontak</h4>
+                <p style="color:#888; margin-bottom:0.5rem;">📞 0811-3499-48855</p>
+                <p style="color:#888; margin-bottom:0.5rem;">📧 jullstore@gmail.com</p>
+                <p style="color:#888; margin-bottom:0.5rem;">💬 Discord: jull_store</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Jull Store - All Rights Reserved
+        </div>
+    </footer>
+
     <script>
+        // Fungsi untuk menampilkan home
+        function showHome() {
+            document.getElementById('home-section').style.display = 'block';
+            document.querySelectorAll('.product-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fungsi untuk menampilkan kategori tertentu
+        function showCategory(category) {
+            // Sembunyikan home
+            document.getElementById('home-section').style.display = 'none';
+            
+            // Sembunyikan semua product section
+            document.querySelectorAll('.product-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Tampilkan section yang dipilih
+            document.getElementById(category + '-section').style.display = 'block';
+            
+            // Scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Fungsi untuk proses pembelian
         function beli(nama, harga, deskripsi) {
-            // Format harga dengan Rupiah
             const hargaFormat = new Intl.NumberFormat('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
                 minimumFractionDigits: 0
             }).format(harga);
             
-            // Buat pesan WhatsApp
             const pesan = `Halo Jull Store, saya mau order:
 
 📦 *${nama}*
 💰 Harga: ${hargaFormat}
 📋 Detail: ${deskripsi}
 
-Apakah tersedia? Saya ingin melakukan pembayaran.`;
+Saya ingin melakukan pembayaran. Mohon info ketersediaan.`;
             
-            // Encode pesan untuk URL
             const pesanEncoded = encodeURIComponent(pesan);
-            
-            // Buka WhatsApp dengan nomor Anda
             window.open(`https://wa.me/62811349948855?text=${pesanEncoded}`, '_blank');
         }
+
+        // Set home sebagai default
+        showHome();
     </script>
 </body>
 </html>
