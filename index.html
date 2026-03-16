@@ -461,6 +461,114 @@
             font-size: 0.95rem;
         }
 
+        /* Staff Section */
+        .staff-section {
+            margin: 6rem 0;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .staff-card {
+            padding: 2rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .staff-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #1e3a5f, #0f2b40);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid rgba(90, 155, 213, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .staff-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e0ecf5;
+        }
+
+        .staff-role {
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .role-owner {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+        }
+
+        .role-dev {
+            background: rgba(100, 200, 255, 0.15);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            color: #64c8ff;
+        }
+
+        .role-admin {
+            background: rgba(255, 100, 100, 0.15);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            color: #ff6464;
+        }
+
+        .role-mod {
+            background: rgba(100, 255, 150, 0.15);
+            border: 1px solid rgba(100, 255, 150, 0.3);
+            color: #64ff96;
+        }
+
+        .role-helper {
+            background: rgba(180, 130, 255, 0.15);
+            border: 1px solid rgba(180, 130, 255, 0.3);
+            color: #b482ff;
+        }
+
+        .staff-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .staff-social a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: all 0.2s;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+        }
+
+        .staff-social a:hover {
+            color: #ffffff;
+            background: rgba(90, 155, 213, 0.2);
+            border-color: rgba(90, 155, 213, 0.4);
+            transform: translateY(-2px);
+        }
+
         /* Store/Rank Section */
         .store-header {
             text-align: center;
@@ -770,6 +878,10 @@
             .discord-stats {
                 gap: 1.5rem;
             }
+
+            .staff-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
         }
     </style>
     <!-- Three.js for 3D Background -->
@@ -785,8 +897,8 @@
         <div class="nav-links">
             <a onclick="showPage('home')" class="active" id="nav-home">Beranda</a>
             <a onclick="showPage('store')" id="nav-store">Store / Rank</a>
-            <a href="#">Peringkat</a>
-            <a href="#">Discord</a>
+            <a onclick="showPage('staff')" id="nav-staff">Staff</a>
+            <a href="https://discord.gg/vilexsmp" target="_blank">Discord</a>
             <a href="#">Support</a>
         </div>
     </nav>
@@ -821,7 +933,7 @@
 
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="showPage('store')">EXPLORE RANK</button>
-                    <button class="btn btn-outline">Bergabung Discord →</button>
+                    <button class="btn btn-outline" onclick="window.open('https://discord.gg/vilexsmp', '_blank')">Bergabung Discord →</button>
                 </div>
             </section>
 
@@ -877,7 +989,7 @@
                             <div class="stat-label">Support</div>
                         </div>
                     </div>
-                    <button class="btn btn-primary">Join Discord</button>
+                    <button class="btn btn-primary" onclick="window.open('https://discord.gg/vilexsmp', '_blank')">Join Discord</button>
                 </div>
             </div>
 
@@ -1119,6 +1231,142 @@
         </div>
     </div>
 
+    <!-- Staff Page -->
+    <div id="staff-page" class="page">
+        <div class="container">
+            <!-- Staff Header -->
+            <div class="store-header">
+                <h1>Staff Vilex SMP</h1>
+                <p>Tim profesional yang siap membantu dan mengembangkan server Vilex SMP</p>
+            </div>
+
+            <!-- Staff Grid -->
+            <div class="staff-grid">
+                <!-- Owner -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">👑</div>
+                    <div class="staff-name">Alex_God</div>
+                    <div class="staff-role role-owner">OWNER & FOUNDER</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Pendiri Vilex SMP sejak 2023</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/owner123" target="_blank">💬 Discord</a>
+                        <a href="https://instagram.com/alex_god" target="_blank">📷 IG</a>
+                    </div>
+                </div>
+
+                <!-- Developer JULL dengan IG jul_jull091 dan Discord natthan0807 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">💻</div>
+                    <div class="staff-name">JULL</div>
+                    <div class="staff-role role-dev">HEAD DEVELOPER</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Developer utama • 3D Design • Sistem Store</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/natthan0807" target="_blank">💬 natthan0807</a>
+                        <a href="https://instagram.com/jul_jull091" target="_blank">📷 @jul_jull091</a>
+                        <a href="#" target="_blank">🐦 Twitter</a>
+                    </div>
+                </div>
+
+                <!-- Co-Owner -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">⭐</div>
+                    <div class="staff-name">Sarah_Craft</div>
+                    <div class="staff-role role-owner">CO-OWNER</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Manajemen server & community</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/sarah123" target="_blank">💬 Discord</a>
+                        <a href="https://instagram.com/sarah_craft" target="_blank">📷 IG</a>
+                    </div>
+                </div>
+
+                <!-- Admin 1 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">🛡️</div>
+                    <div class="staff-name">Mike_Adm</div>
+                    <div class="staff-role role-admin">ADMINISTRATOR</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Handle laporan & maintenance</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/mike123" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Admin 2 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">⚔️</div>
+                    <div class="staff-name">Ranger_Blue</div>
+                    <div class="staff-role role-admin">ADMINISTRATOR</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Event & tournament</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/ranger456" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Mod 1 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">🔨</div>
+                    <div class="staff-name">Mod_Budi</div>
+                    <div class="staff-role role-mod">MODERATOR</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Menjaga chat & rule</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/budi789" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Mod 2 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">👮</div>
+                    <div class="staff-name">Ella_Mod</div>
+                    <div class="staff-role role-mod">MODERATOR</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Help & ticketing</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/ella101" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Helper 1 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">💡</div>
+                    <div class="staff-name">Helper_Joe</div>
+                    <div class="staff-role role-helper">HELPER</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Bantu player baru</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/joe112" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Helper 2 -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">🤝</div>
+                    <div class="staff-name">Nia_Helper</div>
+                    <div class="staff-role role-helper">HELPER</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Guide & tutorial</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/nia131" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+
+                <!-- Builder -->
+                <div class="staff-card glass-card">
+                    <div class="staff-avatar">🏗️</div>
+                    <div class="staff-name">BuildMaster</div>
+                    <div class="staff-role role-dev">BUILDER TEAM</div>
+                    <p style="color: #b0c4de; margin-bottom: 1rem;">Spawn & dungeon builder</p>
+                    <div class="staff-social">
+                        <a href="https://discord.com/users/builder999" target="_blank">💬 Discord</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Info dengan Apply Now ke WhatsApp -->
+            <div class="glass" style="border-radius: 24px; padding: 2rem; margin: 3rem 0; text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #e0ecf5;">Bergabung dengan Staff?</h3>
+                <p style="color: #b0c4de; max-width: 600px; margin: 0 auto 1.5rem;">Kami selalu membuka pendaftaran untuk Helper, Builder, dan Event Team. Kirim aplikasi melalui WhatsApp!</p>
+                <a href="https://wa.me/6281349948855?text=Halo%20saya%20ingin%20mendaftar%20menjadi%20staff%20Vilex%20SMP" target="_blank" class="btn btn-primary" style="text-decoration: none;">Apply Now via WhatsApp →</a>
+                <p style="color: #8aa0b8; margin-top: 1rem; font-size: 0.9rem;">Atau hubungi nomor: 0813-4994-8855</p>
+            </div>
+        </div>
+    </div>
+
     <!-- CTA Section (Common) -->
     <div class="container">
         <section class="cta-section">
@@ -1292,9 +1540,11 @@
         function showPage(pageName) {
             document.getElementById('home-page').classList.remove('active-page');
             document.getElementById('store-page').classList.remove('active-page');
+            document.getElementById('staff-page').classList.remove('active-page');
             
             document.getElementById('nav-home').classList.remove('active');
             document.getElementById('nav-store').classList.remove('active');
+            document.getElementById('nav-staff').classList.remove('active');
             
             if (pageName === 'home') {
                 document.getElementById('home-page').classList.add('active-page');
@@ -1302,6 +1552,9 @@
             } else if (pageName === 'store') {
                 document.getElementById('store-page').classList.add('active-page');
                 document.getElementById('nav-store').classList.add('active');
+            } else if (pageName === 'staff') {
+                document.getElementById('staff-page').classList.add('active-page');
+                document.getElementById('nav-staff').classList.add('active');
             }
         }
 
