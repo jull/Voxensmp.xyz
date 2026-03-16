@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +12,13 @@
         }
 
         body {
-            background-color: #0a0c0f;
+            background-color: #030405;
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* Grid background effect (like the original) */
+        /* Grid Background */
         body::before {
             content: "";
             position: fixed;
@@ -27,17 +27,17 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(50, 50, 80, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(50, 50, 80, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 4rem;
+            padding: 0 2rem;
         }
 
         /* Navbar */
@@ -45,19 +45,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 4rem;
-            background: rgba(10, 12, 15, 0.95);
+            padding: 1.5rem 2rem;
+            background: rgba(3, 4, 5, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ff7b7b, #ff4d4d);
+            background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
@@ -65,147 +65,179 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: #a0a0a0;
+            color: #9ca3af;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.2s;
             font-size: 0.95rem;
+            transition: color 0.2s;
+            cursor: pointer;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #ffffff;
         }
 
-        .nav-links .active {
-            color: #ffffff;
-            border-bottom: 2px solid #ff4d4d;
-            padding-bottom: 0.25rem;
+        /* Page Toggle */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Hero Section */
         .hero {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            padding: 4rem 0 2rem 0;
+            padding: 4rem 0 3rem;
         }
 
         .hero-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         .badge {
-            background: rgba(255, 77, 77, 0.1);
-            color: #ff7b7b;
-            padding: 0.5rem 1rem;
+            background: rgba(255, 75, 75, 0.1);
+            border: 1px solid rgba(255, 75, 75, 0.2);
+            color: #ff6b6b;
+            padding: 0.5rem 1.2rem;
             border-radius: 100px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            border: 1px solid rgba(255, 77, 77, 0.3);
         }
 
         .stats {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #a0a0a0;
+            color: #9ca3af;
         }
 
-        .stats .online-dot {
+        .online-dot {
             width: 10px;
             height: 10px;
-            background: #4caf50;
+            background: #10b981;
             border-radius: 50%;
-            display: inline-block;
+            position: relative;
         }
 
-        .hero-title {
+        .online-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .hero h1 {
             font-size: 5rem;
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -2px;
+            margin-bottom: 0.5rem;
         }
 
-        .hero-title span {
-            background: linear-gradient(135deg, #ff7b7b, #ff4d4d);
+        .hero h1 span {
+            background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
         }
 
-        .hero-subtitle {
-            font-size: 2rem;
+        .hero h2 {
+            font-size: 2.2rem;
             font-weight: 600;
-            color: #e0e0e0;
-            margin-top: -0.5rem;
+            color: #e5e7eb;
+            margin-bottom: 1.5rem;
         }
 
-        .hero-description {
-            max-width: 600px;
-            color: #a0a0a0;
+        .hero p {
+            color: #9ca3af;
             font-size: 1.1rem;
-            margin: 1rem 0 2rem 0;
+            max-width: 600px;
+            margin-bottom: 2rem;
         }
 
         .feature-tags {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
-            margin: 1.5rem 0;
+            margin-bottom: 2rem;
         }
 
         .feature-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.5rem 1.2rem;
             border-radius: 100px;
             font-size: 0.9rem;
-            font-weight: 500;
-            color: #d0d0d0;
+            color: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, #ff7b7b, #ff4d4d);
-            color: white;
-            border: none;
-            padding: 0.85rem 2rem;
+            padding: 0.8rem 2rem;
             border-radius: 12px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
+            border: none;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
+            color: white;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .btn:hover {
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 77, 77, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 59, 59, 0.3);
         }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
         }
 
         .btn-outline:hover {
             background: rgba(255, 255, 255, 0.05);
-            box-shadow: none;
         }
 
-        /* Features Section */
+        /* Features Grid */
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
@@ -213,7 +245,7 @@
         }
 
         .section-subtitle {
-            color: #a0a0a0;
+            color: #9ca3af;
             font-size: 1.1rem;
             max-width: 600px;
             margin-bottom: 3rem;
@@ -227,30 +259,30 @@
         }
 
         .feature-card {
-            background: rgba(20, 22, 27, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(20, 22, 27, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 24px;
             padding: 2rem;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: all 0.3s;
         }
 
         .feature-card:hover {
-            border-color: rgba(255, 77, 77, 0.3);
+            border-color: rgba(255, 107, 107, 0.3);
             transform: translateY(-5px);
+            background: rgba(20, 22, 27, 0.8);
         }
 
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, rgba(255, 77, 77, 0.2), rgba(255, 77, 77, 0.05));
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 59, 59, 0.05));
+            border: 1px solid rgba(255, 107, 107, 0.2);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 77, 77, 0.2);
         }
 
         .feature-card h3 {
@@ -259,13 +291,12 @@
         }
 
         .feature-card p {
-            color: #a0a0a0;
+            color: #9ca3af;
             margin-bottom: 1.5rem;
-            font-size: 0.95rem;
         }
 
         .feature-link {
-            color: #ff7b7b;
+            color: #ff6b6b;
             text-decoration: none;
             font-weight: 600;
             display: flex;
@@ -297,13 +328,8 @@
         }
 
         .discord-left p {
-            color: #a0a0a0;
+            color: #9ca3af;
             max-width: 400px;
-        }
-
-        .discord-right {
-            display: flex;
-            gap: 1rem;
         }
 
         .discord-stats {
@@ -318,18 +344,18 @@
         .stat-number {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #ff7b7b;
+            color: #ff6b6b;
         }
 
         .stat-label {
-            color: #a0a0a0;
+            color: #9ca3af;
             font-size: 0.9rem;
         }
 
-        /* Updates Section */
+        /* Updates Grid */
         .updates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin: 3rem 0;
         }
@@ -342,7 +368,7 @@
         }
 
         .update-date {
-            color: #ff7b7b;
+            color: #ff6b6b;
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
@@ -354,8 +380,163 @@
         }
 
         .update-card p {
-            color: #a0a0a0;
-            font-size: 0.9rem;
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        /* Store/Rank Section */
+        .store-header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .store-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .store-header p {
+            color: #9ca3af;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .rank-card {
+            background: rgba(20, 22, 27, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .rank-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .rank-card.popular {
+            border: 2px solid #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .rank-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
+            color: white;
+            padding: 0.3rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .rank-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .rank-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ff6b6b;
+        }
+
+        .rank-price span {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        .rank-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .rank-features li {
+            padding: 0.5rem 0;
+            color: #d1d5db;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-features li:last-child {
+            border-bottom: none;
+        }
+
+        .rank-features li::before {
+            content: "✓";
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 59, 59, 0.3);
+        }
+
+        /* Categories */
+        .store-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #ff6b6b;
+            border-color: #ff6b6b;
+            color: white;
         }
 
         /* CTA Section */
@@ -374,7 +555,7 @@
         }
 
         .cta-subtitle {
-            color: #a0a0a0;
+            color: #9ca3af;
             font-size: 1.2rem;
             margin-bottom: 2.5rem;
         }
@@ -390,19 +571,43 @@
             font-size: 1.5rem;
             font-weight: 600;
             cursor: pointer;
-            transition: border-color 0.2s;
-            margin-top: 1rem;
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
         }
 
         .server-ip:hover {
-            border-color: #ff4d4d;
+            border-color: #ff6b6b;
+            transform: scale(1.02);
         }
 
+        .copy-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Copy Notification */
         .copy-notification {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: #2e2e2e;
+            background: #1f2937;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 100px;
@@ -411,209 +616,485 @@
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
+            z-index: 2000;
         }
 
         .copy-notification.show {
             opacity: 1;
         }
 
-        /* Footer */
-        .footer {
-            margin-top: 4rem;
-            padding: 2rem 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .container, .navbar, .footer {
-                padding: 1.5rem;
-            }
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 1rem;
             }
-            .hero-title {
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
                 font-size: 3rem;
             }
-            .hero-subtitle {
+
+            .hero h2 {
                 font-size: 1.5rem;
             }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
             .discord-section {
                 flex-direction: column;
                 text-align: center;
+                padding: 2rem;
             }
+
+            .discord-stats {
+                justify-content: center;
+            }
+
+            .store-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .rank-card.popular {
+                transform: scale(1);
+            }
+
+            .rank-card.popular:hover {
+                transform: translateY(-10px);
+            }
+
             .cta-title {
                 font-size: 2.5rem;
             }
+
             .server-ip {
                 font-size: 1.2rem;
                 flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">VILEX SMP</div>
         <div class="nav-links">
-            <a href="#" class="active">Beranda</a>
-            <a href="#">Fitur</a>
+            <a onclick="showPage('home')" class="active" id="nav-home">Beranda</a>
+            <a onclick="showPage('store')" id="nav-store">Store / Rank</a>
             <a href="#">Peringkat</a>
-            <a href="#">Toko</a>
             <a href="#">Discord</a>
+            <a href="#">Support</a>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-top">
-                <span class="badge">✦ Server Minecraft Semi-RPG Indonesia</span>
-                <div class="stats">
-                    <span class="online-dot"></span>
-                    <span>247 pemain menguasai Vilex</span>
-                </div>
-            </div>
-            
-            <h1 class="hero-title">Season 5 <span>Now Live</span></h1>
-            <div class="hero-subtitle"># Semi-RPG Survival & Adventure</div>
-            
-            <div class="hero-description">
-                Rasakan kebebasan sejati di Minecraft. Bangun pertanian otomatis yang rumit, jelajahi dungeon mitos, 
-                dan rebut senjata legendaris. Ekonomi adil tanpa pay-to-win—murni skill dan strategi.
-            </div>
-
-            <div class="feature-tags">
-                <span class="feature-tag">⚡ Next Gen Semi-RPG</span>
-                <span class="feature-tag">🏗️ Modern Practice</span>
-                <span class="feature-tag">🌍 Survival RPG</span>
-                <span class="feature-tag">👥 Active Community</span>
-            </div>
-
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                <button class="btn">EXPLORE</button>
-                <button class="btn btn-outline">Bergabung Discord →</button>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section style="margin: 6rem 0;">
-            <h2 class="section-title">Legendary Features</h2>
-            <p class="section-subtitle">
-                Rasakan mekanik dan fitur mutakhir yang akan mendefinisikan ulang petualangan Minecraft-mu
-            </p>
-
-            <div class="features-grid">
-                <!-- Feature 1: Redstone & Automation -->
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Redstone & Automation</h3>
-                    <p>Build tanpa batas! Buat auto-farm masif dan kontrapsi redstone kompleks tanpa batasan. Kreativitas dan skill teknik adalah satu-satunya batasan — bebas total!</p>
-                    <a href="#" class="feature-link">Learn more →</a>
-                </div>
-
-                <!-- Feature 2: PvP & Dungeons -->
-                <div class="feature-card">
-                    <div class="feature-icon">⚔️</div>
-                    <h3>PvP & Dungeons</h3>
-                    <p>Uji skill di combat dengan senjata kustom dan turnamen, atau tantang diri di dungeon dengan mob unik, jebakan mematikan, dan loot legendaris. Adil dan menantang!</p>
-                    <a href="#" class="feature-link">Learn more →</a>
-                </div>
-
-                <!-- Feature 3: Vilex SMP Discord -->
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Komunitas Vilex</h3>
-                    <p>Bergabung dengan 1000+ member di Discord! Dapatkan update langsung, bantuan dari staff, dan ikuti event eksklusif. Link akun Minecraft-mu untuk fitur tambahan!</p>
-                    <a href="#" class="feature-link">Join Discord →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Discord Section (custom for Vilex) -->
-        <div class="discord-section">
-            <div class="discord-left">
-                <h2>The Vilex SMP Discord</h2>
-                <p>Gabung dengan komunitas terbesar Vilex! Dapatkan info server, event mingguan, giveaway, dan connect dengan pemain lain.</p>
-            </div>
-            <div class="discord-right">
-                <div class="discord-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">1.2k+</div>
-                        <div class="stat-label">Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Online</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
+    <!-- Home Page -->
+    <div id="home-page" class="page active-page">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-top">
+                    <span class="badge">✦ Server Minecraft Semi-RPG Indonesia</span>
+                    <div class="stats">
+                        <span class="online-dot"></span>
+                        <span>247 pemain menguasai Vilex</span>
                     </div>
                 </div>
-                <button class="btn">Join Discord</button>
+                
+                <h1>Season 5 <span>Now Live</span></h1>
+                <h2># Semi-RPG Survival & Adventure</h2>
+                
+                <p>
+                    Rasakan kebebasan sejati di Minecraft. Bangun pertanian otomatis yang rumit, jelajahi dungeon mitos, 
+                    dan rebut senjata legendaris. Ekonomi adil tanpa pay-to-win—murni skill dan strategi.
+                </p>
+
+                <div class="feature-tags">
+                    <span class="feature-tag">⚡ Next Gen Semi-RPG</span>
+                    <span class="feature-tag">🏗️ Modern Practice</span>
+                    <span class="feature-tag">🌍 Survival RPG</span>
+                    <span class="feature-tag">👥 Active Community</span>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showPage('store')">EXPLORE RANK</button>
+                    <button class="btn btn-outline">Bergabung Discord →</button>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section style="margin: 6rem 0;">
+                <h2 class="section-title">Legendary Features</h2>
+                <p class="section-subtitle">
+                    Rasakan mekanik dan fitur mutakhir yang akan mendefinisikan ulang petualangan Minecraft-mu
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Redstone & Automation</h3>
+                        <p>Build tanpa batas! Buat auto-farm masif dan kontrapsi redstone kompleks tanpa batasan. Kreativitas dan skill teknik adalah satu-satunya batasan — bebas total!</p>
+                        <a href="#" class="feature-link">Learn more →</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>PvP & Dungeons</h3>
+                        <p>Uji skill di combat dengan senjata kustom dan turnamen, atau tantang diri di dungeon dengan mob unik, jebakan mematikan, dan loot legendaris. Adil dan menantang!</p>
+                        <a href="#" class="feature-link">Learn more →</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Komunitas Vilex</h3>
+                        <p>Bergabung dengan 1000+ member di Discord! Dapatkan update langsung, bantuan dari staff, dan ikuti event eksklusif. Link akun Minecraft-mu untuk fitur tambahan!</p>
+                        <a href="#" class="feature-link">Join Discord →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discord Section -->
+            <div class="discord-section">
+                <div class="discord-left">
+                    <h2>The Vilex SMP Discord</h2>
+                    <p>Gabung dengan komunitas terbesar Vilex! Dapatkan info server, event mingguan, giveaway, dan connect dengan pemain lain.</p>
+                </div>
+                <div class="discord-right">
+                    <div class="discord-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1.2k+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Online</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Join Discord</button>
+                </div>
+            </div>
+
+            <!-- Latest Updates -->
+            <section style="margin: 6rem 0;">
+                <h2 class="section-title">Latest Updates</h2>
+                <p class="section-subtitle">
+                    Tetap terhubung dengan event terbaru, patch, dan pengumuman besar dari dunia Vilex SMP.
+                </p>
+
+                <div class="updates-grid">
+                    <div class="update-card">
+                        <div class="update-date">15 Mei 2025</div>
+                        <h4>Survival RPG Update 1.21.8!</h4>
+                        <p>Mode Survival RPG baru saja update ke versi 1.21.8! Menambahkan dungeon baru, optimasi performa, dan fixed beberapa bug.</p>
+                    </div>
+
+                    <div class="update-card">
+                        <div class="update-date">10 Mei 2025</div>
+                        <h4>Improve AntiBot System</h4>
+                        <p>Update sistem antibot yang dipakai oleh Vilex agar lebih baik dan mengurangi lag saat serangan bot.</p>
+                    </div>
+
+                    <div class="update-card">
+                        <div class="update-date">5 Mei 2025</div>
+                        <h4>Event Musim Panas Dimulai!</h4>
+                        <p>Event musim panas telah tiba! Dapatkan item limited dan ikuti tournament PvP dengan total hadiah jutaan rupiah.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Store/Rank Page -->
+    <div id="store-page" class="page">
+        <div class="container">
+            <!-- Store Header -->
+            <div class="store-header">
+                <h1>Store & Rank Vilex SMP</h1>
+                <p>Dapatkan keuntungan eksklusif dan dukung perkembangan server dengan membeli rank atau item spesial</p>
+            </div>
+
+            <!-- Categories -->
+            <div class="store-categories">
+                <button class="category-btn active" onclick="filterRanks('all')">Semua</button>
+                <button class="category-btn" onclick="filterRanks('rank')">Rank</button>
+                <button class="category-btn" onclick="filterRanks('crate')">Crate Key</button>
+                <button class="category-btn" onclick="filterRanks('item')">Item Khusus</button>
+                <button class="category-btn" onclick="filterRanks('voucher')">Voucher</button>
+            </div>
+
+            <!-- Rank Grid -->
+            <div class="rank-grid" id="rank-grid">
+                <!-- Rank 1: Stone -->
+                <div class="rank-card" data-category="rank">
+                    <div class="rank-name">STONE</div>
+                    <div class="rank-price">Rp 25.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Stone (Setiap 24 jam)</li>
+                        <li>3 Home</li>
+                        <li>Akses /back</li>
+                        <li>Warna chat abu-abu</li>
+                        <li>1 Fly (30 menit/hari)</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Rank 2: Iron (Popular) -->
+                <div class="rank-card popular" data-category="rank">
+                    <div class="popular-badge">Paling Populer</div>
+                    <div class="rank-name">IRON</div>
+                    <div class="rank-price">Rp 50.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Iron (Setiap 24 jam)</li>
+                        <li>5 Home</li>
+                        <li>Akses /back & /tpa</li>
+                        <li>Warna chat putih</li>
+                        <li>2 Fly (1 jam/hari)</li>
+                        <li>Akses /ec (Enderchest)</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Rank 3: Gold -->
+                <div class="rank-card" data-category="rank">
+                    <div class="rank-name">GOLD</div>
+                    <div class="rank-price">Rp 100.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Gold (Setiap 24 jam)</li>
+                        <li>7 Home</li>
+                        <li>Akses /back, /tpa, /tpahere</li>
+                        <li>Warna chat kuning</li>
+                        <li>3 Fly (2 jam/hari)</li>
+                        <li>Akses /ec & /craft</li>
+                        <li>1 Pet Slot</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Rank 4: Diamond -->
+                <div class="rank-card" data-category="rank">
+                    <div class="rank-name">DIAMOND</div>
+                    <div class="rank-price">Rp 200.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Diamond (Setiap 24 jam)</li>
+                        <li>10 Home</li>
+                        <li>Akses semua teleport</li>
+                        <li>Warna chat biru</li>
+                        <li>5 Fly (3 jam/hari)</li>
+                        <li>Akses /ec, /craft, /anvil</li>
+                        <li>3 Pet Slot</li>
+                        <li>Tag khusus [DIAMOND]</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Rank 5: Emerald -->
+                <div class="rank-card" data-category="rank">
+                    <div class="rank-name">EMERALD</div>
+                    <div class="rank-price">Rp 350.000 <span>/ bulan</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Emerald (Setiap 12 jam)</li>
+                        <li>15 Home</li>
+                        <li>Akses semua teleport</li>
+                        <li>Warna chat hijau</li>
+                        <li>Unlimited Fly</li>
+                        <li>Akses /ec, /craft, /anvil, /grindstone</li>
+                        <li>5 Pet Slot</li>
+                        <li>Tag khusus [EMERALD]</li>
+                        <li>1 Spawner Gratis</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Rank 6: Legend (Lifetime) -->
+                <div class="rank-card" data-category="rank">
+                    <div class="rank-name">LEGEND</div>
+                    <div class="rank-price">Rp 750.000 <span>/ lifetime</span></div>
+                    <ul class="rank-features">
+                        <li>Kit Legend (Setiap 6 jam)</li>
+                        <li>Unlimited Home</li>
+                        <li>Akses semua perintah</li>
+                        <li>Warna chat ungu</li>
+                        <li>Unlimited Fly</li>
+                        <li>Akses semua GUI</li>
+                        <li>10 Pet Slot</li>
+                        <li>Tag khusus [LEGEND]</li>
+                        <li>3 Spawner Gratis</li>
+                        <li>Custom Nickname</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Crate Keys -->
+                <div class="rank-card" data-category="crate">
+                    <div class="rank-name">Vote Crate Key</div>
+                    <div class="rank-price">Rp 5.000 <span>/ key</span></div>
+                    <ul class="rank-features">
+                        <li>Buka Vote Crate</li>
+                        <li>Dapatkan item random</li>
+                        <li>Peluang mendapatkan rank</li>
+                        <li>Peluang mendapatkan money</li>
+                        <li>Peluang mendapatkan item langka</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <div class="rank-card" data-category="crate">
+                    <div class="rank-name">Mythic Crate Key</div>
+                    <div class="rank-price">Rp 15.000 <span>/ key</span></div>
+                    <ul class="rank-features">
+                        <li>Buka Mythic Crate</li>
+                        <li>Item mythic eksklusif</li>
+                        <li>Peluang tinggi dapat rank</li>
+                        <li>Peluang dapat soulbound item</li>
+                        <li>Peluang dapat pet legendaris</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Items -->
+                <div class="rank-card" data-category="item">
+                    <div class="rank-name">Money 1 Juta</div>
+                    <div class="rank-price">Rp 20.000</div>
+                    <ul class="rank-features">
+                        <li>+1.000.000 in-game money</li>
+                        <li>Transfer langsung ke akun</li>
+                        <li>Bisa digunakan untuk beli item</li>
+                        <li>Non-refundable</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <div class="rank-card" data-category="item">
+                    <div class="rank-name">Spawner (Random)</div>
+                    <div class="rank-price">Rp 50.000</div>
+                    <ul class="rank-features">
+                        <li>1 Spawner random (tier 1-4)</li>
+                        <li>Bisa mendapatkan spawner langka</li>
+                        <li>Dikirim via in-game mail</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <!-- Vouchers -->
+                <div class="rank-card" data-category="voucher">
+                    <div class="rank-name">Fly Voucher (30 Hari)</div>
+                    <div class="rank-price">Rp 35.000</div>
+                    <ul class="rank-features">
+                        <li>Unlimited Fly selama 30 hari</li>
+                        <li>Bisa digunakan tanpa rank</li>
+                        <li>Stackable</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+
+                <div class="rank-card" data-category="voucher">
+                    <div class="rank-name">Home Voucher (+5)</div>
+                    <div class="rank-price">Rp 15.000</div>
+                    <ul class="rank-features">
+                        <li>Tambah 5 slot home permanen</li>
+                        <li>Bisa digunakan tanpa rank</li>
+                        <li>Stackable</li>
+                    </ul>
+                    <button class="btn-buy">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <!-- Payment Info -->
+            <div style="background: rgba(20, 22, 27, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 2rem; margin: 3rem 0; text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Metode Pembayaran</h3>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; color: #9ca3af;">
+                    <span>💳 Transfer Bank (BCA, Mandiri, BNI)</span>
+                    <span>📱 E-Wallet (OVO, Gopay, Dana)</span>
+                    <span>🎮 Voucher Game (Pulsa)</span>
+                </div>
+                <p style="color: #6b7280; margin-top: 1rem; font-size: 0.9rem;">Semua pembelian akan diproses otomatis dalam 1-5 menit</p>
             </div>
         </div>
+    </div>
 
-        <!-- Latest Updates -->
-        <section style="margin: 6rem 0;">
-            <h2 class="section-title">Latest Updates</h2>
-            <p class="section-subtitle">
-                Tetap terhubung dengan event terbaru, patch, dan pengumuman besar dari dunia Vilex SMP.
-            </p>
-
-            <div class="updates-grid">
-                <!-- Update 1 -->
-                <div class="update-card">
-                    <div class="update-date">15 Mei 2025</div>
-                    <h4>Survival RPG Update 1.21.8!</h4>
-                    <p>Mode Survival RPG baru saja update ke versi 1.21.8! Menambahkan dungeon baru, optimasi performa, dan fixed beberapa bug.</p>
-                </div>
-
-                <!-- Update 2 -->
-                <div class="update-card">
-                    <div class="update-date">10 Mei 2025</div>
-                    <h4>Improve AntiBot System</h4>
-                    <p>Update sistem antibot yang dipakai oleh Vilex agar lebih baik dan mengurangi lag saat serangan bot.</p>
-                </div>
-
-                <!-- Update 3 -->
-                <div class="update-card">
-                    <div class="update-date">5 Mei 2025</div>
-                    <h4>Event Musim Panas Dimulai!</h4>
-                    <p>Event musim panas telah tiba! Dapatkan item limited dan ikuti tournament PvP dengan total hadiah jutaan rupiah.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
+    <!-- CTA Section (Common) -->
+    <div class="container">
         <section class="cta-section">
             <h2 class="cta-title">Siap untuk Mendominasi?</h2>
             <p class="cta-subtitle">Bergabunglah dengan pengalaman Minecraft paling seimbang dan seru di Indonesia</p>
             
             <div class="server-ip" id="server-ip" onclick="copyIP()">
                 <span>vilex.my.id</span>
-                <span style="font-size: 1rem; background: rgba(255,255,255,0.1); padding: 0.3rem 0.8rem; border-radius: 100px; font-weight: normal;">Click to copy</span>
+                <span class="copy-badge">Click to copy</span>
             </div>
         </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>© 2025 Vilex SMP. All rights reserved.</div>
+            <div>Java & Bedrock 1.21+ | Support: support@vilex.my.id</div>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div>© 2025 Vilex SMP. All rights reserved.</div>
-        <div>Java & Bedrock 1.21+</div>
-    </div>
-
-    <!-- Copy notification -->
+    <!-- Copy Notification -->
     <div class="copy-notification" id="copy-notification">Server IP copied to clipboard!</div>
 
     <script>
+        // Page Toggle Function
+        function showPage(pageName) {
+            // Hide all pages
+            document.getElementById('home-page').classList.remove('active-page');
+            document.getElementById('store-page').classList.remove('active-page');
+            
+            // Remove active class from nav links
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-store').classList.remove('active');
+            
+            // Show selected page
+            if (pageName === 'home') {
+                document.getElementById('home-page').classList.add('active-page');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (pageName === 'store') {
+                document.getElementById('store-page').classList.add('active-page');
+                document.getElementById('nav-store').classList.add('active');
+            }
+        }
+
+        // Filter Ranks Function
+        function filterRanks(category) {
+            const cards = document.querySelectorAll('.rank-card');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'Semua')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Copy IP Function
         function copyIP() {
             const ip = "vilex.my.id";
             navigator.clipboard.writeText(ip).then(() => {
@@ -622,16 +1103,12 @@
                 setTimeout(() => {
                     notification.classList.remove('show');
                 }, 2000);
-            }).catch(err => {
-                alert('Gagal menyalin IP. Silakan salin manual: vilex.my.id');
             });
         }
 
-        // Untuk efek hover tambahan atau interaksi lain (opsional)
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                // Bisa tambahkan efek
-            });
+        // Initialize - show home page by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
         });
     </script>
 </body>
