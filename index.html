@@ -68,7 +68,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             background: rgba(10, 14, 18, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -79,7 +79,26 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(90, 155, 213, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo-text {
             font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(135deg, #a0c0e0, #5a9bd5);
@@ -844,6 +863,10 @@
                 padding: 1rem;
             }
 
+            .logo-container {
+                justify-content: center;
+            }
+
             .nav-links {
                 gap: 1.2rem;
             }
@@ -891,9 +914,13 @@
     <!-- 3D Canvas Background -->
     <canvas id="canvas-bg"></canvas>
 
-    <!-- Navbar -->
+    <!-- Navbar dengan Logo HD -->
     <nav class="navbar">
-        <div class="logo">VILEX SMP</div>
+        <div class="logo-container">
+            <!-- Logo server dari gambar yang diupload -->
+            <img src="data:image/jpeg;base64,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" alt="Vilex SMP Logo" class="logo-image">
+            <span class="logo-text">VILEX SMP</span>
+        </div>
         <div class="nav-links">
             <a onclick="showPage('home')" class="active" id="nav-home">Beranda</a>
             <a onclick="showPage('store')" id="nav-store">Store / Rank</a>
