@@ -2,8 +2,20 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vilex SMP - Server Minecraft Semi-RPG Indonesia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>JULL | Jasa Pembuatan Website Profesional</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Three.js Core -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -12,1622 +24,690 @@
         }
 
         body {
-            background-color: #0a0c10;
-            color: #e8eef2;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a;
+            color: #f0f0ff;
             overflow-x: hidden;
         }
 
-        /* 3D Background Effect */
-        #canvas-bg {
+        /* Canvas 3D Background */
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
         }
 
-        /* Glassmorphism Effect */
-        .glass {
-            background: rgba(18, 22, 28, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(66, 153, 225, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        /* Content Layer */
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
         }
 
+        /* Glassmorphic Elements */
         .glass-card {
-            background: rgba(22, 26, 32, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(66, 153, 225, 0.1);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s;
         }
 
         .glass-card:hover {
-            border-color: rgba(66, 153, 225, 0.3);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(66, 153, 225, 0.2);
-            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255, 215, 255, 0.5);
+            transform: translateY(-5px);
         }
 
-        /* Main Container */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navbar with 3D effect */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(10, 14, 18, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(66, 153, 225, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px rgba(90, 155, 213, 0.5));
-            transition: transform 0.3s ease;
-        }
-
-        .logo-image:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a0c0e0, #5a9bd5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(90, 155, 213, 0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: #b0c4de;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #5a9bd5, #a0c0e0);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #ffffff;
-        }
-
-        /* Page Toggle */
-        .page {
-            display: none;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .page.active-page {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hero Section */
+        /* Header */
         .hero {
-            padding: 5rem 0 3rem;
+            text-align: center;
+            padding: 4rem 1rem 3rem;
         }
 
-        .hero-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #c9b6ff, #e0b0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 20px rgba(210, 180, 255, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .badge {
-            background: rgba(90, 155, 213, 0.1);
-            border: 1px solid rgba(90, 155, 213, 0.3);
-            color: #a0c0e0;
-            padding: 0.5rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .stats {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #b0c4de;
-        }
-
-        .online-dot {
-            width: 10px;
-            height: 10px;
-            background: #4ade80;
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 0 15px #4ade80;
-        }
-
-        .online-dot::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #a0c0e0, #5a9bd5, #3a7ca5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 20px rgba(90, 155, 213, 0.4);
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #d0e0f0;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            color: #b0c4de;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .feature-tags {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .feature-tag {
-            background: rgba(22, 30, 40, 0.6);
-            border: 1px solid rgba(90, 155, 213, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            color: #c0d4e8;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.9rem 2.2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #1e3a5f, #0f2b40);
-            color: white;
-            border: 1px solid rgba(90, 155, 213, 0.4);
-            box-shadow: 0 5px 20px rgba(0, 40, 80, 0.4);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.7s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 58, 95, 0.6);
-            border-color: rgba(90, 155, 213, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(90, 155, 213, 0.3);
-            color: #e0e8f0;
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-outline:hover {
-            background: rgba(90, 155, 213, 0.1);
-            border-color: rgba(90, 155, 213, 0.6);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Features Grid */
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e0e8f0, #a0c0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-subtitle {
-            color: #b0c4de;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 3rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            border-radius: 24px;
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(30, 50, 70, 0.5);
-            border: 1px solid rgba(90, 155, 213, 0.3);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        .feature-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.75rem;
-            color: #e0ecf5;
-        }
-
-        .feature-card p {
-            color: #a0b8d0;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-link {
-            color: #a0c0e0;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.2s;
-        }
-
-        .feature-link:hover {
-            gap: 0.8rem;
-            color: #c0e0ff;
-        }
-
-        /* Discord Section */
-        .discord-section {
-            border-radius: 32px;
-            padding: 3rem;
-            margin: 4rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .discord-left h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            color: #e0ecf5;
-        }
-
-        .discord-left p {
-            color: #b0c4de;
-            max-width: 400px;
-        }
-
-        .discord-stats {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #a0c0e0;
-            text-shadow: 0 0 20px rgba(90, 155, 213, 0.3);
-        }
-
-        .stat-label {
-            color: #8aa0b8;
-            font-size: 0.9rem;
-        }
-
-        /* Updates Grid */
-        .updates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .update-card {
-            border-radius: 20px;
-            padding: 1.5rem;
-        }
-
-        .update-date {
-            color: #a0c0e0;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .update-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #e0ecf5;
-        }
-
-        .update-card p {
-            color: #a0b8d0;
-            font-size: 0.95rem;
-        }
-
-        /* Staff Section */
-        .staff-section {
-            margin: 6rem 0;
-        }
-
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .staff-card {
-            padding: 2rem;
-            border-radius: 24px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .staff-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .staff-avatar {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #1e3a5f, #0f2b40);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 3px solid rgba(90, 155, 213, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .staff-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #e0ecf5;
-        }
-
-        .staff-role {
             display: inline-block;
-            padding: 0.3rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .role-owner {
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-        }
-
-        .role-dev {
-            background: rgba(100, 200, 255, 0.15);
-            border: 1px solid rgba(100, 200, 255, 0.3);
-            color: #64c8ff;
-        }
-
-        .role-admin {
-            background: rgba(255, 100, 100, 0.15);
-            border: 1px solid rgba(255, 100, 100, 0.3);
-            color: #ff6464;
-        }
-
-        .role-mod {
-            background: rgba(100, 255, 150, 0.15);
-            border: 1px solid rgba(100, 255, 150, 0.3);
-            color: #64ff96;
-        }
-
-        .role-helper {
-            background: rgba(180, 130, 255, 0.15);
-            border: 1px solid rgba(180, 130, 255, 0.3);
-            color: #b482ff;
-        }
-
-        .staff-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
+            background: rgba(255, 220, 255, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
             margin-top: 1rem;
+            backdrop-filter: blur(4px);
         }
 
-        .staff-social a {
-            color: #b0c4de;
-            text-decoration: none;
-            transition: all 0.2s;
-            padding: 0.3rem 0.8rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.85rem;
-        }
-
-        .staff-social a:hover {
-            color: #ffffff;
-            background: rgba(90, 155, 213, 0.2);
-            border-color: rgba(90, 155, 213, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Store/Rank Section */
-        .store-header {
-            text-align: center;
-            padding: 4rem 0 2rem;
-        }
-
-        .store-header h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e0e8f0, #a0c0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .store-header p {
-            color: #b0c4de;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .rank-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Pricing Grid */
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
-            margin: 3rem 0;
+            margin: 4rem 0;
         }
 
-        .rank-card {
-            border-radius: 28px;
-            padding: 2rem;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .pricing-card {
+            flex: 1;
+            min-width: 260px;
+            max-width: 320px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
         }
 
-        .rank-card:hover {
-            transform: translateY(-15px) scale(1.02);
-        }
-
-        .rank-card.popular {
-            border: 2px solid rgba(90, 155, 213, 0.6);
-            box-shadow: 0 0 30px rgba(90, 155, 213, 0.2);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #1e3a5f, #0f2b40);
-            color: #a0c0e0;
-            padding: 0.3rem 2rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(90, 155, 213, 0.4);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .rank-name {
-            font-size: 2.2rem;
-            font-weight: 700;
+        .card-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            text-align: center;
-            color: #e0ecf5;
+            color: #f0d5ff;
         }
 
-        .rank-price {
-            font-size: 2.8rem;
+        .price {
+            font-size: 2.5rem;
             font-weight: 800;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #a0c0e0;
-            text-shadow: 0 0 20px rgba(90, 155, 213, 0.3);
+            margin: 1rem 0;
+            background: linear-gradient(135deg, #fff, #e2c7ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .rank-price span {
+        .price small {
             font-size: 1rem;
-            color: #8aa0b8;
             font-weight: 400;
+            color: #ccc;
         }
 
-        .rank-features {
+        .feature-list {
             list-style: none;
-            margin-bottom: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
         }
 
-        .rank-features li {
-            padding: 0.6rem 0;
-            color: #c0d4e8;
+        .feature-list li {
+            margin: 0.8rem 0;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border-bottom: 1px solid rgba(90, 155, 213, 0.1);
+            font-size: 0.9rem;
         }
 
-        .rank-features li:last-child {
-            border-bottom: none;
+        .feature-list i {
+            width: 1.5rem;
+            color: #d9b0ff;
         }
 
-        .rank-features li::before {
-            content: "✓";
-            color: #a0c0e0;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(90, 155, 213, 0.5);
-        }
-
-        .btn-buy {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #1e3a5f, #0f2b40);
-            border: 1px solid rgba(90, 155, 213, 0.4);
-            border-radius: 12px;
-            color: white;
+        .btn-order {
+            background: linear-gradient(90deg, #7e5aff, #a882ff);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
             font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-buy:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 58, 95, 0.5);
-            border-color: rgba(90, 155, 213, 0.8);
-        }
-
-        /* Categories */
-        .store-categories {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            background: rgba(22, 30, 40, 0.6);
-            border: 1px solid rgba(90, 155, 213, 0.2);
-            color: #b0c4de;
-            padding: 0.6rem 1.8rem;
-            border-radius: 100px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            backdrop-filter: blur(5px);
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: rgba(30, 58, 95, 0.6);
-            border-color: rgba(90, 155, 213, 0.6);
             color: white;
-            box-shadow: 0 5px 20px rgba(0, 40, 80, 0.3);
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-order:hover {
+            transform: scale(1.02);
+            background: linear-gradient(90deg, #9370ff, #b690ff);
+            box-shadow: 0 6px 16px rgba(126, 90, 255, 0.4);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            margin: 5rem 0 3rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #c9b6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .portfolio-item {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            width: 280px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            border-color: #a882ff;
+            box-shadow: 0 10px 30px rgba(126, 90, 255, 0.3);
+        }
+        .portfolio-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #a882ff;
+        }
+        .portfolio-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-item p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .copyright-note {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            background: rgba(0,0,0,0.4);
+            padding: 0.4rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .copyright-note i {
+            margin-right: 0.3rem;
+        }
+        .jull-inc {
+            font-family: monospace;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #d9b0ff;
         }
 
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 5rem 0;
-            border-top: 1px solid rgba(90, 155, 213, 0.2);
-            border-bottom: 1px solid rgba(90, 155, 213, 0.2);
-            margin: 4rem 0;
+            padding: 3rem;
+            margin: 3rem 0;
+            background: rgba(20, 10, 40, 0.6);
+            border-radius: 3rem;
         }
 
-        .cta-title {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e0e8f0, #a0c0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glow-text {
+            font-size: 2rem;
+            font-weight: 700;
         }
 
-        .cta-subtitle {
-            color: #b0c4de;
+        .btn-large {
+            background: white;
+            color: #2a1b4d;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: bold;
+            border: none;
             font-size: 1.2rem;
-            margin-bottom: 2.5rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .server-ip {
-            background: rgba(18, 22, 28, 0.7);
-            border: 1px solid rgba(90, 155, 213, 0.3);
-            border-radius: 16px;
-            padding: 1.2rem 2.5rem;
+        .btn-large:hover {
+            transform: scale(1.05);
+            background: #f0e6ff;
+            box-shadow: 0 0 20px rgba(255,255,200,0.5);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .social-btn {
             display: inline-flex;
             align-items: center;
-            gap: 1.5rem;
-            font-size: 1.6rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            color: #e0ecf5;
+            gap: 0.6rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .server-ip:hover {
-            border-color: rgba(90, 155, 213, 0.8);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(90, 155, 213, 0.2);
+        .social-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
         }
-
-        .copy-badge {
-            background: rgba(90, 155, 213, 0.15);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: normal;
-            border: 1px solid rgba(90, 155, 213, 0.3);
+        .social-btn i {
+            font-size: 1.3rem;
         }
+        .whatsapp-btn { background: rgba(37, 211, 102, 0.2); border-color: #25D366; }
+        .instagram-btn { background: rgba(225, 48, 108, 0.2); border-color: #E4405F; }
+        .discord-btn { background: rgba(88, 101, 242, 0.2); border-color: #5865F2; }
 
         /* Footer */
-        .footer {
-            margin-top: 4rem;
-            padding: 2rem;
-            border-top: 1px solid rgba(90, 155, 213, 0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #8aa0b8;
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .copyright {
+        footer {
             text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: rgba(10, 14, 18, 0.5);
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
         }
 
-        .copyright p {
-            color: #6a80a0;
-        }
-
-        .copyright .highlight {
-            color: #a0c0e0;
-            font-weight: 500;
-        }
-
-        /* Copy Notification */
-        .copy-notification {
+        /* Modal */
+        .modal {
+            display: none;
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: rgba(22, 30, 40, 0.9);
-            color: #e0ecf5;
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(90, 155, 213, 0.3);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #11101f;
+            max-width: 450px;
+            width: 90%;
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(255,215,255,0.5);
+            text-align: center;
+        }
+        .modal input, .modal select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #7e5aff;
+            border-radius: 2rem;
+            color: white;
+        }
+        .modal-close {
+            margin-top: 1rem;
+            background: #3a2a6a;
         }
 
-        .copy-notification.show {
-            opacity: 1;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .logo-container {
-                justify-content: center;
-            }
-
-            .nav-links {
-                gap: 1.2rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .store-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-title {
-                font-size: 2.5rem;
-            }
-
-            .server-ip {
-                font-size: 1.2rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 1rem;
-            }
-
-            .discord-stats {
-                gap: 1.5rem;
-            }
-
-            .staff-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
+        @media (max-width: 800px) {
+            .pricing-grid { gap: 1rem; }
+            .logo { font-size: 3rem; }
+            .glow-text { font-size: 1.5rem; }
+            .social-links { gap: 1rem; }
+            .social-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .section-title { font-size: 1.8rem; }
+            .portfolio-item { width: 240px; }
         }
     </style>
-    <!-- Three.js for 3D Background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- 3D Canvas Background -->
-    <canvas id="canvas-bg"></canvas>
 
-    <!-- Navbar dengan Logo HD -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <!-- Logo server dari gambar yang diupload -->
-            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABAAEADASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABQYEBwACAwEI/8QANBAAAgEDAgQEBQMCBwAAAAAAAQIDAAQRBSEGEjFBEyJRYQdxgZGhFDKxI0LBFSQzUmJy0f/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAUBAP/EACgRAAICAQMDAwQDAAAAAAAAAAECAAMRBBITITFBUWEUInEygZGx8P/aAAwDAQACEQMRAD8A6eC9vKySqysNiGGCDSrqMF9Px5p72jy+FDZXDgZ8isSoz8tsfOq2+KfxN1fRuNtS0/Tbq0a1t3Cqs0OdiobqCD3pBv8A4p8U3mC2pCBx3t4lT8jf3o0pJGTMHWa9K22oMkfzL1utDnmnlkh4h1aFpGLFUkUqM+gyMVj8O3/AP7vVPvH/wAVS2h/FbWrIhNShg1FP9zDySfcbfgarY9e8XeJtOj/AFOgWrW7kZS4gEoP1BIpfGy+J1NQlvbMvW50a5t9D1S5k4i1Yy29pLKi8y4LKpIzsOuKpvh34n8T20qR3t0t9ASBIs8YBx/3KQRR+z+LVi1t4ep6NqFq2CGMQ8RSD15dmoHq7DoeM7Gx+vvM11bI+xsH2l66NqKX0Gc+agmrazBoWj3uoX7hLe2iaVifYdPmaSPhzq66hZ+LbS+JBJvGcYyPau/xktp7z4daxBaqWkZFYgdSA6k4+QyflTNmGwYqyxlQsOxlD3+pTXtzLcXEjPNK5dmPcnrWBgVzmq+5tZIJXR1IIYjcdd6isjITlSKtAj5nzF6SzFj5nYHNdYpSjbE1xjyRit1iZq4TjvPAYneK7kjYNHIyH1U4o1pfFup2LKFv5pIwcmKQ86n7/3oWkSkdK6G2UjON6y7Epf9Sgy1Lb08E4l1/C74mppGrrcXBeK3uAEkwM4Odmx8u3pX0rp2p22s6fL4ZSaGVCjAjIZSMEEelfBMUbwSgqTgEEYPSvob4C6q9xG2mO5ZBEG5T/ALcNjH0O1JNSUjKDrK77rLUBYzC+I+mDTdXlVRiNjzLt2PaoOnW8c7BZAuD0ztR/4pzE6hDCo2Kgt9aAaRJybkD5GpVZimTNWxV37R4nW/sorZ0MeSp61Bmh5SRkGjM06zqVIGPSgk6lXO9MpYkYmffWqNkQZKhHSu9u7YwRkV6x5jg1rGSrb1SekjHmSTHGR6VY/wAF7k23FdvyNh3RgR68pB/iq9t0aVgoBJPSrC+EcUcHFNtJI2H8UIo9CwI/igqXc4BiycKZZnxXeK30+3nK5d5xGp9AQSf0+tI+nzlm6ZGaafjNcCGx0q2Jwz3DzYz2VQP/akfQ5eZ9+5pRQLkCVV2FxvMsK2tOa2EpGxFQZ7bMhHpRrSpIhYCOU4I6H0qPcIgbmGCKQhIbEosVWTMh2HDE17KWCFF7mmiL4XSSWnOzNkjqKaOD2iMCgY3p5RQKMYpNlxBwJmm8ZwZTN1wVqVnKR4PiJ6rW0HBl/Lg+AFB9a+joYYXUKyg13k0m1eLKoN/Sj+ocDqIDZYnYyjtA4BkikSSdASpzRzWNGh4d4g4RurYBWuL5oZMd1aNgQfqoqy7q0jhU8o3qqvi7qCQ3/AAZbFsMupLKR/so/9p9FzFsyV7C6dYF+Pl6p1zSrYH/IhP7sSf4pO0iXkI32o78aIPD4jt2z/qWyn6Fh/K0lafJg7nY0a+JYh+TLCtrvFuApojY2j3hVY1LMxwBQbQbVr+ZYYzknqa+jfgvwPYSWsN5cxLJKBnLCpbrBWCYdjYEpbUPh5q9vY+MLZymMkqM1x4ctLpLkxSoyMp6EYr7Pm4csJtP8ABMa4K4xVUcb8Dx2MxvLOPAXqBUrXK6YEiOcsBmB9GJRAM0fWbEe9ItpqJjwrDBFGYNQVo+p3qR18zTpcYwZ01KcYOTVR/F6VXvuFSM86aiP0Bpt1m/wCVTvSxJw/JxVqNjdXMrRwWDmUYGSx9PyPpVNI29ZzVWbUwO8R/jhEDe6RKBu0TqfkGB/8Aqkmwj5yABmrl+M/D0+o2GnS2ls8zW7MGVBk4IG9V3oOgXK3iCaFo1zuGGDWklqlOpl6Wu0/qWMPC3h+S3t1uZkIJ3Ga+hPhdcyJYxqW2FUwNWt7PTVt4sB1XlO9WD8NtfWO3XxD1rC1rFz1j7gWHWX9bXitGpJ3rhrNul7aSJgHIpR/xiIRKVYYIrgOJoYJcO4waSisB0k4Xb1lY8W2z6feM6ZxnBFCodVcAjNNXGVzb6ihMJBJ67UhG3YSkA7elXKuRL9O4AMJTXbT4Gc0+8JKBZR7dqrlYpFIKmri4P4Zv7rSYZ44mKMudhS7W2LGS7LQMwRrYV9PmUgHKn86r7hXhGz1O7mDqyGN9tj+dW9qei3FrbOJkK9aCcF2Ij1W5GMZbNTU6hgSBNOq8BMSuuMPh/p+h6NPeRyS5XyjmY9ScClbhu9a2iALEYNXt8dLDGgW6oN2nUH5dapC0s5R+1Gx7Vq1HckwL2K9RDT61I8vKsnLvjY1Du7h5JN3Y/M1s2j3LzK6ofXtUtdFuWYeU/SpcKpzB5l8QcHdCN6maRZPqN/HBGCWY9qJ2/C95O+FQ/lVifD7hKPTb1J7hcsN9xSbrgF6QuWXlwHwTp8NnE9zGjSEDOVzVv2EcdvCkcahVUYAFI9i6eEnLjYUdtr4IoGa+b1d73tjPSKtJYz/2Q==" alt="Vilex SMP Logo" class="logo-image">
-            <span class="logo-text">VILEX SMP</span>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="content">
+        <div class="hero">
+            <div class="logo">JULL</div>
+            <div class="tagline">Professional Web Development Services</div>
+            <div class="badge"><i class="fas fa-code"></i> Solusi Website Modern & Profesional <i class="fas fa-rocket"></i></div>
         </div>
-        <div class="nav-links">
-            <a onclick="showPage('home')" class="active" id="nav-home">Beranda</a>
-            <a onclick="showPage('store')" id="nav-store">Store / Rank</a>
-            <a onclick="showPage('staff')" id="nav-staff">Staff</a>
-            <a href="https://discord.gg/vilexsmp" target="_blank">Discord</a>
-            <a href="#">Support</a>
-        </div>
-    </nav>
 
-    <!-- Home Page -->
-    <div id="home-page" class="page active-page">
-        <div class="container">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-top">
-                    <span class="badge">✦ Server Minecraft Semi-RPG Indonesia</span>
-                    <div class="stats">
-                        <span class="online-dot"></span>
-                        <span>247 pemain menguasai Vilex</span>
-                    </div>
-                </div>
-                
-                <h1>Season 5 <span>Now Live</span></h1>
-                <h2># Semi-RPG Survival & Adventure</h2>
-                
-                <p>
-                    Rasakan kebebasan sejati di Minecraft. Bangun pertanian otomatis yang rumit, jelajahi dungeon mitos, 
-                    dan rebut senjata legendaris. Ekonomi adil tanpa pay-to-win—murni skill dan strategi.
-                </p>
-
-                <div class="feature-tags">
-                    <span class="feature-tag">⚡ Next Gen Semi-RPG</span>
-                    <span class="feature-tag">🏗️ Modern Practice</span>
-                    <span class="feature-tag">🌍 Survival RPG</span>
-                    <span class="feature-tag">👥 Active Community</span>
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="showPage('store')">EXPLORE RANK</button>
-                    <button class="btn btn-outline" onclick="window.open('https://discord.gg/vilexsmp', '_blank')">Bergabung Discord →</button>
-                </div>
-            </section>
-
-            <!-- Features Section -->
-            <section style="margin: 6rem 0;">
-                <h2 class="section-title">Legendary Features</h2>
-                <p class="section-subtitle">
-                    Rasakan mekanik dan fitur mutakhir yang akan mendefinisikan ulang petualangan Minecraft-mu
-                </p>
-
-                <div class="features-grid">
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">⚙️</div>
-                        <h3>Redstone & Automation</h3>
-                        <p>Build tanpa batas! Buat auto-farm masif dan kontrapsi redstone kompleks tanpa batasan. Kreativitas dan skill teknik adalah satu-satunya batasan — bebas total!</p>
-                        <a href="#" class="feature-link">Learn more →</a>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">⚔️</div>
-                        <h3>PvP & Dungeons</h3>
-                        <p>Uji skill di combat dengan senjata kustom dan turnamen, atau tantang diri di dungeon dengan mob unik, jebakan mematikan, dan loot legendaris. Adil dan menantang!</p>
-                        <a href="#" class="feature-link">Learn more →</a>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">💬</div>
-                        <h3>Komunitas Vilex</h3>
-                        <p>Bergabung dengan 1000+ member di Discord! Dapatkan update langsung, bantuan dari staff, dan ikuti event eksklusif. Link akun Minecraft-mu untuk fitur tambahan!</p>
-                        <a href="#" class="feature-link">Join Discord →</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Discord Section -->
-            <div class="discord-section glass">
-                <div class="discord-left">
-                    <h2>The Vilex SMP Discord</h2>
-                    <p>Gabung dengan komunitas terbesar Vilex! Dapatkan info server, event mingguan, giveaway, dan connect dengan pemain lain.</p>
-                </div>
-                <div class="discord-right">
-                    <div class="discord-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">1.2k+</div>
-                            <div class="stat-label">Members</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">200+</div>
-                            <div class="stat-label">Online</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" onclick="window.open('https://discord.gg/vilexsmp', '_blank')">Join Discord</button>
-                </div>
+        <!-- Pricing Section - Tanpa tema angelic pada deskripsi -->
+        <div class="pricing-grid">
+            <!-- Paket Gampang -->
+            <div class="pricing-card glass-card" data-package="Easy">
+                <div class="card-icon"><i class="fas fa-seedling"></i></div>
+                <h3>⚡ Paket Gampang</h3>
+                <div class="price">Rp 400.000 - 700.000</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> 1-3 Halaman</li>
+                    <li><i class="fas fa-check-circle"></i> Desain Responsif Mobile</li>
+                    <li><i class="fas fa-check-circle"></i> Setup Cepat (3-5 Hari)</li>
+                    <li><i class="fas fa-check-circle"></i> Form Kontak & Google Maps</li>
+                    <li><i class="fas fa-check-circle"></i> Domain & Hosting Siap Pakai</li>
+                </ul>
+                <button class="btn-order order-btn" data-price-range="400k-700k" data-tier="Paket Gampang">Pilih Paket Ini</button>
             </div>
 
-            <!-- Latest Updates -->
-            <section style="margin: 6rem 0;">
-                <h2 class="section-title">Latest Updates</h2>
-                <p class="section-subtitle">
-                    Tetap terhubung dengan event terbaru, patch, dan pengumuman besar dari dunia Vilex SMP.
-                </p>
-
-                <div class="updates-grid">
-                    <div class="update-card glass-card">
-                        <div class="update-date">15 Mei 2025</div>
-                        <h4>Survival RPG Update 1.21.8!</h4>
-                        <p>Mode Survival RPG baru saja update ke versi 1.21.8! Menambahkan dungeon baru, optimasi performa, dan fixed beberapa bug.</p>
-                    </div>
-
-                    <div class="update-card glass-card">
-                        <div class="update-date">10 Mei 2025</div>
-                        <h4>Improve AntiBot System</h4>
-                        <p>Update sistem antibot yang dipakai oleh Vilex agar lebih baik dan mengurangi lag saat serangan bot.</p>
-                    </div>
-
-                    <div class="update-card glass-card">
-                        <div class="update-date">5 Mei 2025</div>
-                        <h4>Event Musim Panas Dimulai!</h4>
-                        <p>Event musim panas telah tiba! Dapatkan item limited dan ikuti tournament PvP dengan total hadiah jutaan rupiah.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- Store/Rank Page -->
-    <div id="store-page" class="page">
-        <div class="container">
-            <!-- Store Header -->
-            <div class="store-header">
-                <h1>Store & Rank Vilex SMP</h1>
-                <p>Dapatkan keuntungan eksklusif dan dukung perkembangan server dengan membeli rank atau item spesial</p>
+            <!-- Paket Menengah -->
+            <div class="pricing-card glass-card" data-package="Medium">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>✨ Paket Menengah</h3>
+                <div class="price">Rp 700.000 - 1.000.000</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> 5-8 Halaman Dinamis</li>
+                    <li><i class="fas fa-check-circle"></i> Animasi & Efek Modern</li>
+                    <li><i class="fas fa-check-circle"></i> Dashboard Admin Sederhana</li>
+                    <li><i class="fas fa-check-circle"></i> Optimasi SEO & Kecepatan</li>
+                    <li><i class="fas fa-check-circle"></i> Integrasi Media Sosial</li>
+                </ul>
+                <button class="btn-order order-btn" data-price-range="700k-1jt" data-tier="Paket Menengah">Pilih Paket Ini</button>
             </div>
 
-            <!-- Categories -->
-            <div class="store-categories">
-                <button class="category-btn active" onclick="filterRanks('all')">Semua</button>
-                <button class="category-btn" onclick="filterRanks('rank')">Rank</button>
-                <button class="category-btn" onclick="filterRanks('crate')">Crate Key</button>
-                <button class="category-btn" onclick="filterRanks('item')">Item Khusus</button>
-                <button class="category-btn" onclick="filterRanks('voucher')">Voucher</button>
-            </div>
-
-            <!-- Rank Grid -->
-            <div class="rank-grid" id="rank-grid">
-                <!-- Rank 1: Stone -->
-                <div class="rank-card glass-card" data-category="rank">
-                    <div class="rank-name">STONE</div>
-                    <div class="rank-price">Rp 25.000 <span>/ bulan</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Stone (Setiap 24 jam)</li>
-                        <li>3 Home</li>
-                        <li>Akses /back</li>
-                        <li>Warna chat abu-abu</li>
-                        <li>1 Fly (30 menit/hari)</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Rank 2: Iron (Popular) -->
-                <div class="rank-card glass-card popular" data-category="rank">
-                    <div class="popular-badge">Paling Populer</div>
-                    <div class="rank-name">IRON</div>
-                    <div class="rank-price">Rp 50.000 <span>/ bulan</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Iron (Setiap 24 jam)</li>
-                        <li>5 Home</li>
-                        <li>Akses /back & /tpa</li>
-                        <li>Warna chat putih</li>
-                        <li>2 Fly (1 jam/hari)</li>
-                        <li>Akses /ec (Enderchest)</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Rank 3: Gold -->
-                <div class="rank-card glass-card" data-category="rank">
-                    <div class="rank-name">GOLD</div>
-                    <div class="rank-price">Rp 100.000 <span>/ bulan</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Gold (Setiap 24 jam)</li>
-                        <li>7 Home</li>
-                        <li>Akses /back, /tpa, /tpahere</li>
-                        <li>Warna chat kuning</li>
-                        <li>3 Fly (2 jam/hari)</li>
-                        <li>Akses /ec & /craft</li>
-                        <li>1 Pet Slot</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Rank 4: Diamond -->
-                <div class="rank-card glass-card" data-category="rank">
-                    <div class="rank-name">DIAMOND</div>
-                    <div class="rank-price">Rp 200.000 <span>/ bulan</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Diamond (Setiap 24 jam)</li>
-                        <li>10 Home</li>
-                        <li>Akses semua teleport</li>
-                        <li>Warna chat biru</li>
-                        <li>5 Fly (3 jam/hari)</li>
-                        <li>Akses /ec, /craft, /anvil</li>
-                        <li>3 Pet Slot</li>
-                        <li>Tag khusus [DIAMOND]</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Rank 5: Emerald -->
-                <div class="rank-card glass-card" data-category="rank">
-                    <div class="rank-name">EMERALD</div>
-                    <div class="rank-price">Rp 350.000 <span>/ bulan</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Emerald (Setiap 12 jam)</li>
-                        <li>15 Home</li>
-                        <li>Akses semua teleport</li>
-                        <li>Warna chat hijau</li>
-                        <li>Unlimited Fly</li>
-                        <li>Akses /ec, /craft, /anvil, /grindstone</li>
-                        <li>5 Pet Slot</li>
-                        <li>Tag khusus [EMERALD]</li>
-                        <li>1 Spawner Gratis</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Rank 6: Legend (Lifetime) -->
-                <div class="rank-card glass-card" data-category="rank">
-                    <div class="rank-name">LEGEND</div>
-                    <div class="rank-price">Rp 750.000 <span>/ lifetime</span></div>
-                    <ul class="rank-features">
-                        <li>Kit Legend (Setiap 6 jam)</li>
-                        <li>Unlimited Home</li>
-                        <li>Akses semua perintah</li>
-                        <li>Warna chat ungu</li>
-                        <li>Unlimited Fly</li>
-                        <li>Akses semua GUI</li>
-                        <li>10 Pet Slot</li>
-                        <li>Tag khusus [LEGEND]</li>
-                        <li>3 Spawner Gratis</li>
-                        <li>Custom Nickname</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Crate Keys -->
-                <div class="rank-card glass-card" data-category="crate">
-                    <div class="rank-name">Vote Crate Key</div>
-                    <div class="rank-price">Rp 5.000 <span>/ key</span></div>
-                    <ul class="rank-features">
-                        <li>Buka Vote Crate</li>
-                        <li>Dapatkan item random</li>
-                        <li>Peluang mendapatkan rank</li>
-                        <li>Peluang mendapatkan money</li>
-                        <li>Peluang mendapatkan item langka</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <div class="rank-card glass-card" data-category="crate">
-                    <div class="rank-name">Mythic Crate Key</div>
-                    <div class="rank-price">Rp 15.000 <span>/ key</span></div>
-                    <ul class="rank-features">
-                        <li>Buka Mythic Crate</li>
-                        <li>Item mythic eksklusif</li>
-                        <li>Peluang tinggi dapat rank</li>
-                        <li>Peluang dapat soulbound item</li>
-                        <li>Peluang dapat pet legendaris</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Items -->
-                <div class="rank-card glass-card" data-category="item">
-                    <div class="rank-name">Money 1 Juta</div>
-                    <div class="rank-price">Rp 20.000</div>
-                    <ul class="rank-features">
-                        <li>+1.000.000 in-game money</li>
-                        <li>Transfer langsung ke akun</li>
-                        <li>Bisa digunakan untuk beli item</li>
-                        <li>Non-refundable</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <div class="rank-card glass-card" data-category="item">
-                    <div class="rank-name">Spawner (Random)</div>
-                    <div class="rank-price">Rp 50.000</div>
-                    <ul class="rank-features">
-                        <li>1 Spawner random (tier 1-4)</li>
-                        <li>Bisa mendapatkan spawner langka</li>
-                        <li>Dikirim via in-game mail</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <!-- Vouchers -->
-                <div class="rank-card glass-card" data-category="voucher">
-                    <div class="rank-name">Fly Voucher (30 Hari)</div>
-                    <div class="rank-price">Rp 35.000</div>
-                    <ul class="rank-features">
-                        <li>Unlimited Fly selama 30 hari</li>
-                        <li>Bisa digunakan tanpa rank</li>
-                        <li>Stackable</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-
-                <div class="rank-card glass-card" data-category="voucher">
-                    <div class="rank-name">Home Voucher (+5)</div>
-                    <div class="rank-price">Rp 15.000</div>
-                    <ul class="rank-features">
-                        <li>Tambah 5 slot home permanen</li>
-                        <li>Bisa digunakan tanpa rank</li>
-                        <li>Stackable</li>
-                    </ul>
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-            </div>
-
-            <!-- Payment Info -->
-            <div class="glass" style="border-radius: 24px; padding: 2rem; margin: 3rem 0; text-align: center;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #e0ecf5;">Metode Pembayaran</h3>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; color: #b0c4de;">
-                    <span>💳 Transfer Bank (BCA, Mandiri, BNI)</span>
-                    <span>📱 E-Wallet (OVO, Gopay, Dana)</span>
-                    <span>🎮 Voucher Game (Pulsa)</span>
-                </div>
-                <p style="color: #8aa0b8; margin-top: 1rem; font-size: 0.9rem;">Semua pembelian akan diproses otomatis dalam 1-5 menit</p>
+            <!-- Paket Tertinggi / Premium -->
+            <div class="pricing-card glass-card" data-package="Premium">
+                <div class="card-icon"><i class="fas fa-crown"></i></div>
+                <h3>👑 Paket Tertinggi</h3>
+                <div class="price">Rp 1.000.000 - 10.000.000</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Desain Web 3D Interaktif</li>
+                    <li><i class="fas fa-check-circle"></i> Full Stack (Backend + Database)</li>
+                    <li><i class="fas fa-check-circle"></i> E-commerce Siap Pakai</li>
+                    <li><i class="fas fa-check-circle"></i> Custom Fitur & Animasi Premium</li>
+                    <li><i class="fas fa-check-circle"></i> Maintenance 3 Bulan Gratis</li>
+                </ul>
+                <button class="btn-order order-btn" data-price-range="1jt-10jt" data-tier="Paket Tertinggi">Pilih Paket Ini</button>
             </div>
         </div>
-    </div>
 
-    <!-- Staff Page -->
-    <div id="staff-page" class="page">
-        <div class="container">
-            <!-- Staff Header -->
-            <div class="store-header">
-                <h1>Staff Vilex SMP</h1>
-                <p>Tim profesional yang siap membantu dan mengembangkan server Vilex SMP</p>
+        <!-- PORTFOLIO SECTION - Barisan Kedua: Proyek yang sudah dibuat -->
+        <div class="portfolio-section">
+            <div class="section-title">
+                <i class="fas fa-star-of-life"></i> Portfolio Terbaru <i class="fas fa-star-of-life"></i>
             </div>
-
-            <!-- Staff Grid -->
-            <div class="staff-grid">
-                <!-- Owner -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">👑</div>
-                    <div class="staff-name">Alex_God</div>
-                    <div class="staff-role role-owner">OWNER & FOUNDER</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Pendiri Vilex SMP sejak 2023</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/owner123" target="_blank">💬 Discord</a>
-                        <a href="https://instagram.com/alex_god" target="_blank">📷 IG</a>
+            <div class="portfolio-grid">
+                <!-- Voltrazz Store -->
+                <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-store"></i></div>
+                    <h3>Voltrazz Store</h3>
+                    <p>E-Commerce modern dengan sistem pembayaran terintegrasi & desain elegan. Platform belanja online dengan fitur lengkap.</p>
+                    <div class="copyright-note">
+                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
                     </div>
                 </div>
-
-                <!-- Developer JULL dengan IG jul_jull091 dan Discord natthan0807 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">💻</div>
-                    <div class="staff-name">JULL</div>
-                    <div class="staff-role role-dev">HEAD DEVELOPER</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Developer utama • 3D Design • Sistem Store</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/natthan0807" target="_blank">💬 natthan0807</a>
-                        <a href="https://instagram.com/jul_jull091" target="_blank">📷 @jul_jull091</a>
-                        <a href="#" target="_blank">🐦 Twitter</a>
+                <!-- VilexSMP -->
+                <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>VilexSMP</h3>
+                    <p>Landing page & community hub untuk Minecraft server. Dilengkapi dengan sistem whitelist & leaderboard dinamis.</p>
+                    <div class="copyright-note">
+                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
                     </div>
                 </div>
-
-                <!-- Co-Owner -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">⭐</div>
-                    <div class="staff-name">Sarah_Craft</div>
-                    <div class="staff-role role-owner">CO-OWNER</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Manajemen server & community</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/sarah123" target="_blank">💬 Discord</a>
-                        <a href="https://instagram.com/sarah_craft" target="_blank">📷 IG</a>
-                    </div>
-                </div>
-
-                <!-- Admin 1 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">🛡️</div>
-                    <div class="staff-name">Mike_Adm</div>
-                    <div class="staff-role role-admin">ADMINISTRATOR</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Handle laporan & maintenance</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/mike123" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Admin 2 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">⚔️</div>
-                    <div class="staff-name">Ranger_Blue</div>
-                    <div class="staff-role role-admin">ADMINISTRATOR</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Event & tournament</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/ranger456" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Mod 1 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">🔨</div>
-                    <div class="staff-name">Mod_Budi</div>
-                    <div class="staff-role role-mod">MODERATOR</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Menjaga chat & rule</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/budi789" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Mod 2 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">👮</div>
-                    <div class="staff-name">Ella_Mod</div>
-                    <div class="staff-role role-mod">MODERATOR</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Help & ticketing</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/ella101" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Helper 1 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">💡</div>
-                    <div class="staff-name">Helper_Joe</div>
-                    <div class="staff-role role-helper">HELPER</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Bantu player baru</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/joe112" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Helper 2 -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">🤝</div>
-                    <div class="staff-name">Nia_Helper</div>
-                    <div class="staff-role role-helper">HELPER</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Guide & tutorial</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/nia131" target="_blank">💬 Discord</a>
-                    </div>
-                </div>
-
-                <!-- Builder -->
-                <div class="staff-card glass-card">
-                    <div class="staff-avatar">🏗️</div>
-                    <div class="staff-name">BuildMaster</div>
-                    <div class="staff-role role-dev">BUILDER TEAM</div>
-                    <p style="color: #b0c4de; margin-bottom: 1rem;">Spawn & dungeon builder</p>
-                    <div class="staff-social">
-                        <a href="https://discord.com/users/builder999" target="_blank">💬 Discord</a>
+                <!-- VoxenSMP -->
+                <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>VoxenSMP</h3>
+                    <p>Website komunitas gaming dengan forum, event tracker, dan desain immersive 3D untuk pengalaman pengguna terbaik.</p>
+                    <div class="copyright-note">
+                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
                     </div>
                 </div>
             </div>
-
-            <!-- Staff Info dengan Apply Now ke WhatsApp -->
-            <div class="glass" style="border-radius: 24px; padding: 2rem; margin: 3rem 0; text-align: center;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #e0ecf5;">Bergabung dengan Staff?</h3>
-                <p style="color: #b0c4de; max-width: 600px; margin: 0 auto 1.5rem;">Kami selalu membuka pendaftaran untuk Helper, Builder, dan Event Team. Kirim aplikasi melalui WhatsApp!</p>
-                <a href="https://wa.me/6281349948855?text=Halo%20saya%20ingin%20mendaftar%20menjadi%20staff%20Vilex%20SMP" target="_blank" class="btn btn-primary" style="text-decoration: none;">Apply Now via WhatsApp →</a>
-                <p style="color: #8aa0b8; margin-top: 1rem; font-size: 0.9rem;">Atau hubungi nomor: 0813-4994-8855</p>
+            <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; background: rgba(0,0,0,0.3); display: inline-block; width: auto; margin-left: auto; margin-right: auto; padding: 0.5rem 1.2rem; border-radius: 40px;">
+                <i class="fas fa-shield-alt"></i> <strong class="jull-inc">JULL.INC</strong> — Seluruh desain & kode merupakan hasil karya original. Dilarang meniru atau menduplikasi tanpa izin. <i class="fas fa-balance-scale"></i>
             </div>
         </div>
-    </div>
 
-    <!-- CTA Section (Common) -->
-    <div class="container">
-        <section class="cta-section">
-            <h2 class="cta-title">Siap untuk Mendominasi?</h2>
-            <p class="cta-subtitle">Bergabunglah dengan pengalaman Minecraft paling seimbang dan seru di Indonesia</p>
+        <!-- CTA Section dengan Kontak Sosial Media -->
+        <div class="cta-section glass-card">
+            <i class="fas fa-headset" style="font-size: 2rem; margin-bottom: 1rem; display: inline-block;"></i>
+            <div class="glow-text">Siap Punya Website Profesional?</div>
+            <p style="margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">Konsultasikan kebutuhan website Anda dengan tim JULL. Kami siap membantu dari konsep hingga launching! Seperti proyek Voltrazz Store, VilexSMP, dan VoxenSMP.</p>
             
-            <div class="server-ip" id="server-ip" onclick="copyIP()">
-                <span>vilex.my.id</span>
-                <span class="copy-badge">Click to copy</span>
+            <!-- Social Media & Contact Buttons dengan data yang diminta -->
+            <div class="social-links">
+                <a href="https://wa.me/6281349948855?text=Halo%20JULL%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website.%20Mau%20konsultasi%20dulu%20boleh%3F" target="_blank" class="social-btn whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://instagram.com/jul_jull091" target="_blank" class="social-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> @jul_jull091
+                </a>
+                <a href="https://discord.com/users/natthan0807" target="_blank" class="social-btn discord-btn">
+                    <i class="fab fa-discord"></i> natthan0807
+                </a>
             </div>
-        </section>
-
-        <!-- Footer with Copyright and Developer Credit -->
-        <div class="footer">
-            <div>© 2025 Vilex SMP. All rights reserved.</div>
-            <div>Java & Bedrock 1.21+ | Support: support@vilex.my.id</div>
+            <button id="contactNowBtn" class="btn-large"><i class="fas fa-paper-plane"></i> Konsultasi Sekarang</button>
         </div>
-        
-        <!-- Copyright and Protection Notice -->
-        <div class="copyright">
-            <p>⚠️ <span class="highlight">DILARANG MENIRU WEB INI</span> — Seluruh desain, kode, dan konten dilindungi oleh hak cipta. © 2025 Vilex SMP</p>
-            <p style="margin-top: 0.5rem;">Developed by <span class="highlight">JULL</span> • Full Stack Developer • 3D Design & Interactive Experience</p>
+        <footer>
+            <i class="fas fa-code"></i> JULL.INC — Web Development Service • Hubungi kami via WhatsApp, Instagram atau Discord • © 2025 Hak Cipta Dilindungi <i class="fas fa-heart"></i>
+        </footer>
+    </div>
+
+    <!-- Modal Order -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-laptop-code"></i> Pesan Website JULL.INC</h3>
+            <p id="modalPackageInfo">Paket: <strong>-</strong></p>
+            <input type="text" id="clientName" placeholder="Nama Anda" required>
+            <input type="email" id="clientEmail" placeholder="Email Aktif">
+            <input type="tel" id="clientPhone" placeholder="Nomor WhatsApp">
+            <select id="projectIdea">
+                <option value="Website Profil">Website Profil Perusahaan</option>
+                <option value="Toko Online">Toko Online (E-commerce)</option>
+                <option value="Portofolio 3D">Portofolio 3D / Kreatif</option>
+                <option value="Landing Page">Landing Page Marketing</option>
+                <option value="Lainnya">Lainnya (Custom)</option>
+            </select>
+            <button id="submitOrder" class="btn-order" style="background:#a882ff;">Kirim Pesanan</button>
+            <button id="closeModal" class="btn-order modal-close" style="background:#3a2a6a;">Tutup</button>
         </div>
     </div>
 
-    <!-- Copy Notification -->
-    <div class="copy-notification" id="copy-notification">Server IP copied to clipboard!</div>
+    <script type="module">
+        import * as THREE from 'three';
 
-    <script>
-        // Three.js 3D Background
-        const canvas = document.getElementById('canvas-bg');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        // --- Setup 3D Scene (Latar belakang 3D aesthetic modern) ---
+        const canvas = document.getElementById('bg-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
+        renderer.setPixelRatio(window.devicePixelRatio);
+        
         const scene = new THREE.Scene();
         scene.background = null;
+        scene.fog = new THREE.FogExp2(0x0a0a1a, 0.008);
 
-        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 0, 20);
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 2, 12);
+        camera.lookAt(0, 0, 0);
 
         // Lighting
         const ambientLight = new THREE.AmbientLight(0x404060);
         scene.add(ambientLight);
+        const mainLight = new THREE.DirectionalLight(0xffeebb, 1);
+        mainLight.position.set(2, 5, 3);
+        scene.add(mainLight);
+        const backLight = new THREE.PointLight(0xaa88ff, 0.5);
+        backLight.position.set(-2, 1, -4);
+        scene.add(backLight);
+        const fillLight = new THREE.PointLight(0xffaa88, 0.4);
+        fillLight.position.set(1, 2, 3);
+        scene.add(fillLight);
         
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(1, 1, 1);
-        scene.add(directionalLight);
-
-        // Create floating particles / stars
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 800;
-        const posArray = new Float32Array(particlesCount * 3);
-        const colorArray = new Float32Array(particlesCount * 3);
-
-        for(let i = 0; i < particlesCount * 3; i += 3) {
-            // Position
-            posArray[i] = (Math.random() - 0.5) * 100;
-            posArray[i+1] = (Math.random() - 0.5) * 60;
-            posArray[i+2] = (Math.random() - 0.5) * 50;
-            
-            // Colors - blues and purples
-            const color = new THREE.Color();
-            const hue = 0.6 + Math.random() * 0.2; // Blue to purple range
-            color.setHSL(hue, 0.5, 0.3 + Math.random() * 0.3);
-            
-            colorArray[i] = color.r;
-            colorArray[i+1] = color.g;
-            colorArray[i+2] = color.b;
+        // Decorative ring
+        const ringGeometry = new THREE.TorusGeometry(1.8, 0.05, 64, 200);
+        const ringMaterial = new THREE.MeshStandardMaterial({ color: 0xffccaa, emissive: 0x442200, emissiveIntensity: 0.6 });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        ring.rotation.x = Math.PI / 2;
+        ring.position.y = -0.5;
+        scene.add(ring);
+        
+        // Stars / Particles
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 1500;
+        const starPositions = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount; i++) {
+            starPositions[i*3] = (Math.random() - 0.5) * 200;
+            starPositions[i*3+1] = (Math.random() - 0.5) * 100;
+            starPositions[i*3+2] = (Math.random() - 0.5) * 80 - 40;
         }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.15,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        // Create floating geometric shapes
-        const shapesGroup = new THREE.Group();
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.7 });
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
         
-        // Torus Knot
-        const geometry1 = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-        const material1 = new THREE.MeshPhongMaterial({
-            color: 0x3a6ea5,
-            emissive: 0x102030,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15
-        });
-        const torusKnot = new THREE.Mesh(geometry1, material1);
-        torusKnot.position.set(-5, 2, -10);
-        torusKnot.scale.set(1.5, 1.5, 1.5);
-        shapesGroup.add(torusKnot);
-
-        // Icosahedron
-        const geometry2 = new THREE.IcosahedronGeometry(1.2, 0);
-        const material2 = new THREE.MeshPhongMaterial({
-            color: 0x5a8bb5,
-            emissive: 0x102030,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15
-        });
-        const icosahedron = new THREE.Mesh(geometry2, material2);
-        icosahedron.position.set(6, -3, -15);
-        icosahedron.scale.set(1.8, 1.8, 1.8);
-        shapesGroup.add(icosahedron);
-
-        // Sphere
-        const geometry3 = new THREE.SphereGeometry(1, 32, 32);
-        const material3 = new THREE.MeshPhongMaterial({
-            color: 0x2a4a7a,
-            emissive: 0x102030,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.1
-        });
-        const sphere = new THREE.Mesh(geometry3, material3);
-        sphere.position.set(0, 4, -20);
-        sphere.scale.set(2, 2, 2);
-        shapesGroup.add(sphere);
-
-        scene.add(shapesGroup);
-
-        // Animation
-        let mouseX = 0;
-        let mouseY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
-            mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Rotate particles slowly
-            particlesMesh.rotation.y += 0.0002;
-            particlesMesh.rotation.x += 0.0001;
-
-            // Rotate shapes
-            shapesGroup.rotation.y += 0.0005;
-            shapesGroup.rotation.x += 0.0003;
-
-            // Parallax effect based on mouse
-            camera.position.x += (mouseX * 3 - camera.position.x) * 0.02;
-            camera.position.y += (-mouseY * 2 - camera.position.y) * 0.02;
-            camera.lookAt(scene.position);
-
+        // Floating particles
+        const particleCount = 600;
+        const particleGeo = new THREE.BufferGeometry();
+        const particlePos = [];
+        for (let i = 0; i < particleCount; i++) {
+            particlePos.push((Math.random() - 0.5) * 22);
+            particlePos.push((Math.random() - 0.5) * 14);
+            particlePos.push((Math.random() - 0.5) * 18 - 6);
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particlePos), 3));
+        const particleMat = new THREE.PointsMaterial({ color: 0xaaccff, size: 0.06, transparent: true, opacity: 0.5 });
+        const particles = new THREE.Points(particleGeo, particleMat);
+        scene.add(particles);
+        
+        // Floating orbs
+        const orbGroup = [];
+        const orbColors = [0xffaa88, 0x88aaff, 0xcc99ff];
+        for (let i = 0; i < 35; i++) {
+            const size = 0.07 + Math.random() * 0.12;
+            const orbMat = new THREE.MeshStandardMaterial({ color: orbColors[Math.floor(Math.random()*orbColors.length)], emissive: 0x5577aa, emissiveIntensity: 0.4 });
+            const orb = new THREE.Mesh(new THREE.SphereGeometry(size, 16, 16), orbMat);
+            orb.userData = {
+                basePos: new THREE.Vector3((Math.random() - 0.5)*7, (Math.random() - 0.5)*4, (Math.random() - 0.5)*6)
+            };
+            orb.position.copy(orb.userData.basePos);
+            scene.add(orb);
+            orbGroup.push(orb);
+        }
+        
+        // Central floating ring
+        const centerRing = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.04, 32, 100), new THREE.MeshStandardMaterial({ color: 0xffccaa, emissive: 0xff8866, emissiveIntensity: 0.7 }));
+        centerRing.position.y = 0.2;
+        centerRing.rotation.x = Math.PI / 2.2;
+        scene.add(centerRing);
+        
+        let time = 0;
+        
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            time += 0.012;
+            
+            stars.rotation.y += 0.0004;
+            stars.rotation.x += 0.0002;
+            particles.rotation.y += 0.0006;
+            
+            ring.rotation.z += 0.008;
+            centerRing.rotation.z += 0.01;
+            centerRing.position.y = 0.2 + Math.sin(time * 2) * 0.05;
+            
+            orbGroup.forEach(orb => {
+                orb.position.x = orb.userData.basePos.x + Math.sin(time * 1.2 + orb.userData.basePos.z) * 0.25;
+                orb.position.y = orb.userData.basePos.y + Math.cos(time * 1.0 + orb.userData.basePos.x) * 0.2;
+                orb.position.z = orb.userData.basePos.z + Math.sin(time * 0.8 + orb.userData.basePos.y) * 0.22;
+            });
+            
+            camera.position.x += (0 - camera.position.x) * 0.02;
+            camera.lookAt(0, 0.5, 0);
+            
             renderer.render(scene, camera);
         }
-
-        animate();
-
-        // Handle resize
-        window.addEventListener('resize', () => {
+        
+        animate3D();
+        
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        // Simple mouse parallax
+        document.addEventListener('mousemove', (event) => {
+            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+            camera.position.x += (mouseX * 0.2 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.15 - camera.position.y) * 0.05;
+            camera.lookAt(0, 0.5, 0);
         });
-
-        // Page Toggle Function
-        function showPage(pageName) {
-            document.getElementById('home-page').classList.remove('active-page');
-            document.getElementById('store-page').classList.remove('active-page');
-            document.getElementById('staff-page').classList.remove('active-page');
+        
+    </script>
+    
+    <script type="text/javascript">
+        // Modal & Order Logic with WhatsApp integration (nomor: 081349948855)
+        const modal = document.getElementById('orderModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const submitBtn = document.getElementById('submitOrder');
+        const modalPackageInfo = document.getElementById('modalPackageInfo');
+        let selectedPackage = '';
+        let selectedPrice = '';
+        
+        const orderBtns = document.querySelectorAll('.order-btn');
+        orderBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tier = btn.getAttribute('data-tier');
+                const priceRange = btn.getAttribute('data-price-range');
+                selectedPackage = tier;
+                selectedPrice = priceRange;
+                modalPackageInfo.innerHTML = `Paket: <strong>${tier}</strong> (Rp ${priceRange})`;
+                modal.style.display = 'flex';
+            });
+        });
+        
+        function closeModalFunc() {
+            modal.style.display = 'none';
+        }
+        
+        closeModalBtn.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+        
+        const waNumber = "6281349948855";
+        
+        submitBtn.addEventListener('click', () => {
+            const name = document.getElementById('clientName').value.trim();
+            const email = document.getElementById('clientEmail').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const project = document.getElementById('projectIdea').value;
             
-            document.getElementById('nav-home').classList.remove('active');
-            document.getElementById('nav-store').classList.remove('active');
-            document.getElementById('nav-staff').classList.remove('active');
-            
-            if (pageName === 'home') {
-                document.getElementById('home-page').classList.add('active-page');
-                document.getElementById('nav-home').classList.add('active');
-            } else if (pageName === 'store') {
-                document.getElementById('store-page').classList.add('active-page');
-                document.getElementById('nav-store').classList.add('active');
-            } else if (pageName === 'staff') {
-                document.getElementById('staff-page').classList.add('active-page');
-                document.getElementById('nav-staff').classList.add('active');
+            if (!name) {
+                alert('Mohon isi nama Anda terlebih dahulu ✨');
+                return;
             }
-        }
-
-        // Filter Ranks Function
-        function filterRanks(category) {
-            const cards = document.querySelectorAll('.rank-card');
-            const buttons = document.querySelectorAll('.category-btn');
             
-            buttons.forEach(btn => {
-                if (btn.textContent.toLowerCase().includes(category) || 
-                    (category === 'all' && btn.textContent === 'Semua')) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            const message = `Halo JULL.INC!%0A%0ASaya tertarik dengan paket *${selectedPackage}* (Rp ${selectedPrice}).%0A%0AData diri:%0ANama: ${name}%0AEmail: ${email}%0ANo HP: ${phone}%0AJenis Proyek: ${project}%0A%0AMohon informasi lebih lanjut untuk pembuatan website. Terima kasih!`;
+            const whatsappUrl = `https://wa.me/${waNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
             
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'block';
-                } else {
-                    if (card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
-        }
-
-        // Copy IP Function
-        function copyIP() {
-            const ip = "vilex.my.id";
-            navigator.clipboard.writeText(ip).then(() => {
-                const notification = document.getElementById('copy-notification');
-                notification.classList.add('show');
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 2000);
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
+            alert(`Terima kasih ${name}! Permintaan paket ${selectedPackage} telah dikirim via WhatsApp. Kami akan segera menghubungi Anda.`);
+            closeModalFunc();
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientEmail').value = '';
+            document.getElementById('clientPhone').value = '';
         });
+        
+        const contactBtn = document.getElementById('contactNowBtn');
+        if(contactBtn) {
+            contactBtn.addEventListener('click', () => {
+                const consultMsg = "Halo JULL.INC%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website.%20Mau%20konsultasi%20dulu%20boleh%3F";
+                window.open(`https://wa.me/${waNumber}?text=${consultMsg}`, '_blank');
+            });
+        }
     </script>
 </body>
 </html>
