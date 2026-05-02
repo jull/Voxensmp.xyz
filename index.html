@@ -1,713 +1,564 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>JULL | Jasa Pembuatan Website Profesional</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Three.js Core -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Zendara SMP | Divine Minecraft Server</title>
+  <!-- Google Fonts: Cinzel & Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Three.js Core -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+      }
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a1a;
-            color: #f0f0ff;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0212;
+      color: #f0eaff;
+      overflow-x: hidden;
+    }
 
-        /* Canvas 3D Background */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
+    #angel-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: block;
+    }
 
-        /* Content Layer */
-        .content {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 20%, rgba(10, 2, 30, 0.65), rgba(0, 0, 0, 0.85));
+      z-index: 1;
+      pointer-events: none;
+    }
 
-        /* Glassmorphic Elements */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, border-color 0.3s;
-        }
+    .content {
+      position: relative;
+      z-index: 10;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 4rem;
+    }
 
-        .glass-card:hover {
-            border-color: rgba(255, 215, 255, 0.5);
-            transform: translateY(-5px);
-        }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.8rem 0 1.2rem;
+      border-bottom: 1px solid rgba(200, 160, 255, 0.3);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(3px);
+    }
 
-        /* Header */
-        .hero {
-            text-align: center;
-            padding: 4rem 1rem 3rem;
-        }
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f3e6ff, #c797ff, #a56eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .logo {
-            font-size: 4.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFFFFF, #c9b6ff, #e0b0ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
-            text-shadow: 0 0 20px rgba(210, 180, 255, 0.5);
-        }
+    .logo span {
+      font-size: 0.9rem;
+      background: rgba(200, 160, 255, 0.2);
+      border-radius: 30px;
+      padding: 2px 12px;
+      margin-left: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .tagline {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            opacity: 0.9;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+    .staff-info {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      background: rgba(20, 10, 40, 0.6);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(5px);
+    }
 
-        .badge {
-            display: inline-block;
-            background: rgba(255, 220, 255, 0.2);
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            margin-top: 1rem;
-            backdrop-filter: blur(4px);
-        }
+    .staff-info i {
+      color: #c084fc;
+      margin-right: 5px;
+    }
 
-        /* Pricing Grid */
-        .pricing-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin: 4rem 0;
-        }
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin: 1rem 0 2.5rem;
+    }
 
-        .pricing-card {
-            flex: 1;
-            min-width: 260px;
-            max-width: 320px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
+    .hero h1 {
+      font-size: 3rem;
+      font-family: 'Cinzel', serif;
+      background: linear-gradient(120deg, #ffffff, #d9b0ff, #b77cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #f0d5ff;
-        }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
 
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            background: linear-gradient(135deg, #fff, #e2c7ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+    .ip-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(200, 150, 255, 0.5);
+    }
 
-        .price small {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #ccc;
-        }
+    .ip-text {
+      font-family: monospace;
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-        .feature-list {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
+    .copy-btn {
+      background: #b77cff44;
+      border: none;
+      padding: 6px 18px;
+      border-radius: 40px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-        .feature-list li {
-            margin: 0.8rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
+    .copy-btn:hover {
+      background: #c084fc;
+      color: #0a0212;
+    }
 
-        .feature-list i {
-            width: 1.5rem;
-            color: #d9b0ff;
-        }
+    /* Grid Menu */
+    .menu-section {
+      margin: 2.5rem 0 1rem;
+    }
 
-        .btn-order {
-            background: linear-gradient(90deg, #7e5aff, #a882ff);
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 40px;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            font-size: 1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
+    .section-title {
+      font-size: 1.8rem;
+      font-family: 'Cinzel', serif;
+      border-left: 5px solid #c084fc;
+      padding-left: 18px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .btn-order:hover {
-            transform: scale(1.02);
-            background: linear-gradient(90deg, #9370ff, #b690ff);
-            box-shadow: 0 6px 16px rgba(126, 90, 255, 0.4);
-        }
+    .rank-grid, .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
 
-        /* Portfolio Section */
-        .portfolio-section {
-            margin: 5rem 0 3rem;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #c9b6ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .portfolio-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-        }
-        .portfolio-item {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            width: 280px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s;
-        }
-        .portfolio-item:hover {
-            transform: translateY(-8px);
-            border-color: #a882ff;
-            box-shadow: 0 10px 30px rgba(126, 90, 255, 0.3);
-        }
-        .portfolio-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #a882ff;
-        }
-        .portfolio-item h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-        }
-        .portfolio-item p {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-        .copyright-note {
-            margin-top: 1rem;
-            font-size: 0.7rem;
-            background: rgba(0,0,0,0.4);
-            padding: 0.4rem;
-            border-radius: 20px;
-            display: inline-block;
-        }
-        .copyright-note i {
-            margin-right: 0.3rem;
-        }
-        .jull-inc {
-            font-family: monospace;
-            letter-spacing: 1px;
-            font-weight: bold;
-            color: #d9b0ff;
-        }
+    .card {
+      background: rgba(20, 10, 40, 0.55);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 1.3rem 1.5rem;
+      border: 1px solid rgba(200, 150, 255, 0.3);
+      transition: all 0.25s;
+    }
 
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 3rem;
-            margin: 3rem 0;
-            background: rgba(20, 10, 40, 0.6);
-            border-radius: 3rem;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #c084fc;
+      background: rgba(30, 15, 55, 0.7);
+      box-shadow: 0 12px 28px rgba(140, 70, 255, 0.2);
+    }
 
-        .glow-text {
-            font-size: 2rem;
-            font-weight: 700;
-        }
+    .card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
 
-        .btn-large {
-            background: white;
-            color: #2a1b4d;
-            padding: 1rem 2.5rem;
-            border-radius: 60px;
-            font-weight: bold;
-            border: none;
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .price {
+      font-size: 1rem;
+      background: #00000055;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-family: monospace;
+      font-weight: bold;
+      color: #ffd966;
+    }
 
-        .btn-large:hover {
-            transform: scale(1.05);
-            background: #f0e6ff;
-            box-shadow: 0 0 20px rgba(255,255,200,0.5);
-        }
+    .commands {
+      font-size: 0.85rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.6rem;
+      border-radius: 20px;
+      margin: 0.8rem 0;
+      font-family: monospace;
+      color: #cdcdff;
+    }
 
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            backdrop-filter: blur(8px);
-            transition: all 0.2s;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .social-btn:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-3px);
-        }
-        .social-btn i {
-            font-size: 1.3rem;
-        }
-        .whatsapp-btn { background: rgba(37, 211, 102, 0.2); border-color: #25D366; }
-        .instagram-btn { background: rgba(225, 48, 108, 0.2); border-color: #E4405F; }
-        .discord-btn { background: rgba(88, 101, 242, 0.2); border-color: #5865F2; }
+    .commands i {
+      margin-right: 6px;
+      color: #c084fc;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 3rem;
-        }
+    .note-badge {
+      font-size: 0.7rem;
+      background: rgba(255, 200, 100, 0.2);
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 50px;
+      margin-top: 8px;
+    }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #11101f;
-            max-width: 450px;
-            width: 90%;
-            padding: 2rem;
-            border-radius: 2rem;
-            border: 1px solid rgba(255,215,255,0.5);
-            text-align: center;
-        }
-        .modal input, .modal select {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.8rem 0;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #7e5aff;
-            border-radius: 2rem;
-            color: white;
-        }
-        .modal-close {
-            margin-top: 1rem;
-            background: #3a2a6a;
-        }
+    hr {
+      border-color: rgba(200, 150, 255, 0.2);
+      margin: 1rem 0;
+    }
 
-        @media (max-width: 800px) {
-            .pricing-grid { gap: 1rem; }
-            .logo { font-size: 3rem; }
-            .glow-text { font-size: 1.5rem; }
-            .social-links { gap: 1rem; }
-            .social-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
-            .section-title { font-size: 1.8rem; }
-            .portfolio-item { width: 240px; }
-        }
-    </style>
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(200, 150, 255, 0.3);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .warning {
+      background: rgba(255, 80, 120, 0.15);
+      border-left: 4px solid #ff7795;
+      padding: 0.8rem;
+      border-radius: 20px;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .content {
+        padding: 1rem;
+      }
+      .staff-info {
+        font-size: 0.7rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+<canvas id="angel-canvas"></canvas>
+<div class="overlay"></div>
 
-    <div class="content">
-        <div class="hero">
-            <div class="logo">JULL</div>
-            <div class="tagline">Professional Web Development Services</div>
-            <div class="badge"><i class="fas fa-code"></i> Solusi Website Modern & Profesional <i class="fas fa-rocket"></i></div>
-        </div>
+<div class="content">
+  <!-- Navbar dengan informasi staff -->
+  <div class="navbar">
+    <div class="logo">ZENDARA SMP <span>Divine Season</span></div>
+    <div class="staff-info">
+      <span><i class="fas fa-crown"></i> Owner: NattJull</span>
+      <span><i class="fas fa-user-shield"></i> Admin: Gecko</span>
+      <span><i class="fas fa-hands-helping"></i> Helper: Kaizo</span>
+      <span><i class="fas fa-code"></i> Developer: Reiap</span>
+    </div>
+  </div>
 
-        <!-- Pricing Section - Tanpa tema angelic pada deskripsi -->
-        <div class="pricing-grid">
-            <!-- Paket Gampang -->
-            <div class="pricing-card glass-card" data-package="Easy">
-                <div class="card-icon"><i class="fas fa-seedling"></i></div>
-                <h3>⚡ Paket Gampang</h3>
-                <div class="price">Rp 400.000 - 700.000</div>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> 1-3 Halaman</li>
-                    <li><i class="fas fa-check-circle"></i> Desain Responsif Mobile</li>
-                    <li><i class="fas fa-check-circle"></i> Setup Cepat (3-5 Hari)</li>
-                    <li><i class="fas fa-check-circle"></i> Form Kontak & Google Maps</li>
-                    <li><i class="fas fa-check-circle"></i> Domain & Hosting Siap Pakai</li>
-                </ul>
-                <button class="btn-order order-btn" data-price-range="400k-700k" data-tier="Paket Gampang">Pilih Paket Ini</button>
-            </div>
+  <!-- Hero & IP -->
+  <div class="hero">
+    <h1><i class="fas fa-dragon"></i> Zendara SMP <i class="fas fa-feather-alt"></i></h1>
+    <p>Survival Minecraft dengan Nuansa Malaikat & Iblis | System Rank Bertingkat</p>
+    <div class="ip-box">
+      <i class="fas fa-network-wired"></i>
+      <span class="ip-text" id="server-ip">play.zendaramc.my.id</span>
+      <button class="copy-btn" id="copy-ip"><i class="fas fa-copy"></i> Salin IP</button>
+    </div>
+  </div>
 
-            <!-- Paket Menengah -->
-            <div class="pricing-card glass-card" data-package="Medium">
-                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>✨ Paket Menengah</h3>
-                <div class="price">Rp 700.000 - 1.000.000</div>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> 5-8 Halaman Dinamis</li>
-                    <li><i class="fas fa-check-circle"></i> Animasi & Efek Modern</li>
-                    <li><i class="fas fa-check-circle"></i> Dashboard Admin Sederhana</li>
-                    <li><i class="fas fa-check-circle"></i> Optimasi SEO & Kecepatan</li>
-                    <li><i class="fas fa-check-circle"></i> Integrasi Media Sosial</li>
-                </ul>
-                <button class="btn-order order-btn" data-price-range="700k-1jt" data-tier="Paket Menengah">Pilih Paket Ini</button>
-            </div>
+  <!-- DAFTAR RANK (Lengkap dengan harga dan fitur) -->
+  <div class="menu-section">
+    <div class="section-title">
+      <i class="fas fa-tags"></i> <span>✦ RANK & HARGA ✦</span>
+    </div>
+    <div class="rank-grid">
+      <!-- Caellus -->
+      <div class="card">
+        <h3>✨ 𝘾𝙖𝙚𝙡𝙪𝙨 <span class="price">150k - 160k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 50, /fly, /ketik, /endchest, /anvil, /repair, /tpdeny, /nick, /ptime</div>
+      </div>
+      <!-- Darkness -->
+      <div class="card">
+        <h3>⚫ 𝘿𝙖𝙧𝙠𝙣𝙚𝙨𝙨 <span class="price">100k - 120k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 30, /fly, /endchest, /anvil, /repair, /craft, /hat, /pweather</div>
+      </div>
+      <!-- Seraphim -->
+      <div class="card">
+        <h3>🌕 𝚂𝚎𝚛𝚊𝚙𝚑𝚒𝚗 <span class="price">50k - 70k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 15, /fly, /enderchest, /anvil, /craft, /hat</div>
+      </div>
+      <!-- Demon -->
+      <div class="card">
+        <h3>🔴 𝙳𝚎𝚖𝚘𝚗 <span class="price">30k - 40k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 8, /enderchest, /anvil, /craft, /hat</div>
+      </div>
+      <!-- Angle (Angel) -->
+      <div class="card">
+        <h3>⚪ 𝙰𝚗𝚐𝚕𝚎 <span class="price">15k - 25k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 6, /hat, /craft</div>
+      </div>
+      <!-- Demigod -->
+      <div class="card">
+        <h3>🟠 Demigod <span class="price">10k - 17k</span></h3>
+        <div class="commands"><i class="fas fa-terminal"></i> /sethome 4, /craft</div>
+      </div>
+    </div>
+  </div>
 
-            <!-- Paket Tertinggi / Premium -->
-            <div class="pricing-card glass-card" data-package="Premium">
-                <div class="card-icon"><i class="fas fa-crown"></i></div>
-                <h3>👑 Paket Tertinggi</h3>
-                <div class="price">Rp 1.000.000 - 10.000.000</div>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> Desain Web 3D Interaktif</li>
-                    <li><i class="fas fa-check-circle"></i> Full Stack (Backend + Database)</li>
-                    <li><i class="fas fa-check-circle"></i> E-commerce Siap Pakai</li>
-                    <li><i class="fas fa-check-circle"></i> Custom Fitur & Animasi Premium</li>
-                    <li><i class="fas fa-check-circle"></i> Maintenance 3 Bulan Gratis</li>
-                </ul>
-                <button class="btn-order order-btn" data-price-range="1jt-10jt" data-tier="Paket Tertinggi">Pilih Paket Ini</button>
-            </div>
-        </div>
-
-        <!-- PORTFOLIO SECTION - Barisan Kedua: Proyek yang sudah dibuat -->
-        <div class="portfolio-section">
-            <div class="section-title">
-                <i class="fas fa-star-of-life"></i> Portfolio Terbaru <i class="fas fa-star-of-life"></i>
-            </div>
-            <div class="portfolio-grid">
-                <!-- Voltrazz Store -->
-                <div class="portfolio-item">
-                    <div class="portfolio-icon"><i class="fas fa-store"></i></div>
-                    <h3>Voltrazz Store</h3>
-                    <p>E-Commerce modern dengan sistem pembayaran terintegrasi & desain elegan. Platform belanja online dengan fitur lengkap.</p>
-                    <div class="copyright-note">
-                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
-                    </div>
-                </div>
-                <!-- VilexSMP -->
-                <div class="portfolio-item">
-                    <div class="portfolio-icon"><i class="fas fa-cubes"></i></div>
-                    <h3>VilexSMP</h3>
-                    <p>Landing page & community hub untuk Minecraft server. Dilengkapi dengan sistem whitelist & leaderboard dinamis.</p>
-                    <div class="copyright-note">
-                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
-                    </div>
-                </div>
-                <!-- VoxenSMP -->
-                <div class="portfolio-item">
-                    <div class="portfolio-icon"><i class="fas fa-gamepad"></i></div>
-                    <h3>VoxenSMP</h3>
-                    <p>Website komunitas gaming dengan forum, event tracker, dan desain immersive 3D untuk pengalaman pengguna terbaik.</p>
-                    <div class="copyright-note">
-                        <i class="fas fa-copyright"></i> Dilindungi Hak Cipta - JULL.INC
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; background: rgba(0,0,0,0.3); display: inline-block; width: auto; margin-left: auto; margin-right: auto; padding: 0.5rem 1.2rem; border-radius: 40px;">
-                <i class="fas fa-shield-alt"></i> <strong class="jull-inc">JULL.INC</strong> — Seluruh desain & kode merupakan hasil karya original. Dilarang meniru atau menduplikasi tanpa izin. <i class="fas fa-balance-scale"></i>
-            </div>
-        </div>
-
-        <!-- CTA Section dengan Kontak Sosial Media -->
-        <div class="cta-section glass-card">
-            <i class="fas fa-headset" style="font-size: 2rem; margin-bottom: 1rem; display: inline-block;"></i>
-            <div class="glow-text">Siap Punya Website Profesional?</div>
-            <p style="margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">Konsultasikan kebutuhan website Anda dengan tim JULL. Kami siap membantu dari konsep hingga launching! Seperti proyek Voltrazz Store, VilexSMP, dan VoxenSMP.</p>
-            
-            <!-- Social Media & Contact Buttons dengan data yang diminta -->
-            <div class="social-links">
-                <a href="https://wa.me/6281349948855?text=Halo%20JULL%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website.%20Mau%20konsultasi%20dulu%20boleh%3F" target="_blank" class="social-btn whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="https://instagram.com/jul_jull091" target="_blank" class="social-btn instagram-btn">
-                    <i class="fab fa-instagram"></i> @jul_jull091
-                </a>
-                <a href="https://discord.com/users/natthan0807" target="_blank" class="social-btn discord-btn">
-                    <i class="fab fa-discord"></i> natthan0807
-                </a>
-            </div>
-            <button id="contactNowBtn" class="btn-large"><i class="fas fa-paper-plane"></i> Konsultasi Sekarang</button>
-        </div>
-        <footer>
-            <i class="fas fa-code"></i> JULL.INC — Web Development Service • Hubungi kami via WhatsApp, Instagram atau Discord • © 2025 Hak Cipta Dilindungi <i class="fas fa-heart"></i>
-        </footer>
+  <!-- LIST BOOK KONTRAK & SKILL -->
+  <div class="menu-section">
+    <div class="section-title">
+      <i class="fas fa-book-open"></i> <span>📕 BOOK KONTRAK & SKILL</span>
+    </div>
+    <div class="item-grid">
+      <div class="card"><h3>𝚅1 + 𝚂𝙻 𝚁𝙴𝚀 <span class="price">20k - 40k</span></h3></div>
+      <div class="card"><h3>𝙻𝙴𝙶𝙴𝙽𝙳𝚂 + 𝚂𝙻 𝚁𝙴𝚀 <span class="price">40k - 60k</span></h3></div>
+      <div class="card"><h3>𝙱𝚁𝚄𝚃𝙰𝙻 + 𝚂𝙻 𝚁𝙴𝚀 <span class="price">70k - 90k</span></h3></div>
+      <div class="card"><h3>𝙳𝚁𝙰𝙺𝙽𝙴𝚂𝚂 + 𝚂𝙻 𝚁𝙴𝚀 <span class="price">85k - 100k</span></h3></div>
     </div>
 
-    <!-- Modal Order -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <h3><i class="fas fa-laptop-code"></i> Pesan Website JULL.INC</h3>
-            <p id="modalPackageInfo">Paket: <strong>-</strong></p>
-            <input type="text" id="clientName" placeholder="Nama Anda" required>
-            <input type="email" id="clientEmail" placeholder="Email Aktif">
-            <input type="tel" id="clientPhone" placeholder="Nomor WhatsApp">
-            <select id="projectIdea">
-                <option value="Website Profil">Website Profil Perusahaan</option>
-                <option value="Toko Online">Toko Online (E-commerce)</option>
-                <option value="Portofolio 3D">Portofolio 3D / Kreatif</option>
-                <option value="Landing Page">Landing Page Marketing</option>
-                <option value="Lainnya">Lainnya (Custom)</option>
-            </select>
-            <button id="submitOrder" class="btn-order" style="background:#a882ff;">Kirim Pesanan</button>
-            <button id="closeModal" class="btn-order modal-close" style="background:#3a2a6a;">Tutup</button>
-        </div>
+    <div class="section-title" style="margin-top: 2rem;">
+      <i class="fas fa-code-branch"></i> <span>⚡ SKILL & PERLENGKAPAN</span>
     </div>
+    <div class="item-grid">
+      <div class="card"><h3>𝚂𝙺𝙸𝙻𝙻 𝙰𝙻𝙻 𝙼𝙰𝚇 <span class="price">100k - 150k</span></h3></div>
+      <div class="card"><h3>1 𝚂𝙺𝙸𝙻𝙻 𝙼𝙰𝚇 <span class="price">10k</span></h3></div>
+      <div class="card"><h3>𝙼𝙾𝙽𝙴𝚈 2𝙼 <span class="price">10k</span></h3></div>
+      <div class="card"><h3>𝙰𝚁𝙼𝙾𝚁 𝘿𝙖𝙧𝙠𝙣𝙚𝙨𝙨 <span class="price">80k - 100k</span></h3></div>
+      <div class="card"><h3>𝙰𝚁𝙼𝙾𝚁 𝙆𝙞𝙣𝙜 <span class="price">150k - 200k</span></h3></div>
+      <div class="card"><h3>𝙲𝚄𝚂𝚃𝙾𝙼 𝙴𝙽𝙲𝙷𝙰𝙽𝚃 <span class="price">15k</span></h3></div>
+    </div>
+  </div>
 
-    <script type="module">
-        import * as THREE from 'three';
+  <!-- Catatan Penting -->
+  <div class="warning">
+    <i class="fas fa-exclamation-triangle"></i> <strong>NOTE:</strong> Jangan lupa simpan bukti transaksi agar dapat direff di season selanjutnya.<br>
+    <i class="fas fa-info-circle"></i> Pembelian Skill hanya bertahan 1 Season saja. Untuk Rank, SL, & Armor bersifat Permanent.
+  </div>
 
-        // --- Setup 3D Scene (Latar belakang 3D aesthetic modern) ---
-        const canvas = document.getElementById('bg-canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        
-        const scene = new THREE.Scene();
-        scene.background = null;
-        scene.fog = new THREE.FogExp2(0x0a0a1a, 0.008);
+  <div class="footer">
+    <span>© 2025 Zendara SMP — Survival dengan Sentuhan Angelic & Demon | play.zendaramc.my.id</span>
+    <div>
+      <i class="fab fa-discord"></i> <i class="fab fa-twitter"></i> <i class="fab fa-tiktok"></i>
+    </div>
+  </div>
+</div>
 
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 2, 12);
-        camera.lookAt(0, 0, 0);
+<!-- Three.js 3D Angel Background (Malaikat Bergerak Elegan) -->
+<script type="module">
+  import * as THREE from 'three';
 
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0x404060);
-        scene.add(ambientLight);
-        const mainLight = new THREE.DirectionalLight(0xffeebb, 1);
-        mainLight.position.set(2, 5, 3);
-        scene.add(mainLight);
-        const backLight = new THREE.PointLight(0xaa88ff, 0.5);
-        backLight.position.set(-2, 1, -4);
-        scene.add(backLight);
-        const fillLight = new THREE.PointLight(0xffaa88, 0.4);
-        fillLight.position.set(1, 2, 3);
-        scene.add(fillLight);
-        
-        // Decorative ring
-        const ringGeometry = new THREE.TorusGeometry(1.8, 0.05, 64, 200);
-        const ringMaterial = new THREE.MeshStandardMaterial({ color: 0xffccaa, emissive: 0x442200, emissiveIntensity: 0.6 });
-        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-        ring.rotation.x = Math.PI / 2;
-        ring.position.y = -0.5;
-        scene.add(ring);
-        
-        // Stars / Particles
-        const starGeometry = new THREE.BufferGeometry();
-        const starCount = 1500;
-        const starPositions = new Float32Array(starCount * 3);
-        for (let i = 0; i < starCount; i++) {
-            starPositions[i*3] = (Math.random() - 0.5) * 200;
-            starPositions[i*3+1] = (Math.random() - 0.5) * 100;
-            starPositions[i*3+2] = (Math.random() - 0.5) * 80 - 40;
-        }
-        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.7 });
-        const stars = new THREE.Points(starGeometry, starMaterial);
-        scene.add(stars);
-        
-        // Floating particles
-        const particleCount = 600;
-        const particleGeo = new THREE.BufferGeometry();
-        const particlePos = [];
-        for (let i = 0; i < particleCount; i++) {
-            particlePos.push((Math.random() - 0.5) * 22);
-            particlePos.push((Math.random() - 0.5) * 14);
-            particlePos.push((Math.random() - 0.5) * 18 - 6);
-        }
-        particleGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particlePos), 3));
-        const particleMat = new THREE.PointsMaterial({ color: 0xaaccff, size: 0.06, transparent: true, opacity: 0.5 });
-        const particles = new THREE.Points(particleGeo, particleMat);
-        scene.add(particles);
-        
-        // Floating orbs
-        const orbGroup = [];
-        const orbColors = [0xffaa88, 0x88aaff, 0xcc99ff];
-        for (let i = 0; i < 35; i++) {
-            const size = 0.07 + Math.random() * 0.12;
-            const orbMat = new THREE.MeshStandardMaterial({ color: orbColors[Math.floor(Math.random()*orbColors.length)], emissive: 0x5577aa, emissiveIntensity: 0.4 });
-            const orb = new THREE.Mesh(new THREE.SphereGeometry(size, 16, 16), orbMat);
-            orb.userData = {
-                basePos: new THREE.Vector3((Math.random() - 0.5)*7, (Math.random() - 0.5)*4, (Math.random() - 0.5)*6)
-            };
-            orb.position.copy(orb.userData.basePos);
-            scene.add(orb);
-            orbGroup.push(orb);
-        }
-        
-        // Central floating ring
-        const centerRing = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.04, 32, 100), new THREE.MeshStandardMaterial({ color: 0xffccaa, emissive: 0xff8866, emissiveIntensity: 0.7 }));
-        centerRing.position.y = 0.2;
-        centerRing.rotation.x = Math.PI / 2.2;
-        scene.add(centerRing);
-        
-        let time = 0;
-        
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            time += 0.012;
-            
-            stars.rotation.y += 0.0004;
-            stars.rotation.x += 0.0002;
-            particles.rotation.y += 0.0006;
-            
-            ring.rotation.z += 0.008;
-            centerRing.rotation.z += 0.01;
-            centerRing.position.y = 0.2 + Math.sin(time * 2) * 0.05;
-            
-            orbGroup.forEach(orb => {
-                orb.position.x = orb.userData.basePos.x + Math.sin(time * 1.2 + orb.userData.basePos.z) * 0.25;
-                orb.position.y = orb.userData.basePos.y + Math.cos(time * 1.0 + orb.userData.basePos.x) * 0.2;
-                orb.position.z = orb.userData.basePos.z + Math.sin(time * 0.8 + orb.userData.basePos.y) * 0.22;
-            });
-            
-            camera.position.x += (0 - camera.position.x) * 0.02;
-            camera.lookAt(0, 0.5, 0);
-            
-            renderer.render(scene, camera);
-        }
-        
-        animate3D();
-        
-        window.addEventListener('resize', onWindowResize, false);
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-        
-        // Simple mouse parallax
-        document.addEventListener('mousemove', (event) => {
-            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
-            camera.position.x += (mouseX * 0.2 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.15 - camera.position.y) * 0.05;
-            camera.lookAt(0, 0.5, 0);
-        });
-        
-    </script>
+  const canvas = document.getElementById('angel-canvas');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x050110);
+  scene.fog = new THREE.FogExp2(0x050110, 0.01);
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 1.2, 7);
+  camera.lookAt(0, 1.5, 0);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  // Lighting
+  const ambient = new THREE.AmbientLight(0x332a55);
+  scene.add(ambient);
+  const mainLight = new THREE.DirectionalLight(0xffeebb, 1.2);
+  mainLight.position.set(2, 4, 3);
+  scene.add(mainLight);
+  const backLight = new THREE.PointLight(0xb87cff, 0.9);
+  backLight.position.set(-1, 2, -3);
+  scene.add(backLight);
+  const fillLight = new THREE.PointLight(0xffaacc, 0.5);
+  fillLight.position.set(1, 1, 2);
+  scene.add(fillLight);
+  
+  // Bintang latar
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = 1500;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    starPos[i*3] = (Math.random() - 0.5) * 200;
+    starPos[i*3+1] = (Math.random() - 0.5) * 60;
+    starPos[i*3+2] = (Math.random() - 0.5) * 80 - 40;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xe2c4ff, size: 0.08, transparent: true, opacity: 0.6 }));
+  scene.add(stars);
+  
+  // Partikel melayang
+  const particleCount = 800;
+  const particleGeo = new THREE.BufferGeometry();
+  const particlePos = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount; i++) {
+    particlePos[i*3] = (Math.random() - 0.5) * 14;
+    particlePos[i*3+1] = Math.random() * 5;
+    particlePos[i*3+2] = (Math.random() - 0.5) * 12 - 4;
+  }
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+  const particlesMat = new THREE.PointsMaterial({ color: 0xffddbb, size: 0.045, transparent: true, opacity: 0.35 });
+  const particles = new THREE.Points(particleGeo, particlesMat);
+  scene.add(particles);
+  
+  // Membuat figur malaikat sederhana namun elegan dengan geometri (sayap + halo)
+  const angelGroup = new THREE.Group();
+  
+  // Halo (cincin cahaya)
+  const haloGeo = new THREE.TorusGeometry(0.55, 0.07, 32, 100);
+  const haloMat = new THREE.MeshStandardMaterial({ color: 0xffcc99, emissive: 0xaa66ff, emissiveIntensity: 0.6 });
+  const halo = new THREE.Mesh(haloGeo, haloMat);
+  halo.position.y = 1.9;
+  halo.rotation.x = Math.PI / 2;
+  angelGroup.add(halo);
+  
+  // Tubuh (robe)
+  const bodyGeo = new THREE.CylinderGeometry(0.38, 0.5, 1.1, 12);
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe8ddff, emissive: 0x664488, emissiveIntensity: 0.2 });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.position.y = 0.55;
+  angelGroup.add(body);
+  
+  // Kepala
+  const headGeo = new THREE.SphereGeometry(0.38, 24, 24);
+  const headMat = new THREE.MeshStandardMaterial({ color: 0xffedd5, emissive: 0xccaaff, emissiveIntensity: 0.15 });
+  const head = new THREE.Mesh(headGeo, headMat);
+  head.position.y = 1.2;
+  angelGroup.add(head);
+  
+  // Sayap kiri & kanan (dari cone atau bentuk)
+  const wingGeo = new THREE.ConeGeometry(0.65, 0.2, 8);
+  const wingMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xccaaee, emissiveIntensity: 0.3 });
+  const leftWing = new THREE.Mesh(wingGeo, wingMat);
+  leftWing.position.set(-0.8, 1.0, 0.1);
+  leftWing.rotation.z = 0.6;
+  leftWing.rotation.x = 0.2;
+  const rightWing = new THREE.Mesh(wingGeo, wingMat);
+  rightWing.position.set(0.8, 1.0, 0.1);
+  rightWing.rotation.z = -0.6;
+  rightWing.rotation.x = 0.2;
+  angelGroup.add(leftWing);
+  angelGroup.add(rightWing);
+  
+  // Sayap kedua (lebih besar)
+  const wing2Geo = new THREE.CylinderGeometry(0.85, 0.3, 0.15, 6);
+  const wing2Mat = new THREE.MeshStandardMaterial({ color: 0xf3e6ff, emissive: 0xcc99ff, emissiveIntensity: 0.2 });
+  const leftWing2 = new THREE.Mesh(wing2Geo, wing2Mat);
+  leftWing2.position.set(-1.1, 0.95, 0.05);
+  leftWing2.rotation.z = 0.4;
+  const rightWing2 = new THREE.Mesh(wing2Geo, wing2Mat);
+  rightWing2.position.set(1.1, 0.95, 0.05);
+  rightWing2.rotation.z = -0.4;
+  angelGroup.add(leftWing2);
+  angelGroup.add(rightWing2);
+  
+  scene.add(angelGroup);
+  
+  // Bola cahaya mengelilingi malaikat
+  const glowOrbs = [];
+  for (let i = 0; i < 8; i++) {
+    const orbGeo = new THREE.SphereGeometry(0.08, 8, 8);
+    const orbMat = new THREE.MeshStandardMaterial({ color: 0xffaa88, emissive: 0xff66cc, emissiveIntensity: 0.8 });
+    const orb = new THREE.Mesh(orbGeo, orbMat);
+    angelGroup.add(orb);
+    glowOrbs.push(orb);
+  }
+  
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.012;
     
-    <script type="text/javascript">
-        // Modal & Order Logic with WhatsApp integration (nomor: 081349948855)
-        const modal = document.getElementById('orderModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const submitBtn = document.getElementById('submitOrder');
-        const modalPackageInfo = document.getElementById('modalPackageInfo');
-        let selectedPackage = '';
-        let selectedPrice = '';
-        
-        const orderBtns = document.querySelectorAll('.order-btn');
-        orderBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const tier = btn.getAttribute('data-tier');
-                const priceRange = btn.getAttribute('data-price-range');
-                selectedPackage = tier;
-                selectedPrice = priceRange;
-                modalPackageInfo.innerHTML = `Paket: <strong>${tier}</strong> (Rp ${priceRange})`;
-                modal.style.display = 'flex';
-            });
-        });
-        
-        function closeModalFunc() {
-            modal.style.display = 'none';
-        }
-        
-        closeModalBtn.addEventListener('click', closeModalFunc);
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) closeModalFunc();
-        });
-        
-        const waNumber = "6281349948855";
-        
-        submitBtn.addEventListener('click', () => {
-            const name = document.getElementById('clientName').value.trim();
-            const email = document.getElementById('clientEmail').value.trim();
-            const phone = document.getElementById('clientPhone').value.trim();
-            const project = document.getElementById('projectIdea').value;
-            
-            if (!name) {
-                alert('Mohon isi nama Anda terlebih dahulu ✨');
-                return;
-            }
-            
-            const message = `Halo JULL.INC!%0A%0ASaya tertarik dengan paket *${selectedPackage}* (Rp ${selectedPrice}).%0A%0AData diri:%0ANama: ${name}%0AEmail: ${email}%0ANo HP: ${phone}%0AJenis Proyek: ${project}%0A%0AMohon informasi lebih lanjut untuk pembuatan website. Terima kasih!`;
-            const whatsappUrl = `https://wa.me/${waNumber}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
-            
-            alert(`Terima kasih ${name}! Permintaan paket ${selectedPackage} telah dikirim via WhatsApp. Kami akan segera menghubungi Anda.`);
-            closeModalFunc();
-            document.getElementById('clientName').value = '';
-            document.getElementById('clientEmail').value = '';
-            document.getElementById('clientPhone').value = '';
-        });
-        
-        const contactBtn = document.getElementById('contactNowBtn');
-        if(contactBtn) {
-            contactBtn.addEventListener('click', () => {
-                const consultMsg = "Halo JULL.INC%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website.%20Mau%20konsultasi%20dulu%20boleh%3F";
-                window.open(`https://wa.me/${waNumber}?text=${consultMsg}`, '_blank');
-            });
-        }
-    </script>
+    // Gerakan malaikat naik turun lembut
+    angelGroup.position.y = Math.sin(time * 1.2) * 0.05;
+    angelGroup.rotation.y = Math.sin(time * 0.5) * 0.2;
+    // Sayap mengepak tipis
+    leftWing.rotation.z = 0.5 + Math.sin(time * 2.5) * 0.12;
+    rightWing.rotation.z = -0.5 - Math.sin(time * 2.5) * 0.12;
+    leftWing2.rotation.z = 0.3 + Math.sin(time * 2.2) * 0.1;
+    rightWing2.rotation.z = -0.3 - Math.sin(time * 2.2) * 0.1;
+    
+    // Orb berputar
+    glowOrbs.forEach((orb, idx) => {
+      const angle = (time * 1.5) + (idx * Math.PI * 2 / glowOrbs.length);
+      const radius = 1.1;
+      orb.position.x = Math.cos(angle) * radius;
+      orb.position.z = Math.sin(angle) * radius;
+      orb.position.y = 1.0 + Math.sin(angle * 2) * 0.2;
+    });
+    
+    // Rotasi bintang dan partikel pelan
+    stars.rotation.y += 0.0005;
+    stars.rotation.x += 0.0003;
+    particles.rotation.y += 0.001;
+    
+    renderer.render(scene, camera);
+  }
+  
+  animate();
+  
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
+<script>
+  // Copy IP functionality
+  const copyBtn = document.getElementById('copy-ip');
+  const ipText = document.getElementById('server-ip').innerText;
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(ipText);
+    alert('✅ IP Server berhasil disalin: ' + ipText);
+  });
+</script>
 </body>
 </html>
